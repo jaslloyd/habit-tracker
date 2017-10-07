@@ -34,5 +34,9 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "occurrence_habit": {
+    "dataSource": "db",
+    "public": true
   }
 }

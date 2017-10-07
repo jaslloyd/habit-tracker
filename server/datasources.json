@@ -1,6 +1,16 @@
 {
-  "db": {
-    "name": "db",
+  "db_memory": {
+    "name": "db_memory",
     "connector": "memory"
+  },
+  "db": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "habits",
+    "password": "",
+    "name": "db",
+    "user": "",
+    "connector": "mongodb"
   }
 }
