@@ -17,6 +17,9 @@
       "type": "number",
       "required": true
     },
+    "completed":{
+      "type": "number"
+    },
     "target_month": {
       "type": "string",
       "required": true
