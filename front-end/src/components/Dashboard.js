@@ -19,19 +19,29 @@ class Dashboard extends Component {
       .then(results => this.setState({ habits: results }))
   }
 
-  handleUpdate(name, numCompleted){
-    console.log(name, numCompleted)
+  handleUpdate(id, numCompleted){
+    console.log(id, numCompleted)
+    let existing_habits = this.state.habits
     // 1. Find the habit we are updating
-    const existing_habit = this.state.habits.find(habit => {
-      if (habit.name === name){
-        return habit
-      }
-    })
+    const habit_index = this.state.habits.findIndex(habit => habit.id === id)
+
     // 2. change the value of num of completed
-    existing_habit.completed = numCompleted
+    existing_habits[habit_index].completed = numCompleted
 
     // 3. Update the state with new habit object but keeping older ones??
+    this.setState({habits: existing_habits})
 
+    console.log(JSON.stringify(existing_habits[habit_index]));
+    fetch(`http://localhost:3001/api/occurrence_habits/${id}`, {
+      method: 'PUT',
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(existing_habits[habit_index])
+    })
+    .then(response => response.json())
+    .then(result => console.log(result))
 
   }
 

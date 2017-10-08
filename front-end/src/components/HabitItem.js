@@ -6,7 +6,7 @@ const HabitItem = (props) => (
         <input type="checkbox" className="custom-control-input" 
             checked={props.index <= props.completed ? 'checked' : ''}
             disabled={props.index > props.completed + 1}
-            onClick={() => props.onCompleted(props.index)}
+            onChange={() => props.onCompleted(props.index)}
         />
         <span className="custom-control-indicator"></span>
     </label>

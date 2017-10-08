@@ -5,21 +5,16 @@ class Habit extends Component {
   /**
    * When a habit mounts for each entry in a habit display habit item
   */
-  constructor(props){
-    super(props);
-    
-  }
   onCompleted(index){
     // todo: duplicated code removal!!
-    let _completed = this.props.habit.completed
-    let _name = this.props.habit.name
-    console.log('Habit ', index, _completed)
-    if(index <= _completed){
+    let {id, completed} = this.props.habit
+    console.log('Habit ', index, completed)
+    if(index <= completed){
       console.log('Deselected a habit')
-      this.props.onUpdated(_name, _completed - 1);
+      this.props.onUpdated(id, completed - 1);
     }else{
       console.log('Selected a habit')
-      this.props.onUpdated(_name, _completed + 1)
+      this.props.onUpdated(id, completed + 1)
     }
   }
 
