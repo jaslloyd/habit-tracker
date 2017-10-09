@@ -10,7 +10,7 @@ I want a easy way to coorlate my tracking into one simple to use interface. Also
 
 ## User Stories
 
-- [ ] As a user I want to be able to add habits
+- [X] As a user I want to be able to add habits
 
 - [ ] As a user I want to be able to remove habits
 
