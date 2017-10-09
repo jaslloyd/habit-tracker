@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Habit from './Habit';
 
 class Dashboard extends Component {
@@ -19,7 +20,7 @@ class Dashboard extends Component {
       .then(results => this.setState({ habits: results }))
   }
 
-  handleUpdate(id, numCompleted){
+  handleHabitItemUpdate(id, numCompleted){
     console.log(id, numCompleted)
     let existing_habits = this.state.habits
     // 1. Find the habit we are updating
@@ -31,7 +32,6 @@ class Dashboard extends Component {
     // 3. Update the state with new habit object but keeping older ones??
     this.setState({habits: existing_habits})
 
-    console.log(JSON.stringify(existing_habits[habit_index]));
     fetch(`http://localhost:3001/api/occurrence_habits/${id}`, {
       method: 'PUT',
       headers:{
@@ -41,19 +41,23 @@ class Dashboard extends Component {
       body: JSON.stringify(existing_habits[habit_index])
     })
     .then(response => response.json())
-    .then(result => console.log(result))
-
+    .then(result => console.log(`Habit: ${id} updated...`))
   }
 
   render() {
-    const habitsElements = this.state.habits.map(habit => <Habit key={habit.id} habit={habit} onUpdated={this.handleUpdate.bind(this)}/>)
-    console.log(habitsElements)
+    const habitsElements = this.state.habits.map(habit => <Habit key={habit.id} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate.bind(this)} />)
     return (
         <div>
             <h1 className="lead mt-3">Dashboard</h1>
             <br/>
-            {habitsElements}
-            {/* Dashbaord contains a list of habits */}
+            <div className="row">
+              <div className="ml-auto col-md-3">
+              <Link to="/addhabit" type="button" className="btn btn-success pull-right">Add Habit</Link>
+              </div>
+            </div>
+            <div id="habit-list" className="mt-3">
+              {habitsElements}
+            </div>
       </div>
     );
   }

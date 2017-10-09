@@ -24,6 +24,8 @@ I want a easy way to coorlate my tracking into one simple to use interface. Also
 
 
 ### Habit Specific
+- [ ] As a user I want to track my monthly habits. e.g I want to go to the Gym at least 10 times this month
+
 - [ ] As a user I want to take 30 day challenges.
 
 - [ ] As a user I want to be able to track my habits via don't break the chain.
@@ -37,6 +39,6 @@ I want a easy way to coorlate my tracking into one simple to use interface. Also
 
 * Back-end
     * NodeJS 
-        - Loopback or Express 
+        * Loopback 
     * DB
-        * Mongodb or Firebase
+        * Mongodb 
