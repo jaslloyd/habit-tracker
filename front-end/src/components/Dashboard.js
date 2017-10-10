@@ -15,9 +15,13 @@ class Dashboard extends Component {
     }
   }
   componentDidMount(){
+    this.getHabits()
+  }
+
+  getHabits(){
     fetch('http://localhost:3001/api/occurrence_habits')
       .then(response => response.json())
-      .then(results => this.setState({ habits: results }))
+      .then(results => this.setState({ habits: results }))  
   }
 
   handleHabitItemUpdate(id, numCompleted){
@@ -44,8 +48,19 @@ class Dashboard extends Component {
     .then(result => console.log(`Habit: ${id} updated...`))
   }
 
+  handleHabitDelete(id){
+    fetch(`http://localhost:3001/api/occurrence_habits/${id}`, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log(`Habit ${id} deleted...`)
+      this.getHabits()
+    })
+  }
+
   render() {
-    const habitsElements = this.state.habits.map(habit => <Habit key={habit.id} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate.bind(this)} />)
+    const habitsElements = this.state.habits.map(habit => <Habit key={habit.id} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate.bind(this)} onDelete={this.handleHabitDelete.bind(this)} />)
     return (
         <div>
             <h1 className="lead mt-3">Dashboard</h1>

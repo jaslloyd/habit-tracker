@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 class AddHabit extends Component {
     
     addHabit(e){
@@ -21,8 +20,8 @@ class AddHabit extends Component {
             body: JSON.stringify(new_habit)
           })
           .then(response => response.json())
-          .then(result => console.log(result));
-
+          .then(result => this.props.history.push('/'));
+        
         e.preventDefault()
     }
     

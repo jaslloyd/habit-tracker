@@ -18,7 +18,7 @@ class Habit extends Component {
   }
 
   render() {
-    const {name, description, target, completed} = this.props.habit;
+    const {id, name, description, target, completed} = this.props.habit;
     const habitItemElements = Array(target).fill().map((_, i) => <HabitItem key={i+1} index={i+1} completed={completed} onCompleted={this.onCompleted.bind(this)} />);
 
     return (
@@ -28,12 +28,15 @@ class Habit extends Component {
           <p>Description: {description}</p>
           
         </div>
-        <div className="col-md-6">
-          {/* Each habit is a list of habit items (checkboxes whatever) */}
+        <div className="col-md-5">
           {habitItemElements}
         </div>
         <div className="col-md-2">
-          <p>Progress: {completed} / {target} Days</p>
+          <p>Progress:</p>
+          <p>{completed} / {target} Days</p>
+        </div>
+        <div className="col-md-1">
+          <button type="button" className="btn btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
         </div>
       </div>
     );
