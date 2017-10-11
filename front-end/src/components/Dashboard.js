@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Habit from './Habit';
+import moment from 'moment'
 
 class Dashboard extends Component {
   /*
     When components mounts, fetch user habits from backend
     For each habit the user has defined create a Habit element.
   */
-
   constructor(props){
     super();
     this.state = {
       habits: []
     }
+    this.days_left = moment().endOf('month').diff(moment().today, 'days')
+    this.current_month = moment().format('MMMM')
   }
   componentDidMount(){
     this.getHabits()
@@ -65,6 +67,11 @@ class Dashboard extends Component {
         <div>
             <h1 className="lead mt-3">Dashboard</h1>
             <br/>
+            <h3>{this.current_month} - {this.days_left} Days Left!</h3>
+            <div className="progress">
+              {moment().today}
+              <div className="progress-bar" role="progressbar" style={{width: '25%'}} aria-valuenow={ moment().today} aria-valuemin="1" aria-valuemax={moment().endOf('month')}>{this.days_left}</div>
+            </div>
             <div className="row">
               <div className="ml-auto col-md-3">
               <Link to="/addhabit" type="button" className="btn btn-success pull-right">Add Habit</Link>

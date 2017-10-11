@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+
 class AddHabit extends Component {
     
     addHabit(e){
@@ -8,7 +10,7 @@ class AddHabit extends Component {
             'description': '',
             'target': parseInt(this.refs.habit_target.value, 10),
             'completed': 0,
-            'target_month': 'October'
+            'target_month': moment().format('MMMM')
         }
 
         fetch('http://localhost:3001/api/occurrence_habits', {
