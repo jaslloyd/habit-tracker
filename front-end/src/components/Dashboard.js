@@ -64,13 +64,13 @@ class Dashboard extends Component {
   }
 
   render() {
-    const habitsElements = this.state.habits.map(habit => <Habit key={habit.id} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate.bind(this)} onDelete={this.handleHabitDelete.bind(this)} />)
+    const habitsElements = this.state.habits.map(habit => <Habit key={habit.id} habit={habit} monthDaysLeft={this.days_left} onHabitItemUpdated={this.handleHabitItemUpdate.bind(this)} onDelete={this.handleHabitDelete.bind(this)} />)
     return (
         <div>
             <h1 className="lead mt-3">Dashboard</h1>
             <br/>
             <div className="row">
-              <div className="col-md-3">
+              <div className="col-md-12 text-center">
                 <h4>{this.current_month} - {this.days_left} Days Left!</h4>
               </div>
               <div className="col-md-9">
