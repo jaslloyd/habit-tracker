@@ -18,21 +18,20 @@ class Habit extends Component {
   }
 
   render() {
-    const {id, name, description, target, completed} = this.props.habit;
+    const {id, name, description, category, target, completed} = this.props.habit;
     const habitItemElements = Array(target).fill().map((_, i) => <HabitItem key={i+1} index={i+1} completed={completed} onCompleted={this.onCompleted.bind(this)} />);
 
     return (
       <div className="row">
         <div className="col-md-4">
-          <h3>Habit: {name}</h3>
-          <p>Description: {description}</p>
-          
+          <h3>{name}</h3>
+          {/* <p>Description: {description}</p>
+          <p>Category: {category}</p> */}
         </div>
         <div className="col-md-5">
           {habitItemElements}
         </div>
         <div className="col-md-2">
-          <p>Progress:</p>
           <p>{completed} / {target} Days</p>
         </div>
         <div className="col-md-1">

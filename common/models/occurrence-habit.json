@@ -13,6 +13,10 @@
     "description": {
       "type": "string"
     },
+    "category": {
+      "type": "string",
+      "required": true
+    },
     "target": {
       "type": "number",
       "required": true

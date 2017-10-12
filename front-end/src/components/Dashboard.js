@@ -15,6 +15,8 @@ class Dashboard extends Component {
     }
     this.days_left = moment().endOf('month').diff(moment().today, 'days')
     this.current_month = moment().format('MMMM')
+    this.current_day_month = moment().format('D')
+    this.percentage_days_gone = Math.ceil((this.current_day_month / moment().daysInMonth()) * 100)
   }
   componentDidMount(){
     this.getHabits()
@@ -67,11 +69,17 @@ class Dashboard extends Component {
         <div>
             <h1 className="lead mt-3">Dashboard</h1>
             <br/>
-            <h3>{this.current_month} - {this.days_left} Days Left!</h3>
-            <div className="progress">
-              {moment().today}
-              <div className="progress-bar" role="progressbar" style={{width: '25%'}} aria-valuenow={ moment().today} aria-valuemin="1" aria-valuemax={moment().endOf('month')}>{this.days_left}</div>
+            <div className="row">
+              <div className="col-md-3">
+                <h4>{this.current_month} - {this.days_left} Days Left!</h4>
+              </div>
+              <div className="col-md-9">
+              {/* <div className="progress">
+                <div className="progress-bar" role="progressbar" style={{width: `${this.percentage_days_gone}%`}} aria-valuenow={this.current_day_month} aria-valuemin="1" aria-valuemax={moment().endOf('month')}>{this.current_day_month} Days</div>
+              </div> */}
+              </div>
             </div>
+          
             <div className="row">
               <div className="ml-auto col-md-3">
               <Link to="/addhabit" type="button" className="btn btn-success pull-right">Add Habit</Link>

@@ -7,7 +7,8 @@ class AddHabit extends Component {
         // Add habit to db..then redirect
         const new_habit = {
             'name': this.refs.habit_name.value,
-            'description': '',
+            'description': this.refs.habit_desc.value,
+            'category': this.refs.habit_cat.value,
             'target': parseInt(this.refs.habit_target.value, 10),
             'completed': 0,
             'target_month': moment().format('MMMM')
@@ -37,8 +38,12 @@ class AddHabit extends Component {
                         <input type="text" className="form-control" ref="habit_name" id="habitName" placeholder="Habit Name e.g. Wake up before 8am each day" required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="habit_desc">Habit Description:</label>
+                        <label htmlFor="habit_desc">Description:</label>
                         <input type="text" className="form-control" ref="habit_desc" id="habit_desc" placeholder="Why do you want to complete it?" required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="habit_cat">Category:</label>
+                        <input type="text" className="form-control" ref="habit_cat" id="habit_cat" placeholder="Health / Finance / Career" required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="habit_target">How many days do you want to do this habit?</label>
