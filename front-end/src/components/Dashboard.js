@@ -68,10 +68,14 @@ class Dashboard extends Component {
     return (
         <div>
             <h1 className="lead mt-3">Dashboard</h1>
-            <br/>
             <div className="row">
               <div className="col-md-12 text-center">
-                <h4>{this.current_month} - {this.days_left} Days Left!</h4>
+                
+                <h4>
+                  <span><i class="mr-2 fa fa-chevron-left" aria-hidden="true"></i></span>
+                  {this.current_month} - {this.days_left} Days Left!
+                  <span><i class="ml-2 fa fa-chevron-right" aria-hidden="true"></i></span>
+                </h4>
               </div>
               <div className="col-md-9">
               {/* <div className="progress">
@@ -82,7 +86,7 @@ class Dashboard extends Component {
           
             <div className="row">
               <div className="ml-auto col-md-3">
-              <Link to="/addhabit" type="button" className="btn btn-success pull-right">Add Habit</Link>
+                <Link to="/addhabit" type="button" className="btn btn-success pull-right">Add Habit</Link>
               </div>
             </div>
             <div id="habit-list" className="mt-3">

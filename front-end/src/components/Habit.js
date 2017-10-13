@@ -13,6 +13,10 @@ class Habit extends Component {
   }
 
   componentDidMount(){
+    this.updateHabitColor()
+  }
+
+  updateHabitColor(){
     const {target, completed} = this.props.habit
     const canComplete = this.props.monthDaysLeft - (target - completed) // 10 - 15 = -5
 
@@ -22,6 +26,8 @@ class Habit extends Component {
     }
     else if(canComplete === 0 || canComplete <= 2){
       this.setState({color: 'orange'})
+    }else{
+      this.setState({color: 'black'})
     }
   }
 
@@ -35,6 +41,7 @@ class Habit extends Component {
       console.log('Selected a habit')
       this.props.onHabitItemUpdated(id, completed + 1)
     }
+    this.updateHabitColor()
   }
 
   render() {
@@ -42,19 +49,19 @@ class Habit extends Component {
     const habitItemElements = Array(target).fill().map((_, i) => <HabitItem key={i+1} index={i+1} completed={completed} onCompleted={this.onCompleted.bind(this)} />);
 
     return (
-      <div className="row">
-        <div className="col-sm-3">
-          <h3>{name}</h3>
+      <div className="row mt-3 mb-3">
+        <div className="col-2">
+          <h5>{name}</h5>
           {/* <p>Description: {description}</p>
           <p>Category: {category}</p> */}
         </div>
-        <div className="col-sm-6">
+        <div className="col-7">
           {habitItemElements}
         </div>
-        <div className="col-sm-2">
+        <div className="col-2">
           <p style={{color: this.state.color}}>{target - completed} Days left</p>
         </div>
-        <div className="col-md-1">
+        <div className="col-1">
           <button type="button" className="btn btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
         </div>
       </div>

@@ -8,12 +8,13 @@ input[type="checkbox"]{
   -webkit-appearance: initial;
   appearance: initial;
   background: gray;
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   border: none;
   background: gray;
   position: relative;
   margin-bottom: 10px;
+  margin-right: 5px;
 }
 input[type="checkbox"]:checked {
   background: green;

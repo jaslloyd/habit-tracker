@@ -6,7 +6,7 @@ import './App.css';
 const App = () => (
     <div>
       <Navbar />
-      <div className="container">
+      <div className="container-fluid">
         <Main />
       </div>
     </div>
