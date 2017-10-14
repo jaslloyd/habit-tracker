@@ -36,7 +36,7 @@ class Dashboard extends Component {
 
     // 2. change the value of num of completed
     existing_habits[habit_index].completed = numCompleted
-
+    existing_habits[habit_index].last_updated = moment().format('Do')
     // 3. Update the state with new habit object but keeping older ones??
     this.setState({habits: existing_habits})
 
@@ -70,11 +70,10 @@ class Dashboard extends Component {
             <h1 className="lead mt-3">Dashboard</h1>
             <div className="row">
               <div className="col-md-12 text-center">
-                
                 <h4>
-                  <span><i class="mr-2 fa fa-chevron-left" aria-hidden="true"></i></span>
+                  <span><i className="mr-2 fa fa-chevron-left" aria-hidden="true"></i></span>
                   {this.current_month} - {this.days_left} Days Left!
-                  <span><i class="ml-2 fa fa-chevron-right" aria-hidden="true"></i></span>
+                  <span><i className="ml-2 fa fa-chevron-right" aria-hidden="true"></i></span>
                 </h4>
               </div>
               <div className="col-md-9">

@@ -27,6 +27,9 @@
     "target_month": {
       "type": "string",
       "required": true
+    },
+    "last_updated": {
+      "type": "string"
     }
   },
   "validations": [],

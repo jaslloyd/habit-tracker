@@ -45,13 +45,14 @@ class Habit extends Component {
   }
 
   render() {
-    const {id, name, description, category, target, completed} = this.props.habit;
+    const {id, name, description, category, target, completed, last_updated} = this.props.habit;
     const habitItemElements = Array(target).fill().map((_, i) => <HabitItem key={i+1} index={i+1} completed={completed} onCompleted={this.onCompleted.bind(this)} />);
 
     return (
-      <div className="row mt-3 mb-3">
+      <div className="row mt-2 mb-2">
         <div className="col-2">
-          <h5>{name}</h5>
+          <h5><span className="badge badge-pill badge-success">{last_updated}</span> {name}</h5>
+          
           {/* <p>Description: {description}</p>
           <p>Category: {category}</p> */}
         </div>
