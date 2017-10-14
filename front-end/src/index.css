@@ -43,3 +43,8 @@ input[type="checkbox"]:checked:after {
    left: 0;
   
 }
+
+.target_num{
+  position: relative;
+  bottom: 20px;
+}

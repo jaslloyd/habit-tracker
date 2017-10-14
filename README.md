@@ -12,23 +12,21 @@ I want a easy way to coorlate my tracking into one simple to use interface. Also
 
 - [X] As a user I want to be able to add habits
 
-- [ ] As a user I want to be able to remove habits
+- [X] As a user I want to be able to remove habits
 
-- [ ] As a user I want to be able to see all the habits I am tracking in a single ui
+- [X] As a user I want to be able to see all the habits I am tracking in a single ui
 
-- [ ] As a user I want to be able to make a habit or goal as successful
+- [X] As a user I want to be able to make a habit or goal as successful
 
-- [ ] As a user I want to be able to see all the habits
-
-- [ ] As a user I want to be able to track the progress of my habits so that I can see progress overtime
+- [ ] As a user I want to be able to see my progress on habits overtime
 
 
 ### Habit Specific
-- [ ] As a user I want to track my monthly habits. e.g I want to go to the Gym at least 10 times this month
+- [X] As a user I want to track my monthly habits. e.g I want to go to the Gym at least 10 times this month
 
 - [ ] As a user I want to take 30 day challenges.
 
-- [ ] As a user I want to be able to track my habits via don't break the chain.
+- [ ] As a user I want to be able to track my habits that don't have a specific timeframe. e.g. Daily habits
 
 ## Technology Stack
 
