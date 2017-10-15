@@ -27,7 +27,8 @@ class Dashboard extends Component {
   getHabits(){
     fetch('http://localhost:3001/api/occurrence_habits')
       .then(response => response.json())
-      .then(results => this.setState({ habits: results })); 
+      .then(results => this.setState({ habits: results }))
+      .catch(e => console.log(`Failed to get all habits ${e}`));
   }
 
   getFilteredHabits(filter_obj){
@@ -36,18 +37,19 @@ class Dashboard extends Component {
     fetch(`http://localhost:3001/api/occurrence_habits?filter=${filter_obj}`)
       .then(response => response.json())
       .then(results => console.log(results))
-      .catch(e => console.log(e));
+      .catch(e => console.log(`Failed to get filitered habits ${e}`));
   }
+
   handleHabitItemUpdate(id, numCompleted){
     console.log(id, numCompleted)
     let existing_habits = this.state.habits
     // 1. Find the habit we are updating
     const habit_index = this.state.habits.findIndex(habit => habit.id === id)
-
     // 2. change the value of num of completed
     existing_habits[habit_index].completed = numCompleted
+    // 3. Set the last_updated date to today.
     existing_habits[habit_index].last_updated = moment().format('Do')
-    // 3. Update the state with new habit object but keeping older ones??
+    // 4. Update the state with new habit object but keeping older ones??
     this.setState({habits: existing_habits})
 
     fetch(`http://localhost:3001/api/occurrence_habits/${id}`, {
@@ -60,6 +62,7 @@ class Dashboard extends Component {
     })
     .then(response => response.json())
     .then(result => console.log(`Habit: ${id} updated...`))
+    .catch(e => console.log(`Failed to Update habit ${e}`));
   }
 
   handleHabitDelete(id){
@@ -71,11 +74,13 @@ class Dashboard extends Component {
       console.log(`Habit ${id} deleted...`)
       this.getHabits()
     })
+    .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
 
+  // todo: Bad name for function as 'next' is very vague word, also does too much...refactor
   displayNextMonth(e){
     let new_index;
-    // This is kinda confusing, when we want to go back we subtract that number from the current month, if it is minus we still upstract but we update the index -1
+    // This is kinda confusing, when we want to go back we subtract that number from the current month, if it is minus we still subtract but we update the index -1
     const data_operation = e.target.getAttribute('data-operation');
 
     if(data_operation === '+1'){
@@ -108,7 +113,6 @@ class Dashboard extends Component {
                 <h6 className="">Current Month: <a href='' onClick={this.displayNextMonth.bind(this)} data-operation="reset">{moment().format('MMMM')}</a></h6>
               </div>
             </div>
-            
             <div className="row">
               <div className="col-md-12 text-center">
                 <h4>
@@ -118,7 +122,6 @@ class Dashboard extends Component {
                 </h4>
               </div>
             </div>
-          
             <div className="row">
               <div className="ml-auto col-md-3">
                 <Link to="/addhabit" type="button" className="btn btn-success pull-right">Add Habit</Link>

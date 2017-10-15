@@ -23,7 +23,8 @@ class AddHabit extends Component {
             body: JSON.stringify(new_habit)
           })
           .then(response => response.json())
-          .then(result => this.props.history.push('/'));
+          .then(result => this.props.history.push('/'))
+          .catch(e => console.log(`Failed to add new habit ${e}`));
         
         e.preventDefault()
     }
