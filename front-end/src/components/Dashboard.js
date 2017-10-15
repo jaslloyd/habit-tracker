@@ -75,11 +75,15 @@ class Dashboard extends Component {
 
   displayNextMonth(e){
     let new_index;
-    // This is kinda confusing, when we want to go back we subtract that number from the current month, if it is minus we still upstract but we update the index -1 
-    if(e.target.getAttribute('data-operation') === '+1'){
+    // This is kinda confusing, when we want to go back we subtract that number from the current month, if it is minus we still upstract but we update the index -1
+    const data_operation = e.target.getAttribute('data-operation');
+
+    if(data_operation === '+1'){
       new_index = this.state.display_month_index + 1
-    }else{
+    }else if(data_operation === '-1'){
       new_index = this.state.display_month_index - 1
+    }else{
+      new_index = 0
     }
     const displayed_month = moment().subtract(new_index, 'month').format('MMMM')
     const filter_obj = this.state.filter_obj.replace(this.state.current_month, displayed_month)
@@ -96,7 +100,15 @@ class Dashboard extends Component {
     const habitsElements = this.state.habits.map(habit => <Habit key={habit.id} habit={habit} monthDaysLeft={this.state.days_left} onHabitItemUpdated={this.handleHabitItemUpdate.bind(this)} onDelete={this.handleHabitDelete.bind(this)} />)
     return (
         <div>
-            <h1 className="lead mt-3">Dashboard</h1>
+            <div className="row mt-3">
+              <div className="col-6">
+                <h1 className="lead">Dashboard</h1>
+              </div>
+              <div className="ml-auto col-2">
+                <h6 className="">Current Month: <a href='' onClick={this.displayNextMonth.bind(this)} data-operation="reset">{moment().format('MMMM')}</a></h6>
+              </div>
+            </div>
+            
             <div className="row">
               <div className="col-md-12 text-center">
                 <h4>
