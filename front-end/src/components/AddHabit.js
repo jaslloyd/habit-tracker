@@ -31,8 +31,8 @@ class AddHabit extends Component {
     
     render() {
         const monthElements = []
-        const current_mon_index = parseInt(moment().format('M')) // 2
-        for(let i=current_mon_index;i<13;i++){
+        const current_mon_index = parseInt(moment().format('M'), 10)
+        for(let i=current_mon_index;i<current_mon_index + 4;i++){
             monthElements.push(<option key={i}>{moment.months(i)}</option>)
         }
         

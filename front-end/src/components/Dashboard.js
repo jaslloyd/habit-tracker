@@ -30,7 +30,6 @@ class Dashboard extends Component {
   }
 
   getFilteredHabits(filter_obj){
-    // {"where":{"target":"10"}}
     console.log(`http://localhost:3001/api/occurrence_habits?filter=${filter_obj}`)
     fetch(`http://localhost:3001/api/occurrence_habits?filter=${filter_obj}`)
       .then(response => response.json())
@@ -105,19 +104,22 @@ class Dashboard extends Component {
         <div>
             <div className="row mt-3">
               <div className="col-6">
-                <h1 className="lead">Dashboard</h1>
+                <h5>Dashboard</h5>
               </div>
               <div className="ml-auto col-2">
-                <h6 className="">Current Month: <a href="" onClick={this.displayNextMonth.bind(this)} data-operation="reset">{moment().format('MMMM')}</a></h6>
+                <h5>Month:</h5>
+                <h5>
+                  <a href="" onClick={this.displayNextMonth.bind(this)} data-operation="reset">{moment().format('MMMM')}</a>
+                  <span> {this.state.days_left} Days Left!</span>
+                </h5>
               </div>
             </div>
             <div className="row">
               <div className="col-md-12 text-center">
                 <h4>
-                  {/* Blank href causing fanotom elements */}
-                  <a href="" onClick={this.displayNextMonth.bind(this)}><span><i data-operation="+1" className="mr-2 fa fa-chevron-left" aria-hidden="true"></i></span></a>
-                  {this.state.current_month} - {this.state.days_left} Days Left!
-                  <a href="" onClick={this.displayNextMonth.bind(this)}><span><i data-operation="-1" className="ml-2 fa fa-chevron-right" aria-hidden="true"></i></span></a>
+                  <a href="" onClick={this.displayNextMonth.bind(this)}><i data-operation="+1" className="mr-3 fa fa-chevron-left" aria-hidden="true"></i></a>
+                  {this.state.current_month}
+                  <a href="" onClick={this.displayNextMonth.bind(this)}><i data-operation="-1" className="ml-3 fa fa-chevron-right" aria-hidden="true"></i></a>
                 </h4>
               </div>
             </div>
