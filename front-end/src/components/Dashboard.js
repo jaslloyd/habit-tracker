@@ -13,14 +13,12 @@ class Dashboard extends Component {
     this.state = {
       habits: [],
       current_month: moment().format('MMMM'),
-      filter_obj: '',
+      filter_obj: `{"where": {"target_month": "${moment().format('MMMM')}"}}`,
       days_left: moment().endOf('month').diff(moment().today, 'days'),
       display_month_index: 0 // This will be used to track what month is displaying compared to the current month
     }
   }
   componentDidMount(){
-    this.setState({filter_obj: `{"where": {"target_month": "${this.state.current_month}"}}`})
-    this.getHabits()
     this.getFilteredHabits(this.state.filter_obj)
   }
 
@@ -36,7 +34,7 @@ class Dashboard extends Component {
     console.log(`http://localhost:3001/api/occurrence_habits?filter=${filter_obj}`)
     fetch(`http://localhost:3001/api/occurrence_habits?filter=${filter_obj}`)
       .then(response => response.json())
-      .then(results => console.log(results))
+      .then(results => this.setState({ habits: results }))
       .catch(e => console.log(`Failed to get filitered habits ${e}`));
   }
 
@@ -72,7 +70,7 @@ class Dashboard extends Component {
     .then(response => response.json())
     .then(result => {
       console.log(`Habit ${id} deleted...`)
-      this.getHabits()
+      this.getFilteredHabits(this.state.filter_obj)
     })
     .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
@@ -110,12 +108,13 @@ class Dashboard extends Component {
                 <h1 className="lead">Dashboard</h1>
               </div>
               <div className="ml-auto col-2">
-                <h6 className="">Current Month: <a href='' onClick={this.displayNextMonth.bind(this)} data-operation="reset">{moment().format('MMMM')}</a></h6>
+                <h6 className="">Current Month: <a href="" onClick={this.displayNextMonth.bind(this)} data-operation="reset">{moment().format('MMMM')}</a></h6>
               </div>
             </div>
             <div className="row">
               <div className="col-md-12 text-center">
                 <h4>
+                  {/* Blank href causing fanotom elements */}
                   <a href="" onClick={this.displayNextMonth.bind(this)}><span><i data-operation="+1" className="mr-2 fa fa-chevron-left" aria-hidden="true"></i></span></a>
                   {this.state.current_month} - {this.state.days_left} Days Left!
                   <a href="" onClick={this.displayNextMonth.bind(this)}><span><i data-operation="-1" className="ml-2 fa fa-chevron-right" aria-hidden="true"></i></span></a>

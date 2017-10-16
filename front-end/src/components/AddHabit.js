@@ -11,7 +11,7 @@ class AddHabit extends Component {
             'category': this.refs.habit_cat.value,
             'target': parseInt(this.refs.habit_target.value, 10),
             'completed': 0,
-            'target_month': moment().format('MMMM')
+            'target_month': this.refs.habit_mon.value
         }
 
         fetch('http://localhost:3001/api/occurrence_habits', {
@@ -30,6 +30,12 @@ class AddHabit extends Component {
     }
     
     render() {
+        const monthElements = []
+        const current_mon_index = parseInt(moment().format('M')) // 2
+        for(let i=current_mon_index;i<13;i++){
+            monthElements.push(<option key={i}>{moment.months(i)}</option>)
+        }
+        
         return (
             <div>
                 <h1 className="m-3">Add Habit</h1>
@@ -45,6 +51,13 @@ class AddHabit extends Component {
                     <div className="form-group">
                         <label htmlFor="habit_cat">Category:</label>
                         <input type="text" className="form-control" ref="habit_cat" id="habit_cat" placeholder="Health / Finance / Career" required />
+                    </div>
+                    <div className="form-group">
+                    <label htmlFor="habit_mon">Month of Habit:</label>
+                    <select className="form-control" id="habit_mon" ref="habit_mon">
+                        <option defaultValue>Choose Month</option>
+                        {monthElements}
+                    </select>
                     </div>
                     <div className="form-group">
                         <label htmlFor="habit_target">How many days do you want to do this habit?</label>
