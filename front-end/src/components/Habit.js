@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import HabitItem from './HabitItem'
 
 class Habit extends Component {
@@ -60,6 +61,7 @@ class Habit extends Component {
           <p style={{color: this.state.color}}>{target - completed} Days left</p>
         </div>
         <div className="col-1">
+          <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true"></i></Link>
           <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
         </div>
       </div>
