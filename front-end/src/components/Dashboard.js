@@ -22,13 +22,6 @@ class Dashboard extends Component {
     this.getFilteredHabits(this.state.filter_obj)
   }
 
-  getHabits(){
-    fetch('http://localhost:3001/api/occurrence_habits')
-      .then(response => response.json())
-      .then(results => this.setState({ habits: results }))
-      .catch(e => console.log(`Failed to get all habits ${e}`));
-  }
-
   getFilteredHabits(filter_obj){
     console.log(`http://localhost:3001/api/occurrence_habits?filter=${filter_obj}`)
     fetch(`http://localhost:3001/api/occurrence_habits?filter=${filter_obj}`)
@@ -106,10 +99,9 @@ class Dashboard extends Component {
               <div className="col-6">
                 <h5>Dashboard</h5>
               </div>
-              <div className="ml-auto col-2">
-                <h5>Month:</h5>
-                <h5>
-                  <a href="" onClick={this.displayNextMonth.bind(this)} data-operation="reset">{moment().format('MMMM')}</a>
+              <div className="ml-auto col-3">
+                <h5>Month: 
+                  <a href="" onClick={this.displayNextMonth.bind(this)} data-operation="reset"> {moment().format('MMMM')}</a>
                   <span> {this.state.days_left} Days Left!</span>
                 </h5>
               </div>

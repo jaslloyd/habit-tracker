@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HabitSuggestion from './HabitSuggestion';
 
 class EditHabit extends Component {
     
@@ -9,12 +10,25 @@ class EditHabit extends Component {
             description: '',
             category: '',
             month: '',
-            days: 0
+            days: 0,
+            existing_habits: []
         }
         this.id = this.props.match.params.id
     }
 
     componentDidMount(){
+        this.getHabitById();
+        this.getHabits();
+    }
+
+    getHabits(){
+        fetch('http://localhost:3001/api/occurrence_habits')
+          .then(response => response.json())
+          .then(results => this.setState({existing_habits: results}))
+          .catch(e => console.log(`Failed to get all habits ${e}`));
+    }
+
+    getHabitById(){
         fetch(`http://localhost:3001/api/occurrence_habits/${this.id}`)
             .then(response => response.json())
             .then(results => this.setState({
@@ -60,7 +74,14 @@ class EditHabit extends Component {
         e.preventDefault()
     }
 
-    render() {        
+    handleSelectedHabit(e){
+        console.log('Selected...')
+        console.log(e.target)
+        e.preventDefault()
+    }
+
+    render() {
+        const habitsElements = this.state.existing_habits.map(habit => <HabitSuggestion key={habit.id} habit={habit} onSelect={this.handleSelectedHabit.bind(this)} />)      
         return (
             <div>
                 <h1 className="m-3">Edit Habit</h1>
@@ -83,6 +104,9 @@ class EditHabit extends Component {
                     <div className="form-group">
                         <label htmlFor="habit_target">How many days do you want to do this habit?</label>
                         <input type="number" className="form-control" name="days" step="1" min="1" max="30" value={this.state.days} onChange={this.handleInputChange.bind(this)}  required />
+                    </div>
+                    <div className="row">
+                        {habitsElements}
                     </div>
                     <button type="submit" className="btn btn-primary">Update Habit</button>
                 </form>
