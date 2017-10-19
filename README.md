@@ -14,6 +14,8 @@ I want a easy way to coorlate my tracking into one simple to use interface. Also
 
 - [X] As a user I want to be able to remove habits
 
+- [X] As a user I want to be able to edit a habit
+
 - [X] As a user I want to be able to see all the habits I am tracking in a single ui
 
 - [X] As a user I want to be able to make a habit or goal as successful
