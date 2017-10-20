@@ -23,7 +23,6 @@ class Dashboard extends Component {
   }
 
   getFilteredHabits(filter_obj){
-    console.log(`http://localhost:3001/api/occurrence_habits?filter=${filter_obj}`)
     fetch(`http://localhost:3001/api/occurrence_habits?filter=${filter_obj}`)
       .then(response => response.json())
       .then(results => this.setState({ habits: results }))

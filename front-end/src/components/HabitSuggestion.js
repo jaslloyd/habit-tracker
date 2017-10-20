@@ -1,9 +1,8 @@
 import React from 'react';
 
-const HabitSuggestion = (props) => (
+const HabitSuggestion = ({habit, onSelect}) => (
     <div className="col-sm-3 mb-2">
-            <button onClick={(e) => props.onSelect(e)} className="btn btn-xs btn-success">+ {props.habit.name}</button>
-            {/* <span>{props.habit.name}</span> */}
+        <button onClick={(e) => onSelect(e)} className="btn btn-xs btn-success" data-name={habit.name} data-description={habit.description} data-category={habit.category} data-target={habit.target}>+ {habit.name}</button>
     </div>
 );
 
