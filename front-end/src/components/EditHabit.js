@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class EditHabit extends Component {
     
@@ -9,7 +10,8 @@ class EditHabit extends Component {
             description: '',
             category: '',
             month: '',
-            days: 0
+            days: 0,
+            last_updated: ''
         }
         this.id = this.props.match.params.id
     }
@@ -27,7 +29,8 @@ class EditHabit extends Component {
                 category: results.category,
                 month: results.target_month,
                 days: results.target,
-                completed: results.completed
+                completed: results.completed,
+                last_updated: results.last_updated
             }))
             .catch(e => console.log(e));
     }
@@ -46,7 +49,8 @@ class EditHabit extends Component {
             'category': this.state.category,
             'target': parseInt(this.state.days, 10),
             'completed': this.state.completed,
-            'target_month': this.state.month
+            'target_month': this.state.month,
+            'last_updated': this.state.last_updated
         }
 
         fetch(`http://localhost:3001/api/occurrence_habits/${this.id}`, {
