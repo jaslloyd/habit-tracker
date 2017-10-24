@@ -13,6 +13,7 @@ class AddHabit extends Component {
             target: 0,
             existing_habits: [],
             filter_obj: `{"where": {"target_month": "${moment().format('MMMM')}"}}`,
+            msg: ''
         }
     }
     
@@ -29,7 +30,6 @@ class AddHabit extends Component {
     }
 
     handleSelectedHabit(e){
-        // todo: fill fields so user can edit the detials and add it
         this.setState({
             name:  e.target.getAttribute('data-name'),
             description: e.target.getAttribute('data-description'),
@@ -49,13 +49,21 @@ class AddHabit extends Component {
             'completed': 0,
             'target_month': this.refs.habit_mon.value
         }
-        /**
-         * todo: only add habit if it doesn't exist, 
-         * GET /occurrence_habits/count
-         * e.g. {"name": "Eat no Cakes", "target_month": "November"}
-         * returns count 
-         */ 
-        this.addHabit(new_habit)
+
+        // {"where": {"target_month": "${moment().format('MMMM')}"}}
+        const filter_settings = `{"name": "${new_habit.name}", "target_month": "${new_habit.target_month}"}`
+
+        fetch(`http://localhost:3001/api/occurrence_habits/count?where=${filter_settings}`)
+            .then(response => response.json())
+            .then(results => {
+                if (results.count === 0){
+                    this.addHabit(new_habit)
+                }else{
+                    this.setState({msg: `Habit ${new_habit.name} already exists for month ${new_habit.target_month}`})
+                }
+            });
+
+        //this.addHabit(new_habit)
         e.preventDefault()
     }
     
@@ -84,6 +92,12 @@ class AddHabit extends Component {
         return (
             <div>
                 <h1 className="m-3">Add Habit</h1>
+                {
+                    this.state.msg !== '' ? (
+                        <div className="alert alert-danger">{this.state.msg}</div>
+                    ) : (
+                    '')
+                }
                 <div className="row">
                     {habitsElements}
                 </div>
