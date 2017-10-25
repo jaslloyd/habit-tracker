@@ -14,7 +14,8 @@ class Dashboard extends Component {
       habits: [],
       current_month: moment().format('MMMM'),
       filter_obj: `{"where": {"target_month": "${moment().format('MMMM')}"}}`,
-      days_left: moment().endOf('month').diff(moment().today, 'days'),
+      curr_mon_days_left: moment().endOf('month').diff(moment().today, 'days'),
+      days_left:  moment().endOf('month').diff(moment().today, 'days'),
       display_month_index: 0 // This will be used to track what month is displaying compared to the current month
     }
   }
@@ -81,11 +82,13 @@ class Dashboard extends Component {
     }
     const displayed_month = moment().subtract(new_index, 'month').format('MMMM')
     const filter_obj = this.state.filter_obj.replace(this.state.current_month, displayed_month)
+   
     this.getFilteredHabits(filter_obj)
     this.setState({
       current_month: displayed_month,
       filter_obj: filter_obj, 
-      display_month_index: new_index 
+      display_month_index: new_index,
+      days_left: moment().subtract(new_index, 'month').endOf('month').diff(moment().today, 'days')
     })
     e.preventDefault()
   }
@@ -101,7 +104,7 @@ class Dashboard extends Component {
               <div className="ml-auto col-3">
                 <h5>Month: 
                   <a href="" onClick={this.displayNextMonth.bind(this)} data-operation="reset"> {moment().format('MMMM')}</a>
-                  <span> {this.state.days_left} Days Left!</span>
+                  <span> {this.state.curr_mon_days_left} Days Left!</span>
                 </h5>
               </div>
             </div>

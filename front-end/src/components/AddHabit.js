@@ -89,15 +89,11 @@ class AddHabit extends Component {
         }
 
         const habitsElements = this.state.existing_habits.map(habit => <HabitSuggestion key={habit.id} habit={habit} onSelect={this.handleSelectedHabit.bind(this)} />)
+        const msg_displaying = this.state.msg.length > 0 ? <div className="alert alert-info text-center">{this.state.msg}</div> : ''
         return (
             <div>
                 <h1 className="m-3">Add Habit</h1>
-                {
-                    this.state.msg !== '' ? (
-                        <div className="alert alert-danger">{this.state.msg}</div>
-                    ) : (
-                    '')
-                }
+                {msg_displaying}
                 <div className="row">
                     {habitsElements}
                 </div>
