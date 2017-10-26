@@ -105,7 +105,7 @@ class Dashboard extends Component {
               <div className="ml-auto col-3">
                 <h5>Month: 
                   <a href="" onClick={this.displayNextMonth.bind(this)} data-operation="0"> {moment().format('MMMM')}</a>
-                  <span> {this.state.curr_mon_days_left} Days Left!</span>
+                  <span className="ml-2">{this.state.curr_mon_days_left} Days Left!</span>
                 </h5>
               </div>
             </div>
