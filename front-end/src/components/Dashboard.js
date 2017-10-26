@@ -31,7 +31,6 @@ class Dashboard extends Component {
   }
 
   handleHabitItemUpdate(id, numCompleted){
-    console.log(id, numCompleted)
     let existing_habits = this.state.habits
     // 1. Find the habit we are updating
     const habit_index = this.state.habits.findIndex(habit => habit.id === id)
@@ -41,14 +40,18 @@ class Dashboard extends Component {
     existing_habits[habit_index].last_updated = moment().format('Do')
     // 4. Update the state with new habit object but keeping older ones??
     this.setState({habits: existing_habits})
+    // 5. Update the habit in the backend
+    this.updateHabit(existing_habits[habit_index], id)
+  }
 
+  updateHabit(habitDetails, id){
     fetch(`http://localhost:3001/api/occurrence_habits/${id}`, {
       method: 'PUT',
       headers:{
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(existing_habits[habit_index])
+      body: JSON.stringify(habitDetails)
     })
     .then(response => response.json())
     .then(result => console.log(`Habit: ${id} updated...`))
@@ -71,12 +74,10 @@ class Dashboard extends Component {
   displayNextMonth(e){
     let new_index;
     // This is kinda confusing, when we want to go back we subtract that number from the current month, if it is minus we still subtract but we update the index -1
-    const data_operation = e.target.getAttribute('data-operation');
+    const data_operation_num = parseInt(e.target.getAttribute('data-operation'), 10);
 
-    if(data_operation === '+1'){
-      new_index = this.state.display_month_index + 1
-    }else if(data_operation === '-1'){
-      new_index = this.state.display_month_index - 1
+    if(data_operation_num !== 0){
+      new_index = this.state.display_month_index + data_operation_num
     }else{
       new_index = 0
     }
@@ -103,7 +104,7 @@ class Dashboard extends Component {
               </div>
               <div className="ml-auto col-3">
                 <h5>Month: 
-                  <a href="" onClick={this.displayNextMonth.bind(this)} data-operation="reset"> {moment().format('MMMM')}</a>
+                  <a href="" onClick={this.displayNextMonth.bind(this)} data-operation="0"> {moment().format('MMMM')}</a>
                   <span> {this.state.curr_mon_days_left} Days Left!</span>
                 </h5>
               </div>
@@ -111,9 +112,9 @@ class Dashboard extends Component {
             <div className="row">
               <div className="col-md-12 text-center">
                 <h4>
-                  <a href="" onClick={this.displayNextMonth.bind(this)}><i data-operation="+1" className="mr-3 fa fa-chevron-left" aria-hidden="true"></i></a>
+                  <i onClick={this.displayNextMonth.bind(this)} data-operation="+1" className="mr-3 fa fa-chevron-left btn-link" aria-hidden="true" role="button"></i>
                   {this.state.current_month}
-                  <a href="" onClick={this.displayNextMonth.bind(this)}><i data-operation="-1" className="ml-3 fa fa-chevron-right" aria-hidden="true"></i></a>
+                  <i onClick={this.displayNextMonth.bind(this)} data-operation="-1" className="ml-3 fa fa-chevron-right btn-link" aria-hidden="true" role="button"></i>
                 </h4>
               </div>
             </div>
