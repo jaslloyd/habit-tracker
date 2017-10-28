@@ -81,6 +81,13 @@ class AddHabit extends Component {
           .catch(e => console.log(`Failed to add new habit ${e}`));
     }
 
+    handleInputChange(e){
+        const {name, value} = e.target
+        this.setState({
+            [name]: value
+        })
+    }
+
     render() {
         const monthElements = []
         const current_mon_index = parseInt(moment().format('M'), 10) - 1
@@ -99,16 +106,16 @@ class AddHabit extends Component {
                 </div>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <div className="form-group">
-                        <label htmlFor="habit_name">Habit Name:</label>
-                        <input type="text" className="form-control" ref="habit_name" id="habitName" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.name} required />
+                        <label htmlFor="name">Habit Name:</label>
+                        <input type="text" className="form-control" ref="habit_name" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.name} onChange={this.handleInputChange.bind(this)} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="habit_desc">Description:</label>
-                        <input type="text" className="form-control" ref="habit_desc" id="habit_desc" placeholder="Why do you want to complete it?"  value={this.state.description} required />
+                        <label htmlFor="description">Description:</label>
+                        <input type="text" className="form-control" ref="habit_desc" name="description" placeholder="Why do you want to complete it?"  value={this.state.description} onChange={this.handleInputChange.bind(this)} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="habit_cat">Category:</label>
-                        <input type="text" className="form-control" ref="habit_cat" id="habit_cat" placeholder="Health / Finance / Career" value={this.state.category} required />
+                        <label htmlFor="category">Category:</label>
+                        <input type="text" className="form-control" ref="habit_cat" name="category" placeholder="Health / Finance / Career" value={this.state.category} onChange={this.handleInputChange.bind(this)} required />
                     </div>
                     <div className="form-group">
                     <label htmlFor="habit_mon">Month of Habit:</label>
@@ -118,8 +125,8 @@ class AddHabit extends Component {
                     </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="habit_target">How many days do you want to do this habit?</label>
-                        <input type="number" className="form-control" ref="habit_target" name="days" step="1" min="1" max="30" placeholder="1"  value={this.state.target} />
+                        <label htmlFor="target">How many days do you want to do this habit?</label>
+                        <input type="number" className="form-control" ref="habit_target" name="target" step="1" min="1" max="30" placeholder="1"  value={this.state.target} onChange={this.handleInputChange.bind(this)} />
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
