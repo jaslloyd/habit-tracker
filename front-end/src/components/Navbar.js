@@ -20,6 +20,9 @@ function Navbar(){
             <Link to="/" className="nav-link active">Dashboard<span className="sr-only">(current)</span></Link>
           </li>
           <li className="nav-item">
+            <Link to="/summary" className="nav-link">Summary</Link>
+          </li>
+          <li className="nav-item">
             <Link to="/login" className="nav-link">Login</Link>
           </li>
         </ul>
