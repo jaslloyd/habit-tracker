@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-// import moment from 'moment';
+import SummaryPanel from './SummaryPanel';
 
 class Summary extends Component {
 
+    /**
+     * Issue: Summary panel includes habits from months that have not started or have not finished 
+     * Fix: Only get habits that have occured in the past (e.g. not this month or next month or next etc...)
+     */
     constructor(props){
         super(props);
         this.state = {
@@ -44,11 +48,11 @@ class Summary extends Component {
     render() {
         console.log(this.state.habitsSummary)
         // todo: Create a SummaryPanel class
-        const habit_elements = this.state.habitsSummary.map(habit => habit.name)
+        const habit_elements = this.state.habitsSummary.map(habit => <SummaryPanel key={habit.name} habit={habit} />)
         console.log(habit_elements)
         return (
             <div>
-                <h1 className="m-3 text-center">Summary</h1>
+                <h1 className="m-3 text-center">Yearly Summary</h1>
                 <div className="row">
                     {habit_elements}
                 </div>
