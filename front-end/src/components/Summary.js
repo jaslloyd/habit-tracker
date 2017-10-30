@@ -8,7 +8,7 @@ class Summary extends Component {
         super(props);
         this.state = {
             habitsSummary: [],
-            current_mon_index: parseInt(moment().format('M'), 10) // todo: find out why minus 1...
+            current_mon_index: parseInt(moment().format('M'), 10)
         }
     }
     

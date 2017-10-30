@@ -28,12 +28,14 @@ class SummaryChart extends Component {
                 options={{
                     'pieHole': 0.4,
                     'pieSliceTextStyle': {
-                        color: 'black',
+                        color: 'white',
                     },
                     'slices': {
                         0: { color: 'green' },
                         1: { color: 'red' }
-                    }
+                    },
+                    'backgroundColor': 'transparent',
+                    'legend': 'none'
                 }}
                 graph_id={this.state.name}
                 width="100%"
