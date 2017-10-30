@@ -23,8 +23,7 @@ class Habit extends Component {
 
     if(canComplete <= 0){
       this.setState({color: 'red'})
-    }
-    else if(canComplete === 0 || canComplete <= 2){
+    }else if(canComplete === 0 || canComplete <= 2){
       this.setState({color: 'orange'})
     }else{
       this.setState({color: 'black'})
@@ -33,7 +32,6 @@ class Habit extends Component {
 
   onCompleted(index){
     let {id, completed} = this.props.habit
-    console.log('Habit ', index, completed)
     if(index <= completed){
       console.log('Deselected a habit')
       this.props.onHabitItemUpdated(id, completed - 1);
@@ -55,7 +53,6 @@ class Habit extends Component {
         </div>
         <div className="col-8">
           {habitItemElements}
-          {/* <span className="target_num">[{target}]</span> */}
         </div>
         <div className="col-1">
           <p style={{color: this.state.color}}>{target - completed} Days left</p>

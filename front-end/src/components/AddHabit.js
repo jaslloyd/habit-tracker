@@ -13,6 +13,7 @@ class AddHabit extends Component {
             target: 0,
             existing_habits: [],
             filter_obj: `{"where": {"target_month": "${moment().format('MMMM')}"}}`,
+            year: `${moment().format('YYYY')}`,
             msg: ''
         }
     }
@@ -47,7 +48,8 @@ class AddHabit extends Component {
             'category': this.refs.habit_cat.value,
             'target': parseInt(this.refs.habit_target.value, 10),
             'completed': 0,
-            'target_month': this.refs.habit_mon.value
+            'target_month': this.refs.habit_mon.value,
+            'year': this.state.year
         }
 
         // {"where": {"target_month": "${moment().format('MMMM')}"}}
@@ -63,7 +65,6 @@ class AddHabit extends Component {
                 }
             });
 
-        //this.addHabit(new_habit)
         e.preventDefault()
     }
     
@@ -89,20 +90,15 @@ class AddHabit extends Component {
     }
 
     render() {
-        const monthElements = []
-        const current_mon_index = parseInt(moment().format('M'), 10) - 1
-        for(let i = current_mon_index;i < current_mon_index + 4; i++){
-            monthElements.push(<option key={i}>{moment.months(i)}</option>)
-        }
-
+        const current_mon_index = parseInt(moment().format('M'), 10) - 1 // // todo: find out why minus 1...
         const habitsElements = this.state.existing_habits.map(habit => <HabitSuggestion key={habit.id} habit={habit} onSelect={this.handleSelectedHabit.bind(this)} />)
         const msg_displaying = this.state.msg.length > 0 ? <div className="alert alert-info text-center">{this.state.msg}</div> : ''
         return (
             <div>
-                <h1 className="m-3">Add Habit</h1>
+                <h1 className="m-3 text-center">Add Habit</h1>
                 {msg_displaying}
                 <div className="row">
-                    <div className="col-9">
+                    <div className="ml-auto col-6">
                         <form onSubmit={this.onSubmit.bind(this)}>
                             <div className="form-group">
                                 <label htmlFor="name">Habit Name:</label>
@@ -118,9 +114,10 @@ class AddHabit extends Component {
                             </div>
                             <div className="form-group">
                             <label htmlFor="habit_mon">Month of Habit:</label>
-                            <select className="form-control" id="habit_mon" ref="habit_mon">
-                                <option selected>Choose Month</option>
-                                {monthElements}
+                            <select className="form-control" id="habit_mon" ref="habit_mon" required>
+                                <option disabled>Choose Month</option>
+                                <option>{moment.months(current_mon_index)}</option>
+                                <option selected>{moment.months(current_mon_index + 1)}</option>
                             </select>
                             </div>
                             <div className="form-group">

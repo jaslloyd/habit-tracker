@@ -30,6 +30,9 @@
     },
     "last_updated": {
       "type": "string"
+    },
+    "year": {
+      "type": "string"
     }
   },
   "validations": [],
