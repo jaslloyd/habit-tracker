@@ -90,7 +90,29 @@ class Dashboard extends Component {
   }
 
   render() {
-    const habitsElements = this.state.habits.map(habit => <Habit key={habit.id} habit={habit} monthDaysLeft={this.state.days_left} onHabitItemUpdated={this.handleHabitItemUpdate.bind(this)} onDelete={this.handleHabitDelete.bind(this)} />)
+    // todo: Needs to be a way better way to do this...
+    //1. Get all the categories
+    const categories = this.state.habits.map(habit => habit.category)
+    console.log(categories)
+    let items = {};
+    // 2. For each unique category, create a new category in items which will contain a list of Habits that are of that category
+    [...new Set(categories)].forEach(cat => {
+        items[cat] = this.state.habits.filter(habit => habit.category === cat) // Filter to only habits that match the category
+                                        .map(habit => <Habit key={habit.id} habit={habit} monthDaysLeft={this.state.days_left} onHabitItemUpdated={this.handleHabitItemUpdate.bind(this)} onDelete={this.handleHabitDelete.bind(this)} />) // For each habit in that category create a habit element
+    })
+
+    // 3. Loop through each category and add some extra html, this will be its own component later (HabitGroup)
+    const final_elements = Object.keys(items).map(item => {
+      return (
+        // This should be its own component...
+        <div key={item} id={item}>
+          <h4><b>{item}</b></h4>
+          {items[item]}
+        </div>
+      )
+    })
+
+    console.log(final_elements)
     return (
         <div>
             <div className="row mt-3">
@@ -119,7 +141,7 @@ class Dashboard extends Component {
               </div>
             </div>
             <div id="habit-list" className="mt-3">
-              {habitsElements}
+              {final_elements}
             </div>
       </div>
     );

@@ -10,7 +10,8 @@ class EditHabit extends Component {
             category: '',
             month: '',
             days: 0,
-            last_updated: ''
+            last_updated: '',
+            year: ''
         }
         this.id = this.props.match.params.id
     }
@@ -29,7 +30,8 @@ class EditHabit extends Component {
                 month: results.target_month,
                 days: results.target,
                 completed: results.completed,
-                last_updated: results.last_updated
+                last_updated: results.last_updated,
+                year: results.year
             }))
             .catch(e => console.log(e));
     }
@@ -49,7 +51,8 @@ class EditHabit extends Component {
             'target': parseInt(this.state.days, 10),
             'completed': this.state.completed,
             'target_month': this.state.month,
-            'last_updated': this.state.last_updated
+            'last_updated': this.state.last_updated,
+            'year': this.state.year
         }
 
         fetch(`http://localhost:3001/api/occurrence_habits/${this.id}`, {
