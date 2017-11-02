@@ -106,6 +106,7 @@ class Dashboard extends Component {
       return (
         // This should be its own component...
         <div key={item} id={item}>
+          <hr />
           <h4><b>{item}</b></h4>
           {items[item]}
         </div>
