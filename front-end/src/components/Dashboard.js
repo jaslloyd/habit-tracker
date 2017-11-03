@@ -93,7 +93,6 @@ class Dashboard extends Component {
     // todo: Needs to be a way better way to do this...
     //1. Get all the categories
     const categories = this.state.habits.map(habit => habit.category)
-    console.log(categories)
     let items = {};
     // 2. For each unique category, create a new category in items which will contain a list of Habits that are of that category
     [...new Set(categories)].forEach(cat => {
@@ -105,44 +104,35 @@ class Dashboard extends Component {
     const final_elements = Object.keys(items).map(item => {
       return (
         // This should be its own component...
-        <div key={item} id={item}>
-          <hr />
-          <h4><b>{item}</b></h4>
+        <div key={item} id={item} className="card-box col-10 mx-auto">
+          <h4 className="header-title mb-4"><b>{item}</b></h4>
           {items[item]}
         </div>
       )
     })
 
-    console.log(final_elements)
     return (
-        <div>
+        <div id="dashboard">
             <div className="row mt-3">
-              <div className="col-6">
-                <h5>Dashboard</h5>
-              </div>
-              <div className="ml-auto col-3">
-                <h5>Month: 
-                  <a href="" onClick={this.displayMonthsHabits.bind(this)} data-operation="0"> {moment().format('MMMM')}</a>
-                  <span className="ml-2">{this.state.curr_mon_days_left} Days Left!</span>
-                </h5>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <h4>
+              <div className="ml-auto col-md-6 text-center">
+                <h4 className="header-title-big">
                   <i onClick={this.displayMonthsHabits.bind(this)} data-operation="+1" className="mr-3 fa fa-chevron-left btn-link" aria-hidden="true" role="button"></i>
                   {this.state.current_month} - {this.state.displayed_year}
                   <i onClick={this.displayMonthsHabits.bind(this)} data-operation="-1" className="ml-3 fa fa-chevron-right btn-link" aria-hidden="true" role="button"></i>
                 </h4>
               </div>
-            </div>
-            <div className="row">
-              <div className="ml-auto col-md-3">
+              <div className="col-2">
+                <h4 className="header-title">Month: 
+                  <a href="" onClick={this.displayMonthsHabits.bind(this)} data-operation="0"> {moment().format('MMMM')}</a>
+                  <span className="ml-2">{this.state.curr_mon_days_left} Days Left!</span>
+                </h4>
+              </div>
+              <div className="col-md-1">
                 <Link to="/addhabit" type="button" className="btn btn-success pull-right">Add Habit</Link>
               </div>
             </div>
-            <div id="habit-list" className="mt-3">
-              {final_elements}
+            <div id="habit-list" className="mt-3 row">
+                {final_elements}
             </div>
       </div>
     );

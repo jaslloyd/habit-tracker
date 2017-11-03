@@ -26,7 +26,7 @@ class Habit extends Component {
     }else if(canComplete === 0 || canComplete <= 2){
       this.setState({color: 'orange'})
     }else{
-      this.setState({color: 'black'})
+      this.setState({color: '#98a6ad'})
     }
   }
 
