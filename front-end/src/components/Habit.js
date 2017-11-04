@@ -6,11 +6,8 @@ class Habit extends Component {
   /**
    * When a habit mounts for each entry in a habit display habit item
   */
-  constructor(props){
-    super(props)
-    this.state = {
-      color: 'black'
-    }
+  state = {
+    color: 'black'
   }
 
   componentDidMount(){

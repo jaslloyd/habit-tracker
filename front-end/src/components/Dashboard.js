@@ -8,18 +8,16 @@ class Dashboard extends Component {
     When components mounts, fetch user habits from backend
     For each habit the user has defined create a Habit element.
   */
-  constructor(props){
-    super();
-    this.state = {
-      habits: [],
-      current_month: moment().format('MMMM'),
-      filter_obj: `{"where": {"target_month": "${moment().format('MMMM')}", "year": "${moment().format('YYYY')}"}}`,
-      curr_mon_days_left: moment().endOf('month').diff(moment().today, 'days'),
-      days_left:  moment().endOf('month').diff(moment().today, 'days'),
-      display_month_index: 0, // This will be used to track what month is displaying compared to the current month
-      displayed_year: moment().format('YYYY')
-    }
+  state = {
+    habits: [],
+    current_month: moment().format('MMMM'),
+    filter_obj: `{"where": {"target_month": "${moment().format('MMMM')}", "year": "${moment().format('YYYY')}"}}`,
+    curr_mon_days_left: moment().endOf('month').diff(moment().today, 'days'),
+    days_left:  moment().endOf('month').diff(moment().today, 'days'),
+    display_month_index: 0, // This will be used to track what month is displaying compared to the current month
+    displayed_year: moment().format('YYYY')
   }
+
   componentDidMount(){
     this.getFilteredHabits(this.state.filter_obj)
   }

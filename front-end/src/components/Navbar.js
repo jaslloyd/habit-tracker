@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar(){
+const Navbar = () => {
     return (
         <nav className="navbar sticky-top navbar-toggleable-md navbar-inverse" style={{'backgroundColor': '#3bafda'}}>
         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

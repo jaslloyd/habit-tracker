@@ -4,18 +4,15 @@ import HabitSuggestion from './HabitSuggestion';
 
 class AddHabit extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            name: '',
-            description: '',
-            category: '',
-            target: 0,
-            existing_habits: [],
-            filter_obj: `{"where": {"target_month": "${moment().format('MMMM')}"}}`,
-            year: `${moment().format('YYYY')}`,
-            msg: ''
-        }
+    state = {
+        name: '',
+        description: '',
+        category: '',
+        target: 0,
+        existing_habits: [],
+        filter_obj: `{"where": {"target_month": "${moment().format('MMMM')}"}}`,
+        year: `${moment().format('YYYY')}`,
+        msg: ''
     }
     
     componentDidMount(){

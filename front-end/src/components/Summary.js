@@ -4,12 +4,9 @@ import moment from 'moment';
 
 class Summary extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            habitsSummary: [],
-            current_mon_index: parseInt(moment().format('M'), 10)
-        }
+    state = {
+        habitsSummary: [],
+        current_mon_index: parseInt(moment().format('M'), 10)
     }
     
     componentDidMount(){

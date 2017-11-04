@@ -3,13 +3,10 @@ import { Chart } from 'react-google-charts';
 
 class SummaryChart extends Component {
 
-    constructor(props){
-        super(props)
-        this.state = {
-            'name': this.props.habitDetails.name,
-            'successes': this.props.habitDetails.total_completions,
-            'fails': this.props.habitDetails.total_target - this.props.habitDetails.total_completions
-        }
+    state = {
+        'name': this.props.habitDetails.name,
+        'successes': this.props.habitDetails.total_completions,
+        'fails': this.props.habitDetails.total_target - this.props.habitDetails.total_completions
     }
 
     render(){
