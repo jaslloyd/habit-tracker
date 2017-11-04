@@ -22,7 +22,7 @@ class AddHabit extends Component {
         this.getHabits();
     }
 
-    getHabits(){
+    getHabits = () => {
         // This will get habits from this month so you can add it to next month, improvement would be get habits from last X months
         fetch(`http://localhost:3001/api/occurrence_habits?filter=${this.state.filter_obj}`)
           .then(response => response.json())
@@ -30,7 +30,7 @@ class AddHabit extends Component {
           .catch(e => console.log(`Failed to get all habits ${e}`));
     }
 
-    handleSelectedHabit(e){
+    handleSelectedHabit = (e) => {
         this.setState({
             name:  e.target.getAttribute('data-name'),
             description: e.target.getAttribute('data-description'),
@@ -40,7 +40,7 @@ class AddHabit extends Component {
         e.preventDefault()
     }
 
-    onSubmit(e){
+    onSubmit = (e) => {
         // Add habit to db..then redirect
         const new_habit = {
             'name': this.refs.habit_name.value,
@@ -68,7 +68,7 @@ class AddHabit extends Component {
         e.preventDefault()
     }
     
-    addHabit(habit){
+    addHabit = (habit) => {
         fetch('http://localhost:3001/api/occurrence_habits', {
             method: 'POST',
             headers:{
@@ -82,7 +82,7 @@ class AddHabit extends Component {
           .catch(e => console.log(`Failed to add new habit ${e}`));
     }
 
-    handleInputChange(e){
+    handleInputChange = (e) => {
         const {name, value} = e.target
         this.setState({
             [name]: value
@@ -91,7 +91,7 @@ class AddHabit extends Component {
 
     render() {
         const current_mon_index = parseInt(moment().format('M'), 10) - 1 // // todo: find out why minus 1...
-        const habitsElements = this.state.existing_habits.map(habit => <HabitSuggestion key={habit.id} habit={habit} onSelect={this.handleSelectedHabit.bind(this)} />)
+        const habitsElements = this.state.existing_habits.map(habit => <HabitSuggestion key={habit.id} habit={habit} onSelect={this.handleSelectedHabit} />)
         const msg_displaying = this.state.msg.length > 0 ? <div className="alert alert-info text-center">{this.state.msg}</div> : ''
         return (
             <div>
@@ -99,18 +99,18 @@ class AddHabit extends Component {
                 {msg_displaying}
                 <div className="row">
                     <div className="ml-auto col-6">
-                        <form onSubmit={this.onSubmit.bind(this)}>
+                        <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <label htmlFor="name">Habit Name:</label>
-                                <input type="text" className="form-control" ref="habit_name" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.name} onChange={this.handleInputChange.bind(this)} required />
+                                <input type="text" className="form-control" ref="habit_name" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.name} onChange={this.handleInputChange} required />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="description">Description:</label>
-                                <input type="text" className="form-control" ref="habit_desc" name="description" placeholder="Why do you want to complete it?"  value={this.state.description} onChange={this.handleInputChange.bind(this)} required />
+                                <input type="text" className="form-control" ref="habit_desc" name="description" placeholder="Why do you want to complete it?"  value={this.state.description} onChange={this.handleInputChange} required />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="category">Category:</label>
-                                <input type="text" className="form-control" ref="habit_cat" name="category" placeholder="Health / Finance / Career" value={this.state.category} onChange={this.handleInputChange.bind(this)} required />
+                                <input type="text" className="form-control" ref="habit_cat" name="category" placeholder="Health / Finance / Career" value={this.state.category} onChange={this.handleInputChange} required />
                             </div>
                             <div className="form-group">
                             <label htmlFor="habit_mon">Month of Habit:</label>
@@ -122,7 +122,7 @@ class AddHabit extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="target">How many days do you want to do this habit?</label>
-                                <input type="number" className="form-control" ref="habit_target" name="target" step="1" min="1" max="30" placeholder="1"  value={this.state.target} onChange={this.handleInputChange.bind(this)} />
+                                <input type="number" className="form-control" ref="habit_target" name="target" step="1" min="1" max="30" placeholder="1"  value={this.state.target} onChange={this.handleInputChange} />
                             </div>
                             <button type="submit" className="btn btn-primary">Submit</button>
                         </form>

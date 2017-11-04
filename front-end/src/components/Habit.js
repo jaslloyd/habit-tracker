@@ -17,7 +17,7 @@ class Habit extends Component {
     this.updateHabitColor()
   }
 
-  updateHabitColor(){
+  updateHabitColor = () => {
     const {target, completed} = this.props.habit
     const canComplete = this.props.monthDaysLeft - (target - completed)
 
@@ -30,7 +30,7 @@ class Habit extends Component {
     }
   }
 
-  onCompleted(index){
+  onCompleted = (index) => {
     let {id, completed} = this.props.habit
     if(index <= completed){
       console.log('Deselected a habit')
@@ -44,7 +44,7 @@ class Habit extends Component {
 
   render() {
     const {id, name, target, completed, last_updated} = this.props.habit;
-    const habitItemElements = Array(target).fill().map((_, i) => <HabitItem key={i+1} index={i+1} completed={completed} onCompleted={this.onCompleted.bind(this)} />);
+    const habitItemElements = Array(target).fill().map((_, i) => <HabitItem key={i+1} index={i+1} completed={completed} onCompleted={this.onCompleted} />);
 
     return (
       <div className="row mt-2 mb-2">
