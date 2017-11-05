@@ -12,10 +12,10 @@ const Main = () => (
     <main>
         <Switch>
             {/* Remove when public */}
-            <Route exact path='/' component={Dashboard} /> 
+            {/* <Route exact path='/' component={Dashboard} />  */}
             <PrivateRoute exact path='/' component={Dashboard} />
             <Route exact path='/login' component={Login} />
-            <Route exact path='/addhabit' component={AddHabit} />
+            <PrivateRoute exact path='/addhabit' component={AddHabit} />
             <PrivateRoute exact path='/editHabit/:id' component={EditHabit} />
             <PrivateRoute exact path='/summary' component={Summary} />
             <PrivateRoute path="/dashboard" component={Dashboard}/>
