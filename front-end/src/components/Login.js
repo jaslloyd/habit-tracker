@@ -27,7 +27,7 @@ class Login extends Component {
   } 
 
   login(user_obj){
-    return fetch('/api/Users/login', {
+    return fetch(`${process.env.REACT_APP_API_ENPOINT}/api/Users/login`, {
       method: 'POST',
       headers:{
         'Accept': 'application/json',
@@ -40,6 +40,7 @@ class Login extends Component {
   }
 
   render() {
+    console.log(process.env.REACT_APP_API_ENPOINT)
     const { from } = this.props.location.state || { from: { pathname: '/' } }
     const { redirectToReferrer } = this.state
 
