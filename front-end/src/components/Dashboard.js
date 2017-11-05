@@ -23,7 +23,7 @@ class Dashboard extends Component {
   }
 
   getFilteredHabits = (filter_obj) => {
-    fetch(`http://localhost:3001/api/occurrence_habits?filter=${filter_obj}`)
+    fetch(`/api/occurrence_habits?filter=${filter_obj}`)
       .then(response => response.json())
       .then(results => this.setState({ habits: results }))
       .catch(e => console.log(`Failed to get filitered habits ${e}`));
@@ -44,7 +44,7 @@ class Dashboard extends Component {
   }
 
   updateHabit = (habitDetails, id) =>{
-    fetch(`http://localhost:3001/api/occurrence_habits/${id}`, {
+    fetch(`/api/occurrence_habits/${id}`, {
       method: 'PUT',
       headers:{
         'Accept': 'application/json',
@@ -58,7 +58,7 @@ class Dashboard extends Component {
   }
 
   handleHabitDelete = (id) => {
-    fetch(`http://localhost:3001/api/occurrence_habits/${id}`, {method: 'DELETE'})
+    fetch(`/api/occurrence_habits/${id}`, {method: 'DELETE'})
       .then(response => response.json())
       .then(result => {
       console.log(`Habit ${id} deleted...`)

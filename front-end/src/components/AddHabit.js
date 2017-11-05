@@ -3,7 +3,7 @@ import moment from 'moment';
 import HabitSuggestion from './HabitSuggestion';
 
 class AddHabit extends Component {
-
+    
     state = {
         name: '',
         description: '',
@@ -21,7 +21,7 @@ class AddHabit extends Component {
 
     getHabits = () => {
         // This will get habits from this month so you can add it to next month, improvement would be get habits from last X months
-        fetch(`http://localhost:3001/api/occurrence_habits?filter=${this.state.filter_obj}`)
+        fetch(`/api/occurrence_habits?filter=${this.state.filter_obj}`)
           .then(response => response.json())
           .then(results => this.setState({existing_habits: results}))
           .catch(e => console.log(`Failed to get all habits ${e}`));
@@ -52,7 +52,7 @@ class AddHabit extends Component {
         // {"where": {"target_month": "${moment().format('MMMM')}"}}
         const filter_settings = `{"name": "${new_habit.name}", "target_month": "${new_habit.target_month}"}`
 
-        fetch(`http://localhost:3001/api/occurrence_habits/count?where=${filter_settings}`)
+        fetch(`/api/occurrence_habits/count?where=${filter_settings}`)
             .then(response => response.json())
             .then(results => {
                 if (results.count === 0){
@@ -66,7 +66,7 @@ class AddHabit extends Component {
     }
     
     addHabit = (habit) => {
-        fetch('http://localhost:3001/api/occurrence_habits', {
+        fetch('/api/occurrence_habits', {
             method: 'POST',
             headers:{
               'Accept': 'application/json',

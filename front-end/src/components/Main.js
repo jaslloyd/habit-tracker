@@ -15,7 +15,7 @@ const Main = () => (
             <Route exact path='/' component={Dashboard} /> 
             <PrivateRoute exact path='/' component={Dashboard} />
             <Route exact path='/login' component={Login} />
-            <PrivateRoute exact path='/addhabit' component={AddHabit} />
+            <Route exact path='/addhabit' component={AddHabit} />
             <PrivateRoute exact path='/editHabit/:id' component={EditHabit} />
             <PrivateRoute exact path='/summary' component={Summary} />
             <PrivateRoute path="/dashboard" component={Dashboard}/>

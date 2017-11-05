@@ -38,7 +38,7 @@ class Summary extends Component {
         this.setState({habitsSummary: Object.values(unique_habits)})
     }
     getHabits(){
-        return fetch(`http://localhost:3001/api/occurrence_habits`)
+        return fetch(`/api/occurrence_habits`)
           .then(response => response.json())
           .catch(e => console.log(`Failed to get all habits ${e}`));
     }

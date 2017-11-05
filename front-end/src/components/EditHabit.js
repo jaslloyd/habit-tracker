@@ -21,7 +21,7 @@ class EditHabit extends Component {
     }
 
     getHabitById = () => {
-        fetch(`http://localhost:3001/api/occurrence_habits/${this.id}`)
+        fetch(`/api/occurrence_habits/${this.id}`)
             .then(response => response.json())
             .then(results => this.setState({
                 name: results.name,
@@ -55,7 +55,7 @@ class EditHabit extends Component {
             'year': this.state.year
         }
 
-        fetch(`http://localhost:3001/api/occurrence_habits/${this.id}`, {
+        fetch(`/api/occurrence_habits/${this.id}`, {
             method: 'PUT',
             headers:{
               'Accept': 'application/json',

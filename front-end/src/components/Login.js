@@ -27,7 +27,7 @@ class Login extends Component {
   } 
 
   login(user_obj){
-    return fetch('http://localhost:3001/api/Users/login', {
+    return fetch('/api/Users/login', {
       method: 'POST',
       headers:{
         'Accept': 'application/json',
