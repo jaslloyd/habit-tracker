@@ -46,13 +46,14 @@ class Habit extends Component {
     return (
       <div className="row mt-2 mb-2">
         <div className="col-2">
-          <h5><span className="badge badge-pill badge-success">{last_updated}</span> {name}</h5>
+          { completed > 0 && <span className="h5 badge badge-pill badge-success">{last_updated}</span> }
+          <span className="h5"> {name}</span>
         </div>
         <div className="col-8">
           {habitItemElements}
         </div>
         <div className="col-1">
-          <p style={{color: this.state.color}}>{target - completed} Days left</p>
+          <p style={{color: this.state.color}}>{target - completed} Days</p>
         </div>
         <div className="col-1">
           <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true"></i></Link>

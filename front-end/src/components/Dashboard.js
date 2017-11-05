@@ -67,7 +67,7 @@ class Dashboard extends Component {
     .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
 
-  displayMonthsHabits = (e) =>{
+  displayMonthsHabits = (e) => {
     // This is kinda confusing, when we want to go back we subtract that number from the current month, if it is minus we still subtract but we update the index -1
     const data_operation_num = parseInt(e.target.getAttribute('data-operation'), 10);
     const new_index = data_operation_num !== 0 ? this.state.display_month_index + data_operation_num :  0
@@ -119,7 +119,7 @@ class Dashboard extends Component {
                 </h4>
               </div>
               <div className="col-2">
-                <h4 className="header-title">Month: 
+                <h4 className="header-title">
                   <a href="" onClick={this.displayMonthsHabits} data-operation="0"> {moment().format('MMMM')}</a>
                   <span className="ml-2">{this.state.curr_mon_days_left} Days Left!</span>
                 </h4>
