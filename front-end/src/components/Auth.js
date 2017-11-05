@@ -1,4 +1,4 @@
-const fakeAuth = {
+const authHelper = {
   isAuthenticated: false,
   authenticate(cb) {
     this.isAuthenticated = true;
@@ -10,4 +10,4 @@ const fakeAuth = {
   },
 };
 
-export default fakeAuth;
+export default authHelper;

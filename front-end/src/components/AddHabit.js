@@ -87,7 +87,7 @@ class AddHabit extends Component {
     }
 
     render() {
-        const current_mon_index = parseInt(moment().format('M'), 10) - 1 // // todo: find out why minus 1...
+        const current_mon_index = parseInt(moment().format('M'), 10) - 1 // Seems to be 0 indexed
         const habitsElements = this.state.existing_habits.map(habit => <HabitSuggestion key={habit.id} habit={habit} onSelect={this.handleSelectedHabit} />)
         const msg_displaying = this.state.msg.length > 0 ? <div className="alert alert-info text-center">{this.state.msg}</div> : ''
         return (

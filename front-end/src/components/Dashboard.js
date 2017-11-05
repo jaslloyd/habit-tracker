@@ -93,8 +93,9 @@ class Dashboard extends Component {
     let items = {};
     // 2. For each unique category, create a new category in items which will contain a list of Habits that are of that category
     [...new Set(categories)].forEach(cat => {
-        items[cat] = this.state.habits.filter(habit => habit.category === cat) // Filter to only habits that match the category
-                                        .map(habit => <Habit key={habit.id} habit={habit} monthDaysLeft={this.state.days_left} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />) // For each habit in that category create a habit element
+        items[cat] = 
+            this.state.habits.filter(habit => habit.category === cat) // Filter to only habits that match the category
+                             .map(habit => <Habit key={habit.id} habit={habit} monthDaysLeft={this.state.days_left} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />) // For each habit in that category create a habit element
     })
 
     // 3. Loop through each category and add some extra html, this will be its own component later (HabitGroup)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fakeAuth from './Auth';
+import authHelper from './Auth';
 import { Redirect } from 'react-router-dom';
 class Login extends Component {
   state = {
@@ -21,7 +21,7 @@ class Login extends Component {
     }
 
     this.login(user_obj)
-      .then(results => results.id && fakeAuth.authenticate(() => {
+      .then(results => results.id && authHelper.authenticate(() => {
         this.setState({ redirectToReferrer: true })
       })) // This is the user id that we can use for requests
   } 
