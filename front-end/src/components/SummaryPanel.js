@@ -6,7 +6,6 @@ const SummaryPanel = ({habit}) => (
         <div className="card text-white bg-inverse p-4">
             <div className="card-body">
                 <h4 className="card-title">{habit.name}</h4>
-                {/* <h6 className="card-subtitle mb-2 text-muted">[Desc here]</h6> */}
                 <p className="card-text">
                     Total: {habit.total_completions} / {habit.total_target}
                 </p>
@@ -16,4 +15,13 @@ const SummaryPanel = ({habit}) => (
     </div>
 );
 
-export default SummaryPanel;
+const SummaryTable = ({name, values}) => (
+    <tr>
+        <th scope="row">{name}</th>
+        {values.map((element, i) => {
+            return <td key={i} className={element}>{element}</td>
+        })}
+    </tr>
+);
+
+export {SummaryPanel, SummaryTable};

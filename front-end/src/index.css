@@ -78,3 +78,13 @@ input[type="checkbox"]:checked:after {
   align-items: center;
   justify-content: center;
 }
+
+.fail {
+  color: red;
+  text-transform: uppercase;
+}
+
+.success {
+  color: greenyellow;
+  text-transform: uppercase;
+}

@@ -1,19 +1,35 @@
 import React, { Component } from 'react';
-import SummaryPanel from './SummaryPanel';
+import {SummaryPanel, SummaryTable} from './SummaryPanel';
 import moment from 'moment';
 
 class Summary extends Component {
 
     state = {
         habitsSummary: [],
+        habits_table: {},
         current_mon_index: parseInt(moment().format('M'), 10)
     }
     
     componentDidMount(){
         this.getHabits()
             .then(habits => this.updateUniqueHabits(habits))
+
+        this.getHabits()
+            .then(habits => this.updateUniqueHabitsMonth(habits))
     }
 
+    updateUniqueHabitsMonth(p_habits){
+        let habits = {}
+        p_habits.forEach(({name, target, completed, target_month}) => {
+            if(!habits.hasOwnProperty(name))
+                habits[name] = new Array(12).fill("NA");
+            const month_index = moment().month(target_month).format("M") - 1 
+            habits[name][month_index] = (target - completed) != 0 ? 'fail' : 'success'
+        })
+
+        console.log('Completed matrix', habits)
+        this.setState({habits_table: habits})
+    }
     updateUniqueHabits(habits){
         let unique_habits = {}
         habits.forEach(({name, target, completed, target_month}) => {
@@ -45,11 +61,22 @@ class Summary extends Component {
 
     render() {
         const habit_elements = this.state.habitsSummary.map(habit => <SummaryPanel key={habit.name} habit={habit} />)
+        let table_elements = []
+        for(let key in this.state.habits_table){
+            table_elements.push(<SummaryTable key={key} name={key} values={this.state.habits_table[key]} />)
+        }
         return (
             <div>
                 <h1 className="m-3 text-center">Yearly Summary</h1>
                 <div className="row">
                     {habit_elements}
+                    <table className="table">
+                        <thead>
+                        </thead>
+                        <tbody>
+                            {table_elements}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         )
