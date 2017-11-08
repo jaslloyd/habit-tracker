@@ -24,7 +24,7 @@ class Summary extends Component {
             if(!habits.hasOwnProperty(name))
                 habits[name] = new Array(12).fill("NA");
             const month_index = moment().month(target_month).format("M") - 1 
-            habits[name][month_index] = (target - completed) != 0 ? 'fail' : 'success'
+            habits[name][month_index] = (target - completed) !== 0 ? 'fail' : 'success'
         })
 
         console.log('Completed matrix', habits)
