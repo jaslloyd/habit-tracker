@@ -1,86 +1,87 @@
 import React, { Component } from 'react';
-import {SummaryPanel, SummaryTable} from './SummaryPanel';
 import moment from 'moment';
+import { SummaryPanel, SummaryTable } from './SummaryPanel';
 
 class Summary extends Component {
 
-    state = {
-        habitsSummary: [],
-        habits_table: {},
-        current_mon_index: parseInt(moment().format('M'), 10)
-    }
-    
-    componentDidMount(){
-        this.getHabits()
-            .then(habits => this.updateUniqueHabits(habits))
+  state = {
+    habitsSummary: [],
+    habitsTable: {},
+    currentMonthIndex: parseInt(moment().format('M'), 10),
+  }
 
-        this.getHabits()
-            .then(habits => this.updateUniqueHabitsMonth(habits))
-    }
-
-    updateUniqueHabitsMonth(p_habits){
-        let habits = {}
-        p_habits.forEach(({name, target, completed, target_month}) => {
-            if(!habits.hasOwnProperty(name))
-                habits[name] = new Array(12).fill("NA");
-            const month_index = moment().month(target_month).format("M") - 1 
-            habits[name][month_index] = (target - completed) !== 0 ? 'fail' : 'success'
-        })
-
-        console.log('Completed matrix', habits)
-        this.setState({habits_table: habits})
-    }
-    updateUniqueHabits(habits){
-        let unique_habits = {}
-        habits.forEach(({name, target, completed, target_month}) => {
-            const target_month_index = moment().month(target_month).format("M");
-            // todo: don't include the current month
-            if (target_month_index <= this.state.current_mon_index){
-                if(unique_habits.hasOwnProperty(name)){
-                    unique_habits[name]['was_tried'] += 1
-                    unique_habits[name]['total_completions'] += completed
-                    unique_habits[name]['total_target'] += target
-                }else{
-                    unique_habits[name] = {
-                        'name': name,
-                        'was_tried': 1,
-                        'total_completions': completed,
-                        'total_target': target
-                    }
-                }
-            }
+  componentDidMount() {
+    this.getHabits()
+        .then((habits) => {
+          this.updateUniqueHabits(habits);
+          this.updateUniqueHabitsMonth(habits);
         });
-        // todo: check if we need to convert it to an array, maybe we can loop through keys...
-        this.setState({habitsSummary: Object.values(unique_habits)})
-    }
-    getHabits(){
-        return fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`)
-          .then(response => response.json())
-          .catch(e => console.log(`Failed to get all habits ${e}`));
-    }
+  }
 
-    render() {
-        const habit_elements = this.state.habitsSummary.map(habit => <SummaryPanel key={habit.name} habit={habit} />)
-        let table_elements = []
-        for(let key in this.state.habits_table){
-            table_elements.push(<SummaryTable key={key} name={key} values={this.state.habits_table[key]} />)
+  getHabits() {
+    return fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`)
+      .then(response => response.json())
+      .catch(e => console.log(`Failed to get all habits ${e}`));
+  }
+
+  updateUniqueHabits(habits) {
+    const uniqueHabits = {};
+    habits.forEach(({ name, target, completed, targetMonth }) => {
+      const targetMonthIndex = moment().month(targetMonth).format('M');
+              // todo: don't include the current month
+      if (targetMonthIndex <= this.state.currentMonthIndex) {
+        if (uniqueHabits[name]) {
+          uniqueHabits[name].wasTried += 1;
+          uniqueHabits[name].totalCompletions += completed;
+          uniqueHabits[name].totalTarget += target;
+        } else {
+          uniqueHabits[name] = {
+            name,
+            wasTried: 1,
+            totalCompletions: completed,
+            totalTarget: target,
+          };
         }
-        return (
-            <div>
-                <h1 className="m-3 text-center">Yearly Summary</h1>
-                <div className="row">
-                    {habit_elements}
-                    <table className="table">
-                        <thead>
-                        </thead>
-                        <tbody>
-                            {table_elements}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        )
+      }
+    });
+    // todo: check if we need to convert it to an array, maybe we can loop through keys...
+    this.setState({ habitsSummary: Object.values(uniqueHabits) });
+  }
+
+  updateUniqueHabitsMonth(p_habits) {
+    const habits = {};
+    p_habits.forEach(({ name, target, completed, targetMonth }) => {
+      if (!habits[name]) {
+        habits[name] = new Array(12).fill('NA');
+      }
+      const monthIndex = moment().month(targetMonth).format('M') - 1;
+      habits[name][monthIndex] = (target - completed) !== 0 ? 'fail' : 'success';
+    });
+    console.log('Completed matrix', habits);
+    this.setState({ habitsTable: habits });
+  }
+
+  render() {
+    const habitElements = this.state.habitsSummary.map(habit => <SummaryPanel key={habit.name} habit={habit} />);
+    const tableElements = [];
+    for (const key in this.state.habitsTable) {
+      tableElements.push(<SummaryTable key={key} name={key} values={this.state.habitsTable[key]} />);
     }
+    return (
+      <div>
+        <h1 className="m-3 text-center">Yearly Summary</h1>
+        <div className="row">
+          {habitElements}
+          <table className="table">
+            <thead />
+            <tbody>
+              {tableElements}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  }
 
 }
 

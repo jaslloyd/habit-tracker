@@ -5,6 +5,7 @@
       "jsx-a11y",
       "import"
   ],
+  "parser": "babel-eslint",
   "rules": {
       "react/jsx-filename-extension": 0,
       "max-len": 0,
