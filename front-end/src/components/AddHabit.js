@@ -10,7 +10,7 @@ class AddHabit extends Component {
     category: '',
     target: 0,
     existing_habits: [],
-    filter_obj: `{"where": {"target_month": "${moment().format('MMMM')}"}}`,
+    filter_obj: `{"where": {"target_month": "${moment().subtract(1, 'month').format('MMMM')}"}}`,
     year: `${moment().format('YYYY')}`,
     msg: '',
   }

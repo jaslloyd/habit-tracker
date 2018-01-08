@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 import Habit from './Habit';
-import moment from 'moment';
 
 class Dashboard extends Component {
   /*
@@ -53,7 +53,7 @@ class Dashboard extends Component {
       body: JSON.stringify(habitDetails),
     })
     .then(response => response.json())
-    .then(result => console.log(`Habit: ${id} updated...`))
+    .then(console.log(`Habit: ${id} updated...`))
     .catch(e => console.log(`Failed to Update habit ${e}`));
   }
 
@@ -85,7 +85,7 @@ class Dashboard extends Component {
 
   render() {
     // todo: Needs to be a way better way to do this...
-    //1. Get all the categories
+    // 1. Get all the categories
     const categories = this.state.habits.map(habit => habit.category);
     const items = {};
     // 2. For each unique category, create a new category in items which will contain a list of Habits that are of that category
