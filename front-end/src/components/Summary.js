@@ -26,8 +26,11 @@ class Summary extends Component {
 
   updateUniqueHabits(habits) {
     const uniqueHabits = {};
-    habits.forEach(({ name, target, completed, targetMonth }) => {
-      const targetMonthIndex = moment().month(targetMonth).format('M');
+    console.log(habits);
+    habits.forEach(({ name, target, completed, target_month }) => {
+      console.log(target_month);
+      console.log(name);
+      const targetMonthIndex = moment().month(target_month).format('M');
               // todo: don't include the current month
       if (targetMonthIndex <= this.state.currentMonthIndex) {
         if (uniqueHabits[name]) {
@@ -50,11 +53,11 @@ class Summary extends Component {
 
   updateUniqueHabitsMonth(p_habits) {
     const habits = {};
-    p_habits.forEach(({ name, target, completed, targetMonth }) => {
+    p_habits.forEach(({ name, target, completed, target_month }) => {
       if (!habits[name]) {
         habits[name] = new Array(12).fill('NA');
       }
-      const monthIndex = moment().month(targetMonth).format('M') - 1;
+      const monthIndex = moment().month(target_month).format('M') - 1;
       habits[name][monthIndex] = (target - completed) !== 0 ? 'fail' : 'success';
     });
     console.log('Completed matrix', habits);
