@@ -70,6 +70,7 @@ class Dashboard extends Component {
     const newIndex = dataOperationNum !== 0 ? this.state.displayMonthIndex + dataOperationNum : 0;
     const displayedMonth = moment().subtract(newIndex, 'month').format('MMMM');
     const newDisplayedYear = moment().subtract(newIndex, 'month').format('YYYY');
+    console.log(newDisplayedYear);
     const filterObj = this.state.filterObj.replace(this.state.current_month, displayedMonth).replace(this.state.displayedYear, newDisplayedYear);
 
     this.getFilteredHabits(filterObj);
@@ -108,11 +109,19 @@ class Dashboard extends Component {
       <div id="dashboard">
         <div className="row mt-3">
           <div className="ml-auto col-md-6 text-center">
-            <h4 className="header-title-big">
-              <i onClick={this.displayMonthsHabits} data-operation="+1" className="mr-3 fa fa-chevron-left btn-link" aria-hidden="true" role="button" />
-              {this.state.current_month} - {this.state.displayedYear}
-              <i onClick={this.displayMonthsHabits} data-operation="-1" className="ml-3 fa fa-chevron-right btn-link" aria-hidden="true" role="button" />
-            </h4>
+            <div className="row">
+              <div className="col-md-3">
+                <i onClick={this.displayMonthsHabits} data-operation="+1" className="mr-3 fa fa-chevron-left btn-link" aria-hidden="true" role="button" />
+              </div>
+              <div className="col-md-6">
+                <span className="header-title-big">
+                  {this.state.current_month} - {this.state.displayedYear}
+                </span>
+              </div>
+              <div className="col-md-3">
+                <i onClick={this.displayMonthsHabits} data-operation="-1" className="ml-3 fa fa-chevron-right btn-link" aria-hidden="true" role="button" />
+              </div>
+            </div>
           </div>
           <div className="col-2">
             <h4 className="header-title">

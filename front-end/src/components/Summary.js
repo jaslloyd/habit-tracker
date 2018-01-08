@@ -14,7 +14,7 @@ class Summary extends Component {
     this.getHabits()
         .then((habits) => {
           this.updateUniqueHabits(habits);
-          this.updateUniqueHabitsMonth(habits);
+          // this.updateUniqueHabitsMonth(habits);
         });
   }
 
@@ -31,7 +31,7 @@ class Summary extends Component {
       console.log(target_month);
       console.log(name);
       const targetMonthIndex = moment().month(target_month).format('M');
-              // todo: don't include the current month
+      // todo: don't include the current month
       if (targetMonthIndex <= this.state.currentMonthIndex) {
         if (uniqueHabits[name]) {
           uniqueHabits[name].wasTried += 1;
