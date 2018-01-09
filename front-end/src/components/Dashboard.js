@@ -10,8 +10,8 @@ class Dashboard extends Component {
   */
   state = {
     habits: [],
+    displayedHabits: [],
     current_month: moment().format('MMMM'),
-    filterObj: `{"where": {"target_month": "${moment().format('MMMM')}", "year": "${moment().format('YYYY')}"}}`,
     currMonDaysLeft: moment().endOf('month').diff(moment().today, 'days'),
     daysLeft: moment().endOf('month').diff(moment().today, 'days'),
     displayMonthIndex: 0, // This will be used to track what month is displaying compared to the current month
@@ -19,14 +19,21 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    this.getFilteredHabits(this.state.filterObj);
+    this.getFilteredHabits();
   }
 
-  getFilteredHabits = (filterObj) => {
-    fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${filterObj}`)
+  getFilteredHabits = () => {
+    fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`)
       .then(response => response.json())
-      .then(results => this.setState({ habits: results }))
+      .then(habits => this.setState({ habits }))
+      .then(_ => this.filterHabitsTests(this.state.current_month, this.state.displayedYear))
       .catch(e => console.log(`Failed to get filitered habits ${e}`));
+  }
+
+  filterHabitsTests = (month, year) => {
+    const filteredHabits = this.state.habits.filter(habit => habit.year === year)
+                                            .filter(habit => habit.target_month === month);
+    this.setState({ displayedHabits: filteredHabits });
   }
 
   handleHabitItemUpdate = (id, numCompleted) => {
@@ -60,7 +67,7 @@ class Dashboard extends Component {
   handleHabitDelete = (id) => {
     fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })
       .then(response => response.json())
-      .then(result => this.getFilteredHabits(this.state.filterObj))
+      .then(_ => this.getFilteredHabits()) // when we delete a habit, cause this is jan itupdates back to current mon
       .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
 
@@ -70,13 +77,9 @@ class Dashboard extends Component {
     const newIndex = dataOperationNum !== 0 ? this.state.displayMonthIndex + dataOperationNum : 0;
     const displayedMonth = moment().subtract(newIndex, 'month').format('MMMM');
     const newDisplayedYear = moment().subtract(newIndex, 'month').format('YYYY');
-    console.log(newDisplayedYear);
-    const filterObj = this.state.filterObj.replace(this.state.current_month, displayedMonth).replace(this.state.displayedYear, newDisplayedYear);
-
-    this.getFilteredHabits(filterObj);
+    this.filterHabitsTests(displayedMonth, newDisplayedYear);
     this.setState({
       current_month: displayedMonth,
-      filterObj,
       displayMonthIndex: newIndex,
       displayedYear: newDisplayedYear,
       daysLeft: moment().subtract(newIndex, 'month').endOf('month').diff(moment().today, 'days'),
@@ -87,12 +90,12 @@ class Dashboard extends Component {
   render() {
     // todo: Needs to be a way better way to do this...
     // 1. Get all the categories
-    const categories = this.state.habits.map(habit => habit.category);
+    const categories = this.state.displayedHabits.map(habit => habit.category);
     const items = {};
     // 2. For each unique category, create a new category in items which will contain a list of Habits that are of that category
     [...new Set(categories)].forEach((cat) => {
       items[cat] =
-            this.state.habits.filter(habit => habit.category === cat) // Filter to only habits that match the category
+            this.state.displayedHabits.filter(habit => habit.category === cat) // Filter to only habits that match the category
                             .map(habit => <Habit key={habit.id} habit={habit} monthDaysLeft={this.state.daysLeft} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />); // For each habit in that category create a habit element
     });
 
