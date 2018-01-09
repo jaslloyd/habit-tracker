@@ -26,10 +26,8 @@ class Summary extends Component {
 
   updateUniqueHabits(habits) {
     const uniqueHabits = {};
-    console.log(habits);
     habits.forEach(({ name, target, completed, target_month }) => {
       console.log(target_month);
-      console.log(name);
       const targetMonthIndex = moment().month(target_month).format('M');
       // todo: don't include the current month
       if (targetMonthIndex <= this.state.currentMonthIndex) {

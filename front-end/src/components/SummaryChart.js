@@ -5,8 +5,8 @@ class SummaryChart extends Component {
 
   state = {
     name: this.props.habitDetails.name,
-    successes: this.props.habitDetails.total_completions,
-    fails: this.props.habitDetails.total_target - this.props.habitDetails.total_completions,
+    successes: this.props.habitDetails.totalCompletions,
+    fails: this.props.habitDetails.totalTarget - this.props.habitDetails.totalCompletions,
   }
 
   render() {

@@ -7,7 +7,7 @@ const SummaryPanel = ({ habit }) => (
       <div className="card-body">
         <h4 className="card-title">{habit.name}</h4>
         <p className="card-text">
-          Total: {habit.total_completions} / {habit.total_target}
+          Total: {habit.totalCompletions} / {habit.totalTarget}
         </p>
         <SummaryChart habitDetails={habit} />
       </div>
