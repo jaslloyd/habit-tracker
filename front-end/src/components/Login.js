@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import authHelper from './Auth';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import authHelper from './Auth';
 
 class Login extends Component {
   state = {
@@ -29,7 +30,7 @@ class Login extends Component {
       })); // This is the user id that we can use for requests
   }
 
-  login(userObj) {
+  login() {
     return fetch(`${process.env.REACT_APP_API_ENPOINT}/api/Users/login`, {
       method: 'POST',
       headers: {
@@ -70,5 +71,8 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+};
 
 export default Login;

@@ -5,6 +5,7 @@
   "dependencies": {
     "moment": "^2.18.1",
     "npm": "^5.4.2",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-google-charts": "^1.5.5",
