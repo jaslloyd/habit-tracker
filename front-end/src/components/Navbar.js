@@ -16,13 +16,13 @@ const Navbar = () => (
 
       <ul className="navbar-nav">
         <li className="nav-item">
-          {authHelper.isAuthenticated && <Link to="/dashboard" className="nav-link active">Dashboard<span className="sr-only">(current)</span></Link>}
+          {authHelper.isAuthenticated() && <Link to="/dashboard" className="nav-link active">Dashboard<span className="sr-only">(current)</span></Link>}
         </li>
         <li className="nav-item">
-          {authHelper.isAuthenticated && <Link to="/summary" className="nav-link">Summary</Link> }
+          {authHelper.isAuthenticated() && <Link to="/summary" className="nav-link">Summary</Link> }
         </li>
         <li className="nav-item">
-          {!authHelper.isAuthenticated && <Link to="/login" className="nav-link">Login</Link> }
+          {!authHelper.isAuthenticated() && <Link to="/login" className="nav-link">Login</Link> }
         </li>
       </ul>
     </div>

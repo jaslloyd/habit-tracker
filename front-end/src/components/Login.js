@@ -24,6 +24,7 @@ class Login extends Component {
 
     this.login()
       .then(results => results.id && authHelper.authenticate(() => {
+        localStorage.setItem('knownComputer', true);
         this.setState({ redirectToReferrer: true });
       })); // This is the user id that we can use for requests
   }

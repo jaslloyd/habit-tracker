@@ -19,18 +19,18 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    this.getFilteredHabits();
+    this.getHabits();
   }
 
-  getFilteredHabits = () => {
+  getHabits = () => {
     fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`)
       .then(response => response.json())
       .then(habits => this.setState({ habits }))
-      .then(_ => this.filterHabitsTests(this.state.current_month, this.state.displayedYear))
-      .catch(e => console.log(`Failed to get filitered habits ${e}`));
+      .then(_ => this.filterHabits(this.state.current_month, this.state.displayedYear))
+      .catch(e => console.log(`Failed to get habits ${e}`));
   }
 
-  filterHabitsTests = (month, year) => {
+  filterHabits = (month, year) => {
     const filteredHabits = this.state.habits.filter(habit => habit.year === year)
                                             .filter(habit => habit.target_month === month);
     this.setState({ displayedHabits: filteredHabits });
@@ -67,7 +67,7 @@ class Dashboard extends Component {
   handleHabitDelete = (id) => {
     fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })
       .then(response => response.json())
-      .then(_ => this.getFilteredHabits()) // when we delete a habit, cause this is jan itupdates back to current mon
+      .then(_ => this.getHabits())
       .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
 
@@ -77,7 +77,7 @@ class Dashboard extends Component {
     const newIndex = dataOperationNum !== 0 ? this.state.displayMonthIndex + dataOperationNum : 0;
     const displayedMonth = moment().subtract(newIndex, 'month').format('MMMM');
     const newDisplayedYear = moment().subtract(newIndex, 'month').format('YYYY');
-    this.filterHabitsTests(displayedMonth, newDisplayedYear);
+    this.filterHabits(displayedMonth, newDisplayedYear);
     this.setState({
       current_month: displayedMonth,
       displayMonthIndex: newIndex,

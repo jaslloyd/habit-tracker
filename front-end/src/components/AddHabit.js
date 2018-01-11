@@ -48,7 +48,7 @@ class AddHabit extends Component {
   }
 
   getHabits = () => {
-        // This will get habits from this month so you can add it to next month, improvement would be get habits from last X months
+    // This will get habits from this month so you can add it to next month, improvement would be get habits from last X months
     fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${this.state.filter_obj}`)
           .then(response => response.json())
           .then(results => this.setState({ existing_habits: results }))

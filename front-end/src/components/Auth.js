@@ -1,11 +1,19 @@
 const authHelper = {
-  isAuthenticated: false,
+  authenticated: false,
   authenticate(cb) {
-    this.isAuthenticated = true;
+    this.authenticated = true;
     setTimeout(cb, 100); // fake async
   },
+  isAuthenticated() {
+    const user = localStorage.getItem('knownComputer');
+    if (user) {
+      this.authenticated = true;
+    }
+    return this.authenticated;
+  },
   signout(cb) {
-    this.isAuthenticated = false;
+    this.authenticated = false;
+    localStorage.clear();
     setTimeout(cb, 100);
   },
 };
