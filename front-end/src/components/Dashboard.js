@@ -113,20 +113,20 @@ class Dashboard extends Component {
         <div className="row mt-3">
           <div className="ml-auto col-md-6 text-center">
             <div className="row">
-              <div className="col-md-3">
+              <div className="col-3">
                 <i onClick={this.displayMonthsHabits} data-operation="+1" className="mr-3 fa fa-chevron-left btn-link" aria-hidden="true" role="button" />
               </div>
-              <div className="col-md-6">
+              <div className="col-6">
                 <span className="header-title-big">
                   {this.state.current_month} - {this.state.displayedYear}
                 </span>
               </div>
-              <div className="col-md-3">
+              <div className="col-3">
                 <i onClick={this.displayMonthsHabits} data-operation="-1" className="ml-3 fa fa-chevron-right btn-link" aria-hidden="true" role="button" />
               </div>
             </div>
           </div>
-          <div className="col-2">
+          <div className="col-lg-2 col-md-2 col-sm-12 text-center">
             <h4 className="header-title">
               <a href="" onClick={this.displayMonthsHabits} data-operation="0"> {moment().format('MMMM')}</a>
               <span className="ml-2">{this.state.currMonDaysLeft} Days Left!</span>

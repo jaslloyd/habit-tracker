@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import HabitItem from './HabitItem';
+import PropTypes from 'prop-types';
 
 class Habit extends Component {
   /**
@@ -45,17 +46,17 @@ class Habit extends Component {
 
     return (
       <div className="row mt-2 mb-2">
-        <div className="col-2">
+        <div className="col-lg-2 col-md-2 col-sm-12">
           { completed > 0 && <span className="h5 badge badge-pill badge-success">{lastUpdated}</span> }
           <span className="h5"> {name}</span>
         </div>
-        <div className="col-8">
+        <div className="col-lg-8 col-md-8 col-sm-12">
           {habitItemElements}
         </div>
-        <div className="col-1">
+        <div className="col-lg-1 col-md-1 col-sm-12">
           <p style={{ color: this.state.color }}>{target - completed} Days</p>
         </div>
-        <div className="col-1">
+        <div className="col-lg-1 col-md-1 col-sm-12">
           <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
           <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
         </div>
@@ -63,5 +64,12 @@ class Habit extends Component {
     );
   }
 }
+
+Habit.propTypes = {
+  habit: PropTypes.string.isRequired,
+  onHabitItemUpdated: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  monthDaysLeft: PropTypes.number.isRequired,
+};
 
 export default Habit;
