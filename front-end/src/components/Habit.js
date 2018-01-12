@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import HabitItem from './HabitItem';
 import PropTypes from 'prop-types';
+import HabitItem from './HabitItem';
 
 class Habit extends Component {
   /**
@@ -66,7 +66,7 @@ class Habit extends Component {
 }
 
 Habit.propTypes = {
-  habit: PropTypes.string.isRequired,
+  habit: PropTypes.object.isRequired,
   onHabitItemUpdated: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   monthDaysLeft: PropTypes.number.isRequired,

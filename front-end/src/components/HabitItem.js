@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const HabitItem = props => (
   <input
@@ -9,4 +10,9 @@ const HabitItem = props => (
   />
 );
 
+HabitItem.propTypes = {
+  completed: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  onCompleted: PropTypes.func.isRequired,
+};
 export default HabitItem;

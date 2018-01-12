@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const HabitSuggestion = ({ habit, onSelect }) => (
   <div className="col-sm-3 mb-2">
@@ -6,4 +7,9 @@ const HabitSuggestion = ({ habit, onSelect }) => (
   </div>
 );
 
+HabitSuggestion.propTypes = {
+  habit: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired,
+};
 export default HabitSuggestion;
+

@@ -1,6 +1,7 @@
-import React from 'react';
-import authHelper from './Auth';
+import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import authHelper from './Auth';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -19,4 +20,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
+PrivateRoute.propType = {
+  component: PropTypes.instanceOf(Component),
+};
 export default PrivateRoute;

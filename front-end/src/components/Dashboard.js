@@ -91,22 +91,21 @@ class Dashboard extends Component {
     // todo: Needs to be a way better way to do this...
     // 1. Get all the categories
     const categories = this.state.displayedHabits.map(habit => habit.category);
-    const items = {};
-    // 2. For each unique category, create a new category in items which will contain a list of Habits that are of that category
-    [...new Set(categories)].forEach((cat) => {
-      items[cat] =
-            this.state.displayedHabits.filter(habit => habit.category === cat) // Filter to only habits that match the category
+    const categoriesElements = {};
+    // 2. For each unique category, create a new category in categoriesElements which will contain a list of Habits that are of that category
+    [...new Set(categories)].forEach((category) => {
+      categoriesElements[category] =
+            this.state.displayedHabits.filter(habit => habit.category === category) // Filter to only habits that match the category
                             .map(habit => <Habit key={habit.id} habit={habit} monthDaysLeft={this.state.daysLeft} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />); // For each habit in that category create a habit element
     });
 
     // 3. Loop through each category and add some extra html, this will be its own component later (HabitGroup)
-    const finalElements = Object.keys(items).map(item => (
-        // This should be its own component...
-      <div key={item} id={item} className="card-box col-10 mx-auto">
-        <h4 className="header-title mb-4"><b>{item}</b></h4>
-        {items[item]}
+    const finalElements = Object.keys(categoriesElements).map(category => (
+      <div key={category} id={category} className="card-box col-10 mx-auto">
+        <h4 className="header-title mb-4"><b>{category}</b></h4>
+        {categoriesElements[category]}
       </div>
-      ));
+    ));
 
     return (
       <div id="dashboard">

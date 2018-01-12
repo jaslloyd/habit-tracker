@@ -13,7 +13,6 @@ const Navbar = () => (
       <ul className="navbar-nav mr-auto">
         <li className="nav-item active" />
       </ul>
-
       <ul className="navbar-nav">
         <li className="nav-item">
           {authHelper.isAuthenticated() && <Link to="/dashboard" className="nav-link active">Dashboard<span className="sr-only">(current)</span></Link>}
