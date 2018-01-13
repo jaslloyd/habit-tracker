@@ -31,8 +31,9 @@ class Dashboard extends Component {
   }
 
   filterHabits = (month, year) => {
-    const filteredHabits = this.state.habits.filter(habit => habit.year === year)
-                                            .filter(habit => habit.target_month === month);
+    const filteredHabits = this.state.habits
+                            .filter(habit => habit.year === year)
+                            .filter(habit => habit.target_month === month);
     this.setState({ displayedHabits: filteredHabits });
   }
 
@@ -88,12 +89,11 @@ class Dashboard extends Component {
   }
 
   render() {
-    // todo: Needs to be a way better way to do this...
-    // 1. Get all the categories
-    const categories = this.state.displayedHabits.map(habit => habit.category);
+    // 1. Get all unique categories
+    const categories = new Set(this.state.displayedHabits.map(habit => habit.category));
     const categoriesElements = {};
-    // 2. For each unique category, create a new category in categoriesElements which will contain a list of Habits that are of that category
-    [...new Set(categories)].forEach((category) => {
+    // 2. For each category, create a new category in categoriesElements which will contain a list of Habits that are of that category
+    [...categories].forEach((category) => {
       categoriesElements[category] =
             this.state.displayedHabits.filter(habit => habit.category === category) // Filter to only habits that match the category
                             .map(habit => <Habit key={habit.id} habit={habit} monthDaysLeft={this.state.daysLeft} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />); // For each habit in that category create a habit element

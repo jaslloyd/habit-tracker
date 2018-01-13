@@ -31,7 +31,6 @@ class AddHabit extends Component {
       year: this.state.year,
     };
 
-    // {"where": {"target_month": "${moment().format('MMMM')}"}}
     const filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
 
     fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)
