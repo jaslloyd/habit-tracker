@@ -41,13 +41,14 @@ class Habit extends Component {
   }
 
   render() {
-    const { id, name, target, completed, lastUpdated } = this.props.habit;
+    const { id, name, target, completed, last_updated } = this.props.habit;
+    console.log(this.props.habit);
     const habitItemElements = Array(target).fill().map((_, i) => <HabitItem key={i + 1} index={i + 1} completed={completed} onCompleted={this.onCompleted} />);
 
     return (
       <div className="row mt-2 mb-2">
         <div className="col-lg-2 col-md-2 col-sm-12">
-          { completed > 0 && <span className="h5 badge badge-pill badge-success">{lastUpdated}</span> }
+          { completed > 0 && <span className="h5 badge badge-pill badge-success">{last_updated}</span> }
           <span className="h5"> {name}</span>
         </div>
         <div className="col-lg-8 col-md-8 col-sm-12">
