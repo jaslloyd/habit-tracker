@@ -50,25 +50,26 @@ class Dashboard extends Component {
     this.updateHabit(existingHabits[habitIndex], id);
   }
 
-  updateHabit = (habitDetails, id) => {
-    fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, {
+  updateHabit = async (habitDetails, id) => {
+    const requestDetails = {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(habitDetails),
-    })
-    .then(response => response.json())
-    .then(console.log(`Habit: ${id} updated...`))
-    .catch(e => console.log(`Failed to Update habit ${e}`));
+    };
+    const response = await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, requestDetails);
+    const json = await response.json();
+    console.log(`Habit: ${id} updated...`);
+    // .catch(e => console.log(`Failed to Update habit ${e}`));
   }
 
-  handleHabitDelete = (id) => {
-    fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })
-      .then(response => response.json())
-      .then(_ => this.getHabits())
-      .catch(e => console.log(`Failed to Delete habit ${e}`));
+  handleHabitDelete = async (id) => {
+    const response = await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' });
+    const json = await response.json();
+    this.getHabits();
+      // .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
 
   displayMonthsHabits = (e) => {

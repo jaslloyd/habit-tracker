@@ -38,7 +38,7 @@ class AddHabit extends Component {
     fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)
         .then(response => response.json())
         .then((results) => {
-          if (results.count > 0) {
+          if (results.count === 0) {
             this.addHabit(newHabit);
           } else {
             this.setState({ msg: `Habit ${newHabit.name} already exists for month ${newHabit.target_month}` });
