@@ -22,12 +22,11 @@ class Dashboard extends Component {
     this.getHabits();
   }
 
-  getHabits = () => {
-    fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`)
-      .then(response => response.json())
-      .then(habits => this.setState({ habits }))
-      .then(_ => this.filterHabits(this.state.current_month, this.state.displayedYear))
-      .catch(e => console.log(`Failed to get habits ${e}`));
+  getHabits = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`);
+    const habits = await response.json();
+    this.setState({ habits });
+    this.filterHabits(this.state.current_month, this.state.displayedYear);
   }
 
   filterHabits = (month, year) => {
