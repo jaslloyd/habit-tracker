@@ -37,7 +37,7 @@ input[type="checkbox"]:checked:after {
   transform: translate(-50%,-50%); */
   
    /* If you want to fully change the check appearance, use the following: */
-   content: " ";
+   content: "";
    width: 100%;
    height: 100%;
    background: blue;
@@ -87,4 +87,9 @@ input[type="checkbox"]:checked:after {
 .success {
   color: greenyellow;
   text-transform: uppercase;
+}
+
+.habitItems{
+  padding-right: 0;
+  padding-left: 0;
 }

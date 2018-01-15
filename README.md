@@ -1,5 +1,7 @@
 # Habit Tracker / Goal Tracker
 
+![Habit_tracker_front-end](habit_tracker.PNG)
+
 I am really into habit trackers and I am currently using various tools to track different parts of my life.
 
 - Momentium iphone app - which is common habit tracking technique called "a don't break the streak"
@@ -31,7 +33,6 @@ I want a easy way to coorlate my tracking into one simple to use interface. Also
 - [ ] As a user I want to be able to track my habits that don't have a specific timeframe. e.g. Daily habits
 
 ## Technology Stack
-
 * Front-end
     * React
     * Bootstrap v4

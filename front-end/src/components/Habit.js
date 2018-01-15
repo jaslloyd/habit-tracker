@@ -48,11 +48,11 @@ class Habit extends Component {
           { completed > 0 && <span className="h5 badge badge-pill badge-success">{last_updated}</span> }
           <span className="h5"> {name}</span>
         </div>
-        <div className="col-lg-8 col-md-8 col-sm-12">
+        <div className="col-lg-7 col-md-7 col-sm-12 habitItems">
           {habitItemElements}
         </div>
-        <div className="col-lg-1 col-md-1 col-sm-12">
-          <p style={{ color: this.state.color }}>{target - completed} Days</p>
+        <div className="col-lg-2 col-md-2 col-sm-12">
+          <p style={{ color: this.state.color }}>{target - completed}/{target} Days Left</p>
         </div>
         <div className="col-lg-1 col-md-1 col-sm-12">
           <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
