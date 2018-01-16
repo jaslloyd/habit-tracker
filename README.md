@@ -32,6 +32,9 @@ I want a easy way to coorlate my tracking into one simple to use interface. Also
 
 - [ ] As a user I want to be able to track my habits that don't have a specific timeframe. e.g. Daily habits
 
+- [ ] As a user I want to be able to add specific steps for completing a goal
+
+- [ ] As a user I want to be able to ...
 ## Technology Stack
 * Front-end
     * React
