@@ -20,7 +20,13 @@ input[type="checkbox"]{
 }
 input[type="checkbox"]:checked {
   background: green;
+  margin-right: 0;
 }
+
+input[type="checkbox"]:checked:last-child {
+  margin-left: 0;
+}
+
 input[type="checkbox"]:checked:after {
   /* Heres your symbol replacement - this is a tick in Unicode. */
   content: "\2713";
@@ -92,4 +98,8 @@ input[type="checkbox"]:checked:after {
 .habitItems{
   padding-right: 0;
   padding-left: 0;
+}
+
+input[data-type-index]:nth-child(5n){
+  margin-right: 20px;
 }
