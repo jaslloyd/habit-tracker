@@ -125,13 +125,13 @@ class Dashboard extends Component {
               </div>
             </div>
           </div>
-          <div className="col-lg-2 col-md-2 col-sm-12 text-center">
+          <div className="col-lg-2 col-md-4 col-sm-12 text-center">
             <h4 className="header-title">
               <a href="" onClick={this.displayMonthsHabits} data-operation="0"> {moment().format('MMMM')}</a>
               <span className="ml-2">{this.state.currMonDaysLeft} Days Left!</span>
             </h4>
           </div>
-          <div className="col-md-1">
+          <div className="col-md-2">
             <Link to="/addhabit" type="button" className="btn btn-success pull-right">Add Habit</Link>
           </div>
         </div>
