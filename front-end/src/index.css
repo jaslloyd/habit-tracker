@@ -6,14 +6,13 @@ body {
   color: #98a6ad;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
   -webkit-appearance: initial;
   appearance: initial;
   background: gray;
   width: 25px;
   height: 25px;
   border: none;
-  background: gray;
   position: relative;
   margin-bottom: 10px;
   margin-right: 5px;
@@ -31,17 +30,6 @@ input[type="checkbox"]:checked:after {
   /* Heres your symbol replacement - this is a tick in Unicode. */
   content: "\2713";
   color: #fff;
-  /* The following positions my tick in the center, 
-   * but you could just overlay the entire box
-   * with a full after element with a background if you want to */
-  /* position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%);
-  -moz-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%); */
-  
    /* If you want to fully change the check appearance, use the following: */
    content: "";
    width: 100%;
@@ -49,15 +37,9 @@ input[type="checkbox"]:checked:after {
    background: blue;
    top: 0;
    left: 0;
-  
 }
 
-.target_num{
-  position: relative;
-  bottom: 20px;
-}
-
-.card-box{
+.card-box {
   padding: 20px;
   border: 1px solid 1px solid rgba(54, 64, 74, 0.08);
   border-radius: 5px;
@@ -65,19 +47,19 @@ input[type="checkbox"]:checked:after {
   margin-bottom: 20px;
 }
 
-.header-title{
+.header-title {
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: 700;
 }
 
-.header-title-big{
+.header-title-big {
   text-transform: uppercase;
   font-size: 1.2rem;
   font-weight: 700;
 }
 
-#login{
+#login {
   height: 500px;
   display: flex;
   flex-direction: column;
@@ -95,11 +77,11 @@ input[type="checkbox"]:checked:after {
   text-transform: uppercase;
 }
 
-.habitItems{
+.habitItems {
   padding-right: 0;
   padding-left: 0;
 }
 
-input[data-type-index]:nth-child(5n){
+input[data-type-index]:nth-child(5n) {
   margin-right: 20px;
 }
