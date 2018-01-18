@@ -61,18 +61,18 @@ class AddHabit extends Component {
     e.preventDefault();
   }
 
-  addHabit = (habit) => {
-    fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`, {
+  addHabit = async (habit) => {
+    const requestObj = {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(habit),
-    })
-    .then(response => response.json())
-    .then(_ => this.props.history.push('/'))
-    .catch(e => console.log(`Failed to add new habit ${e}`));
+    };
+
+    await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`, requestObj)).json();
+    this.props.history.push('/');
   }
 
   handleInputChange = (e) => {
