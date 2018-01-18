@@ -10,18 +10,10 @@ class Summary extends Component {
     currentMonthIndex: parseInt(moment().format('M'), 10),
   }
 
-  componentDidMount() {
-    this.getHabits()
-        .then((habits) => {
-          this.updateUniqueHabits(habits);
-          // this.updateUniqueHabitsMonth(habits);
-        });
-  }
-
-  getHabits() {
-    return fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`)
-      .then(response => response.json())
-      .catch(e => console.log(`Failed to get all habits ${e}`));
+  async componentDidMount() {
+    const habits = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`)).json();
+    this.updateUniqueHabits(habits);
+    // this.updateUniqueHabitsMonth(habits);
   }
 
   updateUniqueHabits(habits) {

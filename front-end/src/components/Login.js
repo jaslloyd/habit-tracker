@@ -13,7 +13,7 @@ class Login extends Component {
     userObj: {},
   }
 
-  onSubmit = (e) => {
+  onSubmit = async (e) => {
     e.preventDefault();
     const { username, password } = e.target;
 
@@ -22,24 +22,20 @@ class Login extends Component {
       password: password.value,
     } });
 
-    this.login()
-      .then(results => results.id && authHelper.authenticate(() => {
-        localStorage.setItem('knownComputer', true);
-        this.setState({ redirectToReferrer: true });
-      })); // This is the user id that we can use for requests
-  }
-
-  login() {
-    return fetch(`${process.env.REACT_APP_API_ENPOINT}/api/Users/login`, {
+    const resultsObj = {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(this.state.userObj),
-    })
-      .then(response => response.json())
-      .catch(e => console.log(e));
+    };
+
+    const result = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/Users/login`, resultsObj)).json();
+    result.id && authHelper.authenticate(() => {
+      localStorage.setItem('knownComputer', true);
+      this.setState({ redirectToReferrer: true });
+    });
   }
 
   render() {

@@ -17,7 +17,8 @@ class EditHabit extends Component {
     this.getHabitById();
   }
 
-  onSubmit = (e) => {
+  onSubmit = async (e) => {
+    e.preventDefault();
     const editedHabit = {
       name: this.state.name,
       description: this.state.description,
@@ -29,35 +30,32 @@ class EditHabit extends Component {
       year: this.state.year,
     };
 
-    fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`, {
+    const requestObj = {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(editedHabit),
-    })
-    .then(response => response.json())
-    .then(result => this.props.history.push('/'))
-    .catch(e => console.log(`Failed to edit habit ${e}`));
+    };
 
-    e.preventDefault();
+    await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`, requestObj)).json();
+    this.props.history.push('/');
+    // .catch(e => console.log(`Failed to edit habit ${e}`));
   }
 
-  getHabitById = () => {
-    fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`)
-            .then(response => response.json())
-            .then(results => this.setState({
-              name: results.name,
-              description: results.description,
-              category: results.category,
-              month: results.target_month,
-              days: results.target,
-              completed: results.completed,
-              last_updated: results.last_updated,
-              year: results.year,
-            }))
-            .catch(e => console.log(e));
+  getHabitById = async () => {
+    const { name, description, category, target_month, target, completed, last_updated, year } = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`)).json();
+    this.setState({
+      name,
+      description,
+      category,
+      month: target_month,
+      days: target,
+      completed,
+      last_updated,
+      year,
+    });
   }
 
   handleInputChange = (e) => {

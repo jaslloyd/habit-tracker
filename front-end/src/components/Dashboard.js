@@ -23,8 +23,7 @@ class Dashboard extends Component {
   }
 
   getHabits = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`);
-    const habits = await response.json();
+    const habits = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`)).json();
     this.setState({ habits });
     this.filterHabits(this.state.current_month, this.state.displayedYear);
   }
@@ -59,15 +58,14 @@ class Dashboard extends Component {
       },
       body: JSON.stringify(habitDetails),
     };
-    const response = await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, requestDetails);
-    const json = await response.json();
+
+    await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, requestDetails)).json();
     console.log(`Habit: ${id} updated...`);
     // .catch(e => console.log(`Failed to Update habit ${e}`));
   }
 
   handleHabitDelete = async (id) => {
-    const response = await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' });
-    const json = await response.json();
+    await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })).json();
     this.getHabits();
       // .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
