@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import Login from './Login';
 import Summary from './Summary';
 import PrivateRoute from './PrivateRoute';
+import ChallengeTest from './ChallengeTest';
 
 const Main = () => (
   <main>
@@ -18,6 +19,7 @@ const Main = () => (
       <PrivateRoute exact path="/editHabit/:id" component={EditHabit} />
       <PrivateRoute exact path="/summary" component={Summary} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
+      <Route exact path="/challenge" component={ChallengeTest} />
     </Switch>
   </main>
 );

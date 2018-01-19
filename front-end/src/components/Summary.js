@@ -6,7 +6,7 @@ class Summary extends Component {
 
   state = {
     habitsSummary: [],
-    habitsTable: {},
+    habitsTable: [],
     currentMonthIndex: parseInt(moment().format('M'), 10),
   }
 
@@ -19,7 +19,6 @@ class Summary extends Component {
   updateUniqueHabits(habits) {
     const uniqueHabits = {};
     habits.forEach(({ name, target, completed, target_month }) => {
-      console.log(target_month);
       const targetMonthIndex = moment().month(target_month).format('M');
       // todo: don't include the current month
       if (targetMonthIndex <= this.state.currentMonthIndex) {
@@ -41,9 +40,9 @@ class Summary extends Component {
     this.setState({ habitsSummary: Object.values(uniqueHabits) });
   }
 
-  updateUniqueHabitsMonth(p_habits) {
+  updateUniqueHabitsMonth(allHabits) {
     const habits = {};
-    p_habits.forEach(({ name, target, completed, target_month }) => {
+    allHabits.forEach(({ name, target, completed, target_month }) => {
       if (!habits[name]) {
         habits[name] = new Array(12).fill('NA');
       }
@@ -56,10 +55,8 @@ class Summary extends Component {
 
   render() {
     const habitElements = this.state.habitsSummary.map(habit => <SummaryPanel key={habit.name} habit={habit} />);
-    const tableElements = [];
-    for (const key in this.state.habitsTable) {
-      tableElements.push(<SummaryTable key={key} name={key} values={this.state.habitsTable[key]} />);
-    }
+    const tableElements = this.state.habitsTable.map(key => <SummaryTable key={key} name={key} values={this.state.habitsTable[key]} />);
+
     return (
       <div>
         <h1 className="m-3 text-center">Yearly Summary</h1>
