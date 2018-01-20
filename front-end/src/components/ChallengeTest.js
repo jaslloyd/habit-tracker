@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HabitItem from './HabitItem';
 
 class ChallengeTest extends Component {
 
@@ -13,20 +14,22 @@ class ChallengeTest extends Component {
     });
   }
 
-  render() {
-    const elements = new Array(this.state.days).fill(0).map(index => (
-      <div>
-        {index}
-      </div>
-    ));
-    console.log(elements.length);
+  onCompleted = (index) => {
+    console.log(index);
+  }
 
+  render() {
     return (
       <div>
         <h1>ChallengeTest</h1>
         {/* Input field for amount of days for challenge, for each of that input, generate one box per day... */}
-        <input type="text" className="form-control" name="days" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.days} onChange={this.handleInputChange} required />
-        {elements}
+        <input type="text" className="form-control" name="days" placeholder="Picks Days for Challenges" value={this.state.days} onChange={this.handleInputChange} required />
+        {
+          this.state.days &&
+            new Array(parseInt(this.state.days, 10)).fill().map((_, i) => (
+              <HabitItem key={[i + 1]} index={i} completed={0} onCompleted={this.onCompleted} classSettings="big-box" />
+            ))
+        }
       </div>
     );
   }
