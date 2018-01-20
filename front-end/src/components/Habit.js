@@ -52,7 +52,7 @@ class Habit extends Component {
           {habitItemElements}
         </div>
         <div className="col-lg-2 col-md-2 col-sm-12">
-          <p style={{ color: this.state.color }}>{target - completed}/{target} Days Left</p>
+          <p style={{ color: this.state.color }}>{completed}/{target} Completed</p>
         </div>
         <div className="col-lg-1 col-md-1 col-sm-12">
           <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
