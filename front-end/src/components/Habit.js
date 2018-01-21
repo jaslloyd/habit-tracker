@@ -29,7 +29,7 @@ class Habit extends Component {
     const { target, completed } = this.props.habit;
     const canComplete = this.props.monthDaysLeft - (target - completed);
 
-    if (canComplete <= 0) {
+    if (canComplete < 0) {
       this.setState({ color: 'red' });
     } else if (canComplete === 0 || canComplete <= 5) {
       this.setState({ color: 'orange' });

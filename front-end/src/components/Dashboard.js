@@ -20,7 +20,6 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this.getHabits();
-    console.log(moment().format('Do@h:m'));
   }
 
   getHabits = async () => {
