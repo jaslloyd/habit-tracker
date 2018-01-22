@@ -42,7 +42,7 @@ class Dashboard extends Component {
     // 2. change the value of num of completed
     existingHabits[habitIndex].completed = numCompleted;
     // 3. Set the last_updated date to today.
-    existingHabits[habitIndex].last_updated = moment().format('Do@HH:m');
+    existingHabits[habitIndex].last_updated = moment().format('Do@HH:mm');
     // 4. Update the state with new habit object but keeping older ones??
     this.setState({ habits: existingHabits });
     // 5. Update the habit in the backend
