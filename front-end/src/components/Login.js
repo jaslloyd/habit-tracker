@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import authHelper from './Auth';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   state = {
@@ -60,7 +61,14 @@ class Login extends Component {
             <label htmlFor="password">Password</label>
             <input type="password" className="form-control" id="password" placeholder="Password" />
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <div className="row">
+            <div className="col-md-3">
+              <Link to="/demo" className="demo-link">Demo Mode</Link>
+            </div>
+            <div className="col-md-3 ml-auto">
+              <button type="submit" className="ml-auto btn btn-primary">Submit</button>
+            </div>
+          </div>
         </form>
       </div>
     );

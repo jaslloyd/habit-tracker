@@ -7,6 +7,7 @@ import Login from './Login';
 import Summary from './Summary';
 import PrivateRoute from './PrivateRoute';
 import ChallengeTest from './ChallengeTest';
+import Demo from './Demo';
 
 const Main = () => (
   <main>
@@ -20,6 +21,7 @@ const Main = () => (
       <PrivateRoute exact path="/summary" component={Summary} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <Route exact path="/challenge" component={ChallengeTest} />
+      <Route exact path="/demo" component={Demo} />
     </Switch>
   </main>
 );
