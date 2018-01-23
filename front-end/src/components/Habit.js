@@ -40,7 +40,7 @@ class Habit extends Component {
 
   render() {
     const { id, name, target, completed, last_updated } = this.props.habit;
-    const habitItemElements = Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} />);
+    const habitItemElements = new Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} />);
 
     return (
       <div className="row mt-2 mb-2">
