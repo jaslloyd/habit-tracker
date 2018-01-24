@@ -5,7 +5,6 @@ import Habit from './Habit';
 import HabitGroup from './HabitGroup';
 import DashboardControls from './DashboardControls';
 
-
 class Dashboard extends Component {
   /*
     When components mounts, fetch user habits from backend
@@ -101,9 +100,8 @@ class Dashboard extends Component {
     });
 
     // 3. Loop through each category and add some extra html, this will be its own component later (HabitGroup)
-    const finalElements = Object.keys(categoriesElements).map(category => (
-      <HabitGroup key={category} category={category} categoriesHabits={categoriesElements[category]} />
-    ));
+    const finalElements = Object.keys(categoriesElements).map(category =>
+      <HabitGroup key={category} category={category} categoriesHabits={categoriesElements[category]} />);
 
     return (
       <div id="dashboard">
