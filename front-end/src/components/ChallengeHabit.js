@@ -7,21 +7,28 @@ class ChallengeHabit extends Component {
     days: 10,
   };
 
-  handleInputChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
-  }
-
   onCompleted = (index) => {
-    console.log(index);
+    const { id, completed } = this.props.habit;
+    if (index <= completed) {
+      this.props.onHabitItemUpdated(id, completed - 1);
+    } else {
+      this.props.onHabitItemUpdated(id, completed + 1);
+    }
   }
 
   render() {
+    const { id, name, target, completed, last_updated } = this.props.habit;
+    const habitItemElements = new Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} classSettings="big-box" />);
     return (
-      <div>
-        <h1>Challenge Habit</h1>
+      <div className="mt-2 mb-2 mx-auto">
+        <div className="row">
+          <div className="col-lg-2 col-md-2 col-sm-12">
+            <span className="h5"> {name}</span>
+          </div>
+        </div>
+        <div className="row">
+          {habitItemElements}
+        </div>
       </div>
     );
   }

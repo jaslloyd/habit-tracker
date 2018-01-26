@@ -4,7 +4,15 @@ import ChallengeHabit from './ChallengeHabit';
 class ChallengeDashboard extends Component {
 
   state = {
-    habits: [],
+    habits: [
+      {
+        name: 'Test',
+        id: '12345',
+        target: 10,
+        completed: 0,
+        last_update: 'Never',
+      },
+    ],
   }
 
   render() {
@@ -13,8 +21,10 @@ class ChallengeDashboard extends Component {
     );
     return (
       <div id="challenge-dashboard">
-        <h1>Challenge Dashboard</h1>
-        {challengeHabits}
+        <h1 className="text-center">Challenge Dashboard</h1>
+        <div className="mt-3 row">
+          {challengeHabits}
+        </div>
       </div>
     );
   }
