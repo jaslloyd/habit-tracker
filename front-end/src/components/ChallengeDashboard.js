@@ -21,7 +21,10 @@ class ChallengeDashboard extends Component {
     );
     return (
       <div id="challenge-dashboard">
-        <h1 className="text-center">Challenge Dashboard</h1>
+        <div className="header text-center">
+          <h1 className="mt-3">Challenge Dashboard</h1>
+          <h3>Challenge yourself by Taking 30 Day Challenges!</h3>
+        </div>
         <div className="mt-3 row">
           {challengeHabits}
         </div>

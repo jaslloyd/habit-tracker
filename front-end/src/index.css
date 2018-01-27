@@ -102,13 +102,12 @@ input[type="checkbox"]:checked:after {
   text-transform: uppercase;
 }
 
-.habitItems {
-  padding-right: 0;
-  padding-left: 0;
-}
-
 input:nth-child(5n) {
   margin-right: 20px;
+}
+
+input:last-child{
+  margin-right: 0;
 }
 
 /* .badge-primary{

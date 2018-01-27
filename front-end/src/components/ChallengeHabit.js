@@ -22,8 +22,11 @@ class ChallengeHabit extends Component {
     return (
       <div className="mt-2 mb-2 mx-auto">
         <div className="row">
-          <div className="col-lg-2 col-md-2 col-sm-12">
+          <div className="col-lg-2 col-md-2 col-sm-12 pl-0">
             <span className="h5"> {name}</span>
+          </div>
+          <div className="ml-auto col-lg-2 col-md-2 col-sm-12 text-right pr-0">
+            <span>{completed} / {target}</span>
           </div>
         </div>
         <div className="row">
