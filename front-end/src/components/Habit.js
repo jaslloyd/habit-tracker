@@ -45,8 +45,8 @@ class Habit extends Component {
     return (
       <div className="row mt-2 mb-2">
         <div className="col-lg-2 col-md-2 col-sm-12">
+          <span className="h5">{name} </span>
           { completed > 0 && <span className="h5 badge badge-pill badge-default">{last_updated}</span> }
-          <span className="h5"> {name}</span>
         </div>
         <div className="col-lg-7 col-md-7 col-sm-12 p-0">
           {habitItemElements}
