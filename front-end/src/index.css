@@ -106,11 +106,12 @@ input:nth-child(5n) {
   margin-right: 20px;
 }
 
+@media (max-width: 576px){
+  input:nth-child(5n){
+    margin-right: 5px;
+  }
+}
+
 input:last-child{
   margin-right: 0;
 }
-
-/* .badge-primary{
-  background: rgb(59, 175, 218);
-  font-weight: 600;
-} */

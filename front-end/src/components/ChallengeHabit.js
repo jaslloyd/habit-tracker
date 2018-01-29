@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HabitItem from './HabitItem';
 
+// This class has a lot of duplciate logic from Habit.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeHabit extends Component {
 
   state = {
@@ -22,15 +23,18 @@ class ChallengeHabit extends Component {
     return (
       <div className="mt-2 mb-2 mx-auto">
         <div className="row">
-          <div className="col-lg-2 col-md-2 col-sm-12 pl-0">
+          <div className="col-lg-2 col-md-2 col-sm-12">
             <span className="h5"> {name}</span>
           </div>
-          <div className="ml-auto col-lg-2 col-md-2 col-sm-12 text-right pr-0">
+          <div className="ml-auto col-lg-2 col-md-2 col-sm-12 text-right">
             <span>{completed} / {target}</span>
           </div>
         </div>
         <div className="row">
-          {habitItemElements}
+          <div className="col-md-12">
+            {habitItemElements}
+          </div>
+
         </div>
       </div>
     );
