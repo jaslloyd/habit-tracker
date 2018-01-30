@@ -5,7 +5,7 @@ import HabitItem from './HabitItem';
 class ChallengeHabit extends Component {
 
   state = {
-    days: 10,
+
   };
 
   onCompleted = (index) => {
@@ -34,7 +34,6 @@ class ChallengeHabit extends Component {
           <div className="col-md-12">
             {habitItemElements}
           </div>
-
         </div>
       </div>
     );

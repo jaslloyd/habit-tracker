@@ -6,6 +6,7 @@ import moment from 'moment';
 class ChallengeDashboard extends Component {
 
   state = {
+    filter_obj: '{"where": {"target_month": "challenge"}}',
     habits: [
       {
         name: 'Gym',
@@ -13,8 +14,19 @@ class ChallengeDashboard extends Component {
         target: 30,
         completed: 0,
         last_update: 'Never',
+
       },
     ],
+  }
+
+  componentDidMount() {
+    this.getHabits();
+  }
+
+  getHabits = async () => {
+    const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${this.state.filter_obj}`)).json();
+    this.setState({ habits: results });
+    // .catch(e => console.log(`Failed to get all habits ${e}`));
   }
 
   handleHabitItemUpdate = (id, numCompleted) => {
@@ -28,7 +40,20 @@ class ChallengeDashboard extends Component {
      // 4. Update the state with new habit object but keeping older ones??
     this.setState({ habits: existingHabits });
      // 5. Update the habit in the backend
-     // todo...
+    this.updateHabit(existingHabits[habitIndex], id);
+  }
+
+  updateHabit = async (habitDetails, id) => {
+    const requestDetails = {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(habitDetails),
+    };
+    await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, requestDetails)).json();
+    console.log(`Habit: ${id} updated...`);
   }
 
   render() {
