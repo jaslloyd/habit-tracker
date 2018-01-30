@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ChallengeHabit from './ChallengeHabit';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 // This class has a lot of duplciate logic from Dashboard.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeDashboard extends Component {
@@ -56,9 +57,15 @@ class ChallengeDashboard extends Component {
     console.log(`Habit: ${id} updated...`);
   }
 
+  handleHabitDelete = async (id) => {
+    await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })).json();
+    this.getHabits();
+      // .catch(e => console.log(`Failed to Delete habit ${e}`));
+  }
+
   render() {
     const challengeHabits = this.state.habits.map(habit =>
-      <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} />,
+      <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />,
     );
     return (
       <div id="challenge-dashboard">
@@ -66,7 +73,12 @@ class ChallengeDashboard extends Component {
           <h1 className="mt-3">Challenge Dashboard</h1>
           <h3>Challenge yourself by Taking X Day Challenges!</h3>
         </div>
-        <div className="mt-3 row">
+        <div className="row mb-3">
+          <div className="ml-auto col-md-4">
+            <Link to="/addchallengehabit" type="button" className="btn btn-success pull-right">Add Habit</Link>
+          </div>
+        </div>
+        <div className="mt-2 mb-2 mx-auto">
           {challengeHabits}
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import HabitSuggestion from './HabitSuggestion';
+import FormGroup from './FormGroup';
 
 class AddHabit extends Component {
 
@@ -69,8 +70,9 @@ class AddHabit extends Component {
       body: JSON.stringify(habit),
     };
 
+    console.log(requestObj);
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`, requestObj)).json();
-    this.props.history.push('/');
+    this.props.history.push('/challenge');
   }
 
   handleInputChange = (e) => {
@@ -90,18 +92,12 @@ class AddHabit extends Component {
         <div className="row">
           <div className="ml-auto col-6">
             <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Habit Name:</label>
-                <input type="text" className="form-control" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.name} onChange={this.handleInputChange} required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="description">Description:</label>
-                <input type="text" className="form-control" name="description" placeholder="Why do you want to complete it?" value={this.state.description} onChange={this.handleInputChange} required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="category">Category:</label>
-                <input type="text" className="form-control" name="category" placeholder="Health / Finance / Career" value={this.state.category} onChange={this.handleInputChange} required />
-              </div>
+              <FormGroup label="Habit Name:" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" onInputChange={this.handleInputChange} value={this.state.name} />
+
+              <FormGroup label="Description:" name="description" placeholder="Why do you want to complete it?" onInputChange={this.handleInputChange} value={this.state.description} />
+
+              <FormGroup label="Category:" name="category" placeholder="Health / Finance / Career" onInputChange={this.handleInputChange} value={this.state.category} />
+
               <div className="form-group">
                 <label htmlFor="habit_mon">Type of Habit:</label>
                 <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>

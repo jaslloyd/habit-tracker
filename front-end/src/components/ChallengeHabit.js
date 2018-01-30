@@ -21,10 +21,10 @@ class ChallengeHabit extends Component {
     const { id, name, target, completed, last_updated } = this.props.habit;
     const habitItemElements = new Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} classSettings="big-box" />);
     return (
-      <div className="mt-2 mb-2 mx-auto">
-        <div className="row">
+      <div>
+        <div className="row mb-3">
           <div className="col-lg-2 col-md-2 col-sm-12">
-            <span className="h5"> {name}</span>
+            <span className="h5"> {name} <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button></span>
           </div>
           <div className="ml-auto col-lg-2 col-md-2 col-sm-12 text-right">
             <span>{completed} / {target}</span>
