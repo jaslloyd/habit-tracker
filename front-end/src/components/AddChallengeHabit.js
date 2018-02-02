@@ -94,15 +94,15 @@ class AddHabit extends Component {
             <form onSubmit={this.onSubmit}>
               <FormGroup>
                 <label htmlFor="name">Habit Name:</label>
--                 <input type="text" className="form-control" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.name} onChange={this.handleInputChange} required />
+-                  <input type="text" className="form-control" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.name} onChange={this.handleInputChange} required />
               </FormGroup>
               <FormGroup>
                 <label htmlFor="description">Description:</label>
--                     <input type="text" className="form-control" name="description" placeholder="Why do you want to complete it?" value={this.state.description} onChange={this.handleInputChange} required />
+-                      <input type="text" className="form-control" name="description" placeholder="Why do you want to complete it?" value={this.state.description} onChange={this.handleInputChange} required />
               </FormGroup>
               <FormGroup>
                 <label htmlFor="category">Category:</label>
--                     <input type="text" className="form-control" name="category" placeholder="Health / Finance / Career" value={this.state.category} onChange={this.handleInputChange} required />
+-                      <input type="text" className="form-control" name="category" placeholder="Health / Finance / Career" value={this.state.category} onChange={this.handleInputChange} required />
               </FormGroup>
               <FormGroup>
                 <label htmlFor="habit_mon">Type of Habit:</label>
@@ -112,7 +112,7 @@ class AddHabit extends Component {
               </FormGroup>
               <FormGroup>
                 <label htmlFor="target">How many days do you want to do this challenge?</label>
-                <input type="number" className="form-control" name="target" step="1" min="1" max="30" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
+                <input type="number" className="form-control" name="target" step="1" min="1" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
               </FormGroup>
               <div className="form-group" />
               <button type="submit" className="btn btn-primary">Submit</button>

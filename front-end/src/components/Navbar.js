@@ -18,6 +18,9 @@ const Navbar = () => (
           {authHelper.isAuthenticated() && <Link to="/dashboard" className="nav-link active">Dashboard<span className="sr-only">(current)</span></Link>}
         </li>
         <li className="nav-item">
+          {!authHelper.isAuthenticated() && <Link to="/challenge" className="nav-link">Challenges</Link> }
+        </li>
+        <li className="nav-item">
           {authHelper.isAuthenticated() && <Link to="/summary" className="nav-link">Summary</Link> }
         </li>
         <li className="nav-item">
