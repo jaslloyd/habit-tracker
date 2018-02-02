@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 const FormGroup = props => (
   <div className="form-group">
-    <label htmlFor="name">{props.label}</label>
-    <input type="text" className="form-control" name={props.name} placeholder={props.placeholder} value={props.value} onChange={props.onInputChange} required />
+    {props.children}
+    {/* <label htmlFor="name">{props.label}</label>
+    <input type="text" className="form-control" name={props.name} placeholder={props.placeholder} value={props.value} onChange={props.onInputChange} required /> */}
   </div>
 );
 

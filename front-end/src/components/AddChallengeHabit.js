@@ -71,8 +71,8 @@ class AddHabit extends Component {
     };
 
     console.log(requestObj);
-    await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`, requestObj)).json();
-    this.props.history.push('/challenge');
+    // await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`, requestObj)).json();
+    // this.props.history.push('/challenge');
   }
 
   handleInputChange = (e) => {
@@ -92,22 +92,29 @@ class AddHabit extends Component {
         <div className="row">
           <div className="ml-auto col-6">
             <form onSubmit={this.onSubmit}>
-              <FormGroup label="Habit Name:" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" onInputChange={this.handleInputChange} value={this.state.name} />
-
-              <FormGroup label="Description:" name="description" placeholder="Why do you want to complete it?" onInputChange={this.handleInputChange} value={this.state.description} />
-
-              <FormGroup label="Category:" name="category" placeholder="Health / Finance / Career" onInputChange={this.handleInputChange} value={this.state.category} />
-
-              <div className="form-group">
+              <FormGroup>
+                <label htmlFor="name">Habit Name:</label>
+-                <input type="text" className="form-control" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.name} onChange={this.handleInputChange} required />
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor="description">Description:</label>
+-                    <input type="text" className="form-control" name="description" placeholder="Why do you want to complete it?" value={this.state.description} onChange={this.handleInputChange} required />
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor="category">Category:</label>
+-                    <input type="text" className="form-control" name="category" placeholder="Health / Finance / Career" value={this.state.category} onChange={this.handleInputChange} required />
+              </FormGroup>
+              <FormGroup>
                 <label htmlFor="habit_mon">Type of Habit:</label>
                 <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
                   <option>Challenge Habit</option>
                 </select>
-              </div>
-              <div className="form-group">
+              </FormGroup>
+              <FormGroup>
                 <label htmlFor="target">How many days do you want to do this challenge?</label>
                 <input type="number" className="form-control" name="target" step="1" min="1" max="30" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
-              </div>
+              </FormGroup>
+              <div className="form-group" />
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
           </div>
