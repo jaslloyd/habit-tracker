@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import HabitItem from './HabitItem';
+import { Link } from 'react-router-dom';
 
 // This class has a lot of duplciate logic from Habit.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeHabit extends Component {
 
-  state = {
-
-  };
+  state = {}
 
   onCompleted = (index) => {
     const { id, completed } = this.props.habit;
@@ -24,7 +23,13 @@ class ChallengeHabit extends Component {
       <div>
         <div className="row mb-3">
           <div className="col-lg-2 col-md-2 col-sm-12">
-            <span className="h5"> {name} <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button></span>
+            <span className="h5">
+              {name}
+            </span>
+          </div>
+          <div className="col-lg-2 col-md-2 col-sm-12 pl-1">
+            <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
+            <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
           </div>
           <div className="ml-auto col-lg-2 col-md-2 col-sm-12 text-right">
             <span>{completed} / {target}</span>

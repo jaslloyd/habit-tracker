@@ -20,6 +20,7 @@ class Dashboard extends Component {
     displayedYear: moment().format('YYYY'),
   }
 
+  // todo: DRY up duplicated in ChallengeDashboard
   componentDidMount() {
     this.getHabits();
   }
@@ -37,6 +38,7 @@ class Dashboard extends Component {
     this.setState({ displayedHabits: filteredHabits });
   }
 
+  // todo: DRY up duplicated in ChallengeDashboard
   handleHabitItemUpdate = (id, numCompleted) => {
     const existingHabits = this.state.habits;
     // 1. Find the habit we are updating
@@ -51,6 +53,7 @@ class Dashboard extends Component {
     this.updateHabit(existingHabits[habitIndex], id);
   }
 
+  // todo: DRY up duplicated in ChallengeDashboard
   updateHabit = async (habitDetails, id) => {
     const requestDetails = {
       method: 'PUT',
@@ -66,6 +69,7 @@ class Dashboard extends Component {
     // .catch(e => console.log(`Failed to Update habit ${e}`));
   }
 
+    // todo: DRY up duplicated in ChallengeDashboard
   handleHabitDelete = async (id) => {
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })).json();
     this.getHabits();

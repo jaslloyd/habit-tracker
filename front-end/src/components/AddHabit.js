@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import HabitSuggestion from './HabitSuggestion';
+import FormGroup from './FormGroup';
 
 class AddHabit extends Component {
 
@@ -92,30 +93,30 @@ class AddHabit extends Component {
         <div className="row">
           <div className="ml-auto col-6">
             <form onSubmit={this.onSubmit}>
-              <div className="form-group">
+              <FormGroup>
                 <label htmlFor="name">Habit Name:</label>
                 <input type="text" className="form-control" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.name} onChange={this.handleInputChange} required />
-              </div>
-              <div className="form-group">
+              </FormGroup>
+              <FormGroup>
                 <label htmlFor="description">Description:</label>
                 <input type="text" className="form-control" name="description" placeholder="Why do you want to complete it?" value={this.state.description} onChange={this.handleInputChange} required />
-              </div>
-              <div className="form-group">
+              </FormGroup>
+              <FormGroup>
                 <label htmlFor="category">Category:</label>
                 <input type="text" className="form-control" name="category" placeholder="Health / Finance / Career" value={this.state.category} onChange={this.handleInputChange} required />
-              </div>
-              <div className="form-group">
+              </FormGroup>
+              <FormGroup>
                 <label htmlFor="habit_mon">Month of Habit:</label>
                 <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
                   <option disabled>Choose Month</option>
                   <option>{moment.months(this.state.currentMonthIndex)}</option>
                   <option>{moment.months(this.state.currentMonthIndex + 1)}</option>
                 </select>
-              </div>
-              <div className="form-group">
+              </FormGroup>
+              <FormGroup>
                 <label htmlFor="target">How many days do you want to do this habit?</label>
                 <input type="number" className="form-control" name="target" step="1" min="1" max="30" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
-              </div>
+              </FormGroup>
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
           </div>

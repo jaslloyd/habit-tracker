@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FormGroup from './FormGroup';
 
 class EditHabit extends Component {
 
@@ -70,25 +71,25 @@ class EditHabit extends Component {
       <div>
         <h1 className="m-3">Edit Habit</h1>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group">
+          <FormGroup>
             <label htmlFor="habit_name">Habit Name:</label>
             <input type="text" className="form-control" name="name" placeholder="Habit Name e.g. Wake up before 8am each day" value={this.state.name} onChange={this.handleInputChange} required />
-          </div>
-          <div className="form-group">
+          </FormGroup>
+          <FormGroup>
             <label htmlFor="habit_desc">Description:</label>
             <input type="text" className="form-control" name="description" placeholder="Why do you want to complete it?" value={this.state.description} onChange={this.handleInputChange} required />
-          </div>
-          <div className="form-group">
+          </FormGroup>
+          <FormGroup>
             <label htmlFor="habit_cat">Category:</label>
             <input type="text" className="form-control" name="category" placeholder="Health / Finance / Career" onChange={this.handleInputChange} value={this.state.category} required />
-          </div>
-          <div className="form-group">
+          </FormGroup>
+          <FormGroup>
             <label htmlFor="habit_mon">Month of Habit: {this.state.month}</label>
-          </div>
-          <div className="form-group">
+          </FormGroup>
+          <FormGroup>
             <label htmlFor="habit_target">How many days do you want to do this habit?</label>
-            <input type="number" className="form-control" name="days" step="1" min="1" max="30" value={this.state.days} onChange={this.handleInputChange} required />
-          </div>
+            <input type="number" className="form-control" name="days" step="1" min="1" value={this.state.days} onChange={this.handleInputChange} required />
+          </FormGroup>
           <button type="submit" className="btn btn-primary">Update Habit</button>
         </form>
       </div>

@@ -22,4 +22,5 @@ DashboardControls.propTypes = {
   displayedMonth: PropTypes.string.isRequired,
   displayedYear: PropTypes.string.isRequired,
 };
+
 export default DashboardControls;

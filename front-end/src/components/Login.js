@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import authHelper from './Auth';
 import { Link } from 'react-router-dom';
+import FormGroup from './FormGroup';
 
 class Login extends Component {
   state = {
@@ -53,14 +54,14 @@ class Login extends Component {
       <div id="login">
         <form className="card-box" style={{ width: '500px' }} onSubmit={this.onSubmit}>
           <h1 className="text-center">Login</h1>
-          <div className="form-group">
+          <FormGroup>
             <label htmlFor="username">Username</label>
             <input type="text" className="form-control" id="username" placeholder="Enter Username" />
-          </div>
-          <div className="form-group">
+          </FormGroup>
+          <FormGroup>
             <label htmlFor="password">Password</label>
             <input type="password" className="form-control" id="password" placeholder="Password" />
-          </div>
+          </FormGroup>
           <div className="row">
             <div className="col-md-3">
               <Link to="/demo" className="demo-link">Demo Mode</Link>

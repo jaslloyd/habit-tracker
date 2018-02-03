@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
-import ChallengeHabit from './ChallengeHabit';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import ChallengeHabit from './ChallengeHabit';
 
 // This class has a lot of duplciate logic from Dashboard.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeDashboard extends Component {
 
   state = {
-    filter_obj: '{"where": {"target_month": "challenge"}}',
-    habits: [
-      {
-        name: 'Gym',
-        id: '12345',
-        target: 30,
-        completed: 0,
-        last_update: 'Never',
-
-      },
-    ],
+    filter_obj: `{"where": {"target_month": "challenge", "year": "${moment().format('YYYY')}"}}`,
+    habits: [],
   }
 
+  // todo: Dry up duplicated in Dashboard
   componentDidMount() {
     this.getHabits();
   }
@@ -30,6 +22,7 @@ class ChallengeDashboard extends Component {
     // .catch(e => console.log(`Failed to get all habits ${e}`));
   }
 
+    // todo: Dry up duplicated in Dashboard
   handleHabitItemUpdate = (id, numCompleted) => {
     const existingHabits = this.state.habits;
      // 1. Find the habit we are updating
@@ -44,6 +37,7 @@ class ChallengeDashboard extends Component {
     this.updateHabit(existingHabits[habitIndex], id);
   }
 
+  // todo: DRY up duplicated in Dashboard
   updateHabit = async (habitDetails, id) => {
     const requestDetails = {
       method: 'PUT',
@@ -57,6 +51,7 @@ class ChallengeDashboard extends Component {
     console.log(`Habit: ${id} updated...`);
   }
 
+  // todo: DRY up duplicated in Dashboard
   handleHabitDelete = async (id) => {
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })).json();
     this.getHabits();
@@ -64,14 +59,14 @@ class ChallengeDashboard extends Component {
   }
 
   render() {
-    const challengeHabits = this.state.habits.map(habit =>
+    const challengeHabits = this.state.habits.length > 0 && this.state.habits.map(habit =>
       <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />,
     );
     return (
       <div id="challenge-dashboard">
         <div className="header text-center">
-          <h1 className="mt-3">Challenge Dashboard</h1>
-          <h3>Challenge yourself by Taking X Day Challenges!</h3>
+          <h3 className="mt-3">Challenge Dashboard</h3>
+          <h4>Challenge yourself by Taking X Day Challenges!</h4>
         </div>
         <div className="row mb-3">
           <div className="ml-auto col-md-4">
