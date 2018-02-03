@@ -13,8 +13,6 @@ import Demo from './Demo';
 const Main = () => (
   <main>
     <Switch>
-      {/* Remove when public */}
-      {/* <Route exact path='/' component={Dashboard} />  */}
       <PrivateRoute exact path="/" component={Dashboard} />
       <Route exact path="/login" component={Login} />
       <PrivateRoute exact path="/addhabit" component={AddHabit} />
