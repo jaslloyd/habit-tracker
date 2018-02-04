@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import authHelper from './Auth';
+import authHelper from '../Auth';
 
 const Navbar = () => (
   <nav className="navbar sticky-top navbar-toggleable-md navbar-inverse" style={{ backgroundColor: '#3bafda' }}>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import authHelper from './Auth';
+import authHelper from '../Auth';
 import FormGroup from './FormGroup';
 
 class Login extends Component {
@@ -33,14 +33,15 @@ class Login extends Component {
     };
 
     const result = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/Users/login`, resultsObj)).json();
-    result.id && authHelper.authenticate(() => {
-      localStorage.setItem('knownComputer', true);
-      this.setState({ redirectToReferrer: true });
-    });
+    if (result.id) {
+      authHelper.authenticate(() => {
+        localStorage.setItem('knownComputer', true);
+        this.setState({ redirectToReferrer: true });
+      });
+    }
   }
 
   render() {
-    console.log(process.env.REACT_APP_API_ENPOINT);
     const { from } = this.props.location.state || { from: { pathname: '/' } };
     const { redirectToReferrer } = this.state;
 

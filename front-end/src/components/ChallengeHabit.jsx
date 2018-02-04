@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import HabitItem from './HabitItem';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import HabitItem from './HabitItem';
 
 // This class has a lot of duplciate logic from Habit.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeHabit extends Component {
@@ -49,5 +50,11 @@ class ChallengeHabit extends Component {
     );
   }
 }
+
+ChallengeHabit.propTypes = {
+  habit: PropTypes.object.isRequired,
+  onHabitItemUpdated: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default ChallengeHabit;

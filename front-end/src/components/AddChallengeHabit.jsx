@@ -38,7 +38,6 @@ class AddHabit extends Component {
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
     if (results.count === 0) {
       this.addHabit(newHabit);
-      console.log(newHabit);
     } else {
       this.setState({ msg: `Habit ${newHabit.name} already exists for month ${newHabit.target_month}` });
     }
@@ -70,7 +69,6 @@ class AddHabit extends Component {
       body: JSON.stringify(habit),
     };
 
-    console.log(requestObj);
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`, requestObj)).json();
     this.props.history.push('/challenge');
   }
