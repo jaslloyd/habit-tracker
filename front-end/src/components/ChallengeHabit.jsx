@@ -21,17 +21,22 @@ class ChallengeHabit extends Component {
     const habitItemElements = new Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} classSettings="big-box" />);
     return (
       <div>
+        <div className="row">
+          <div className="col-12">
+            { completed > 0 && <span className="h5 badge badge-pill badge-default">{last_updated}</span> }
+          </div>
+        </div>
         <div className="row mb-3">
-          <div className="col-lg-2 col-md-2 col-sm-12">
+          <div className="col-lg-2 col-md-2 col-sm-4">
             <span className="h5">
               {name}
             </span>
           </div>
-          <div className="col-lg-2 col-md-2 col-sm-12 pl-1">
+          <div className="col-lg-1 col-md-2 col-sm-4">
             <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
             <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
           </div>
-          <div className="ml-auto col-lg-2 col-md-2 col-sm-12 text-right">
+          <div className="ml-auto col-lg-1 col-md-2 col-sm-4 text-right">
             <span>{completed} / {target}</span>
           </div>
         </div>

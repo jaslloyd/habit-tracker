@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import authHelper from './Auth';
-import { Link } from 'react-router-dom';
 import FormGroup from './FormGroup';
 
 class Login extends Component {
