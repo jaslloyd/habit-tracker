@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import ChallengeHabit from './ChallengeHabit';
+import CardBox from './CardBox';
 
 // This class has a lot of duplciate logic from Dashboard.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeDashboard extends Component {
@@ -59,9 +60,12 @@ class ChallengeDashboard extends Component {
   }
 
   render() {
-    const challengeHabits = this.state.habits.length > 0 && this.state.habits.map(habit =>
-      <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />,
-    );
+    const challengeHabits = this.state.habits.length > 0 && this.state.habits.map(habit => (
+      <CardBox name={habit.name}>
+        <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />
+      </CardBox>
+      ));
+
     return (
       <div id="challenge-dashboard">
         <div className="header text-center">
