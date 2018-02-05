@@ -28,13 +28,14 @@ I want a easy way to coorlate my tracking into one simple to use interface. Also
 ### Habit Specific
 - [X] As a user I want to track my monthly habits. e.g I want to go to the Gym at least 10 times this month
 
-- [ ] As a user I want to take 30 day challenges.
+- [X] As a user I want to take X day challenges e.g. 30 Day Coding Challenge.
 
 - [ ] As a user I want to be able to track my habits that don't have a specific timeframe. e.g. Daily habits
 
 - [ ] As a user I want to be able to add specific steps for completing a goal
 
 - [ ] As a user I want to be able to ...
+
 ## Technology Stack
 * Front-end
     * React
