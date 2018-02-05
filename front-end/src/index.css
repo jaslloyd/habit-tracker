@@ -115,3 +115,9 @@ input:nth-child(5n) {
 input:last-child{
   margin-right: 0;
 }
+
+
+.challenge-badge{
+  border-radius: 0;
+  font-size: 1em;
+}

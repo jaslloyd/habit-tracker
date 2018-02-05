@@ -24,10 +24,10 @@ class ChallengeHabit extends Component {
       <div>
         <div className="row mb-3">
           <div className="col-6">
-            { completed > 0 && <span className="badge badge-pill badge-default" style={{ borderRadius: '0', fontSize: '1em' }}>{last_updated}</span> }
+            { completed > 0 && <span className="badge badge-pill badge-default challenge-badge">{last_updated}</span> }
           </div>
           <div className="ml-auto col-1 text-right">
-            <span className="badge badge-pill badge-default" style={{ borderRadius: '0', fontSize: '1em' }}>{completed} / {target}</span>
+            <span className="badge badge-pill badge-default challenge-badge">{completed} / {target}</span>
           </div>
         </div>
         <div className="row mb-3" style={{ padding: '0 40px' }}>
