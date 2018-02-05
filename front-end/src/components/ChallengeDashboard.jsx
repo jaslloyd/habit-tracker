@@ -61,16 +61,15 @@ class ChallengeDashboard extends Component {
 
   render() {
     const challengeHabits = this.state.habits.length > 0 && this.state.habits.map(habit => (
-      <CardBox name={habit.name}>
+      <div id={habit.name} className="card-box col-10 mx-auto pl-0 pr-0 pt-0" style={{ lineHeight: '0' }}>
         <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />
-      </CardBox>
+      </div>
       ));
 
     return (
       <div id="challenge-dashboard">
-        <div className="header text-center">
-          <h3 className="mt-3">Challenge Dashboard</h3>
-          <h4>Challenge yourself by Taking X Day Challenges!</h4>
+        <div className="header text-center mt-3">
+          <h3>Challenge Dashboard</h3>
         </div>
         <div className="row mb-3">
           <div className="ml-auto col-md-4">
