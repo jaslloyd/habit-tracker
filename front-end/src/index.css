@@ -106,7 +106,7 @@ input:nth-child(5n) {
   margin-right: 20px;
 }
 
-@media (max-width: 576px){
+@media (max-width: 768px){
   input:nth-child(5n){
     margin-right: 5px;
   }

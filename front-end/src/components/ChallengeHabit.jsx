@@ -26,24 +26,28 @@ class ChallengeHabit extends Component {
           <div className="col-6">
             { completed > 0 && <span className="badge badge-pill badge-default challenge-badge">{last_updated}</span> }
           </div>
-          <div className="ml-auto col-1 text-right">
-            <span className="badge badge-pill badge-default challenge-badge">{completed} / {target}</span>
+          <div className="col-6 text-right">
+            <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
+            <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
           </div>
         </div>
+
         <div className="row mb-3" style={{ padding: '0 40px' }}>
           <div className="col-lg-3 col-md-2 col-sm-4">
             <span className="h5">
               {name}
             </span>
           </div>
-          <div className="col-lg-1 col-md-2 col-sm-4">
-            <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
-            <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
-          </div>
         </div>
+
         <div className="row">
           <div className="col-md-12" style={{ padding: '0 40px' }}>
             {habitItemElements}
+          </div>
+        </div>
+        <div className="row">
+          <div className="ml-auto col-6 text-right">
+            <span className="badge badge-pill badge-default challenge-badge">{completed} / {target}</span>
           </div>
         </div>
       </div>
