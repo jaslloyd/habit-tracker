@@ -68,7 +68,7 @@ class ChallengeDashboard extends Component {
     return (
       <div id="challenge-dashboard">
         <div className="header text-center mt-3">
-          <h3>Challenge Dashboard</h3>
+          <h3>Challenges</h3>
         </div>
         <div className="row mb-3">
           <div className="ml-auto col-md-4">
