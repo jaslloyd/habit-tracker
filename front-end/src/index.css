@@ -22,9 +22,9 @@ input[type="checkbox"] {
   color: #fff;
 }
 
-.big-box {
-  width: 50px !important;
-  height: 50px !important;
+input[type="checkbox"].big-box {
+  width: 50px;
+  height: 50px;
 }
 
 input[type="checkbox"]:checked {
@@ -40,13 +40,12 @@ input[type="checkbox"]:checked:after {
   /* Heres your symbol replacement - this is a tick in Unicode. */
   content: "\2713";
   color: #fff;
-   /* If you want to fully change the check appearance, use the following: */
-   content: "";
-   width: 100%;
-   height: 100%;
-   background: blue;
-   top: 0;
-   left: 0;
+  /* If you want to fully change the check appearance, use the following: */
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .card-box {
@@ -57,16 +56,16 @@ input[type="checkbox"]:checked:after {
   margin-bottom: 20px;
 }
 
-.header-title {
+.header-title, .header-title-big{
   text-transform: uppercase;
-  font-size: 1rem;
   font-weight: 700;
+}
+.header-title {
+  font-size: 1rem;
 }
 
 .header-title-big {
-  text-transform: uppercase;
   font-size: 1.2rem;
-  font-weight: 700;
 }
 
 #login {
@@ -111,11 +110,6 @@ input:nth-child(5n) {
     margin-right: 5px;
   }
 }
-
-/* input:last-child{
-  margin-right: 0;
-} */
-
 
 .challenge-badge{
   border-radius: 0;
