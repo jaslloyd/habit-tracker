@@ -13,15 +13,15 @@ import Demo from './Demo';
 const Main = () => (
   <main>
     <Switch>
-      <PrivateRoute exact path="/" component={Dashboard} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/demo" component={Demo} />
+      <PrivateRoute exact path="/" component={Dashboard} />
       <PrivateRoute exact path="/addhabit" component={AddHabit} />
       <PrivateRoute exact path="/addchallengehabit" component={AddChallengeHabit} />
       <PrivateRoute exact path="/editHabit/:id" component={EditHabit} />
       <PrivateRoute exact path="/summary" component={Summary} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
-      <Route exact path="/challenge" component={ChallengeDashboard} />
-      <Route exact path="/demo" component={Demo} />
+      <PrivateRoute exact path="/challenge" component={ChallengeDashboard} />
     </Switch>
   </main>
 );
