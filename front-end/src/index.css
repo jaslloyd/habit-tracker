@@ -32,8 +32,8 @@ input[type="checkbox"]:checked {
   margin-right: 0;
 }
 
-input[type="checkbox"]:checked:last-child {
-  margin-left: 0;
+input[type="checkbox"]:checked +  input[type="checkbox"]:not(:checked){
+  margin-left: 5px;
 }
 
 input[type="checkbox"]:checked:after {
@@ -112,9 +112,9 @@ input:nth-child(5n) {
   }
 }
 
-input:last-child{
+/* input:last-child{
   margin-right: 0;
-}
+} */
 
 
 .challenge-badge{
