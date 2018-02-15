@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardBox from './CardBox';
 
-const HabitGroup = props => (
-  <CardBox name={props.category}>
-    <h4 className="header-title mb-4"><b>{props.category}</b></h4>
-    {props.categoriesHabits}
+const HabitGroup = ({ category, categoriesHabits }) => (
+  <CardBox name={category}>
+    <h4 className="header-title mb-4"><b>{category}</b></h4>
+    {categoriesHabits}
   </CardBox>
 );
 

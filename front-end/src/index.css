@@ -38,7 +38,6 @@ input[type="checkbox"]:checked +  input[type="checkbox"]:not(:checked){
 
 input[type="checkbox"]:checked:after {
   /* Heres your symbol replacement - this is a tick in Unicode. */
-  content: "\2713";
   color: #fff;
   /* If you want to fully change the check appearance, use the following: */
   content: "";
@@ -101,9 +100,9 @@ input[type="checkbox"]:checked:after {
   text-transform: uppercase;
 }
 
-input:nth-child(5n) {
+/* input:nth-child(5n) {
   margin-right: 20px;
-}
+} */
 
 @media (max-width: 768px){
   input:nth-child(5n){

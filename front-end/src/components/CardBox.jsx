@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CardBox = props => (
-  <div id={props.name} className="card-box col-10 mx-auto">
-    {props.children}
+const CardBox = ({ name, children }) => (
+  <div id={name} className="card-box col-10 mx-auto">
+    {children}
   </div>
 );
 

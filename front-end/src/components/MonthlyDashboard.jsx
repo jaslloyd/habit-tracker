@@ -17,9 +17,6 @@ class MonthlyDashboard extends Component {
     filterObj: '{"where": {"target_month": {"neq": "challenge"}}}',
   }
 
-  componentDidMount() {
-  }
-
   displayMonthsHabits = (e) => {
     // This is kinda confusing, when we want to go back we subtract that number from the current month, if it is minus we still subtract but we update the index -1
     const dataOperationNum = parseInt(e.target.getAttribute('data-operation'), 10);
@@ -69,6 +66,7 @@ class MonthlyDashboard extends Component {
               <span className="ml-2">{this.state.currMonDaysLeft} Days Left!</span>
             </h4>
           </div>
+
           <div className="col-md-2">
             <Link to="/addhabit" type="button" className="btn btn-success pull-right">Add Habit</Link>
           </div>
