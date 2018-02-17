@@ -64,7 +64,13 @@ class Habit extends Component {
 }
 
 Habit.propTypes = {
-  habit: PropTypes.object.isRequired,
+  habit: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    target: PropTypes.string.isRequired,
+    completed: PropTypes.number.isRequired,
+    last_updated: PropTypes.string.isRequired,
+  }).isRequired,
   onHabitItemUpdated: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   monthDaysLeft: PropTypes.number.isRequired,

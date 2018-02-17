@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import HabitSuggestion from './HabitSuggestion';
 import FormGroup from './FormGroup';
 
@@ -124,4 +125,7 @@ class AddHabit extends Component {
   }
 }
 
+AddHabit.propTypes = {
+  history: PropTypes.string.isRequired,
+};
 export default AddHabit;

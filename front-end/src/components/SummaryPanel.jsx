@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SummaryChart from './SummaryChart';
 
 const SummaryPanel = ({ habit }) => (
@@ -22,4 +23,17 @@ const SummaryTable = ({ name, values }) => (
   </tr>
 );
 
+SummaryTable.propTypes = {
+  name: PropTypes.string.isRequired,
+  values: PropTypes.arrayOf(PropTypes.string).isRequired,
+
+};
+
+SummaryPanel.propTypes = {
+  habit: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    totalCompletions: PropTypes.number.isRequired,
+    totalTarget: PropTypes.number.isRequired,
+  }).isRequired,
+};
 export { SummaryPanel, SummaryTable };
