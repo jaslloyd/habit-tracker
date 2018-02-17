@@ -33,6 +33,9 @@
     },
     "year": {
       "type": "string"
+    },
+    "lastUpdated": {
+      "type": "array"
     }
   },
   "validations": [],

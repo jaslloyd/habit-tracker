@@ -32,6 +32,7 @@ class AddHabit extends Component {
       description: this.state.description,
       category: this.state.category,
       target: parseInt(this.state.target, 10),
+      lastUpdated: [],
       completed: 0,
       target_month: this.state.month,
       year: this.state.year,

@@ -67,9 +67,9 @@ Habit.propTypes = {
   habit: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    target: PropTypes.string.isRequired,
+    target: PropTypes.number.isRequired,
     completed: PropTypes.number.isRequired,
-    last_updated: PropTypes.string.isRequired,
+    last_updated: PropTypes.string,
   }).isRequired,
   onHabitItemUpdated: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,

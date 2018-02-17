@@ -38,6 +38,7 @@ class MonthlyDashboard extends Component {
       .filter(habit => habit.year === this.state.displayedYear)
       .filter(habit => habit.target_month === this.state.currentMonth);
 
+    console.log(filteredHabits);
     // 1. Get all unique categories
     const categories = new Set(filteredHabits.map(habit => habit.category));
     const categoriesElements = {};
