@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes, { object } from 'prop-types';
 import moment from 'moment';
-import Habit from './Habit';
+import MonthlyHabit from './MonthlyHabit';
 import HabitGroup from './HabitGroup';
 import DashboardControls from './DashboardControls';
 
@@ -46,7 +46,7 @@ class MonthlyDashboard extends Component {
     [...categories].forEach((category) => {
       categoriesElements[category] =
             filteredHabits.filter(habit => habit.category === category) // Filter to only habits that match the category
-                            .map(habit => <Habit key={habit.id} habit={habit} monthDaysLeft={this.state.daysLeft} onHabitItemUpdated={this.props.onHabitItemUpdate} onDelete={this.props.onHabitDelete} />); // For each habit in that category create a habit element
+                            .map(habit => <MonthlyHabit key={habit.id} habit={habit} monthDaysLeft={this.state.daysLeft} onHabitItemUpdated={this.props.onHabitItemUpdate} onDelete={this.props.onHabitDelete} />); // For each habit in that category create a habit element
     });
 
     // 3. Loop through each category and add some extra html, this will be its own component later (HabitGroup)
