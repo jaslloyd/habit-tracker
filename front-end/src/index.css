@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   padding: 0;
@@ -23,17 +26,19 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"].big-box {
-  width: 50px;
+  width: 9%;
   height: 50px;
+  min-width: 50px;
+  min-height: 50px
 }
 
 input[type="checkbox"]:checked {
   background: green;
-  margin-right: 0;
+  /* margin-right: 0; */
 }
 
 input[type="checkbox"]:checked +  input[type="checkbox"]:not(:checked){
-  margin-left: 5px;
+  /* margin-left: 5px; */
 }
 
 input[type="checkbox"]:checked:after {
@@ -106,7 +111,7 @@ input[type="checkbox"]:checked:after {
 
 @media (max-width: 768px){
   input:nth-child(5n){
-    margin-right: 5px;
+    /* margin-right: 5px; */
   }
 }
 
