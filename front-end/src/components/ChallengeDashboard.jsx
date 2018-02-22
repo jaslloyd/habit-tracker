@@ -31,6 +31,13 @@ class ChallengeDashboard extends Component {
     existingHabits[habitIndex].completed = numCompleted;
      // 3. Set the last_updated date to today.
     existingHabits[habitIndex].last_updated = moment().format('Do@HH:mm');
+    // 3.5 Update the lastUpdated list so we can keep track of all the dates...
+    if (existingHabits[habitIndex].lastUpdated) {
+      existingHabits[habitIndex].lastUpdated.push({
+        date: moment().format('Do'),
+        time: moment().format('HH:mm'),
+      });
+    }
      // 4. Update the state with new habit object but keeping older ones??
     this.setState({ habits: existingHabits });
      // 5. Update the habit in the backend
@@ -59,6 +66,7 @@ class ChallengeDashboard extends Component {
   }
 
   render() {
+    console.log(this.state.habits);
     const challengeHabits = this.state.habits.length > 0 && this.state.habits.map(habit => (
       <div id={habit.name} key={habit.name} className="card-box col-10 mx-auto pl-0 pr-0 pt-0 pb-0" style={{ lineHeight: '0' }}>
         <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />
@@ -72,7 +80,7 @@ class ChallengeDashboard extends Component {
         </div>
         <div className="row mb-3">
           <div className="ml-auto col-md-4">
-            <Link to="/addchallengehabit" type="button" className="btn btn-success pull-right">Add Habit</Link>
+            <Link to="/addhabit/challenge" type="button" params={{ habitType: 'challenge' }} className="btn btn-success pull-right">Add Habit</Link>
           </div>
         </div>
         <div className="mt-2 mb-2 mx-auto">

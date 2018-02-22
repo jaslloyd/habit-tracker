@@ -16,11 +16,20 @@ class AddHabit extends Component {
     currentMonthIndex: parseInt(moment().format('M'), 10) - 1, // Seems to be 0 indexed
     msg: '',
     month: '',
+    type: 'monthly',
   }
 
   componentDidMount() {
     this.setState({ month: moment.months(this.state.currentMonthIndex) });
-    this.getHabits();
+
+    if (this.props.match.params.type === 'challenge') {
+      this.setState({
+        type: 'challenge',
+        filter_obj: '{"where": {"target_month": "challenge"}}',
+      }, () => this.getHabits());
+    } else {
+      this.getHabits();
+    }
   }
 
   onSubmit = async (e) => {
@@ -38,7 +47,16 @@ class AddHabit extends Component {
       year: this.state.year,
     };
 
-    const filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
+    let filterSettings;
+    if (this.state.type === 'challenge') {
+      filterSettings = `{"name": "${newHabit.name}", "target_month": "challenge"}`;
+      newHabit.target_month = 'challenge';
+    } else {
+      filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
+    }
+
+    console.log(filterSettings);
+
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
     if (results.count === 0) {
       this.addHabit(newHabit);
@@ -48,6 +66,7 @@ class AddHabit extends Component {
   }
 
   getHabits = async () => {
+    console.log(this.state.filter_obj);
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${this.state.filter_obj}`)).json();
     this.setState({ existing_habits: results });
     // .catch(e => console.log(`Failed to get all habits ${e}`));
@@ -106,18 +125,39 @@ class AddHabit extends Component {
                 <label htmlFor="category">Category:</label>
                 <input type="text" className="form-control" name="category" placeholder="Health / Finance / Career" value={this.state.category} onChange={this.handleInputChange} required />
               </FormGroup>
-              <FormGroup>
-                <label htmlFor="habit_mon">Month of Habit:</label>
-                <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
-                  <option disabled>Choose Month</option>
-                  <option>{moment.months(this.state.currentMonthIndex)}</option>
-                  <option>{moment.months(this.state.currentMonthIndex + 1)}</option>
-                </select>
-              </FormGroup>
-              <FormGroup>
-                <label htmlFor="target">How many days do you want to do this habit?</label>
-                <input type="number" className="form-control" name="target" step="1" min="1" max="30" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
-              </FormGroup>
+              { this.state.type === 'monthly'
+                ? (
+                  <div>
+                    <FormGroup>
+                      <label htmlFor="habit_mon">Month of Habit:</label>
+                      <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
+                        <option disabled>Choose Month</option>
+                        <option>{moment.months(this.state.currentMonthIndex)}</option>
+                        <option>{moment.months(this.state.currentMonthIndex + 1)}</option>
+                      </select>
+                    </FormGroup>
+                    <FormGroup>
+                      <label htmlFor="target">How many days do you want to do this habit?</label>
+                      <input type="number" className="form-control" name="target" step="1" min="1" max="30" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
+                    </FormGroup>
+                  </div>
+                )
+                : (
+                  <div>
+                    <FormGroup>
+                      <label htmlFor="habit_mon">Type of Habit:</label>
+                      <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
+                        <option>Challenge Habit</option>
+                      </select>
+                    </FormGroup>
+                    <FormGroup>
+                      <label htmlFor="target">How many days do you want to do this challenge?</label>
+                      <input type="number" className="form-control" name="target" step="1" min="1" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
+                    </FormGroup>
+                  </div>
+                )
+              }
+
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
           </div>

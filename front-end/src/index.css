@@ -11,7 +11,8 @@ body {
 
 input[type="checkbox"] {
   -webkit-appearance: initial;
-  appearance: initial;
+  -moz-appearance: initial;
+  /* appearance: initial; */
   background: gray;
   width: 25px;
   height: 25px;
@@ -37,9 +38,9 @@ input[type="checkbox"]:checked {
   /* margin-right: 0; */
 }
 
-input[type="checkbox"]:checked +  input[type="checkbox"]:not(:checked){
-  /* margin-left: 5px; */
-}
+/* input[type="checkbox"]:checked +  input[type="checkbox"]:not(:checked){
+  margin-left: 5px;
+} */
 
 input[type="checkbox"]:checked:after {
   /* Heres your symbol replacement - this is a tick in Unicode. */
@@ -109,11 +110,11 @@ input[type="checkbox"]:checked:after {
   margin-right: 20px;
 } */
 
-@media (max-width: 768px){
+/* @media (max-width: 768px){
   input:nth-child(5n){
-    /* margin-right: 5px; */
+    margin-right: 5px;
   }
-}
+} */
 
 .challenge-badge{
   border-radius: 0;
