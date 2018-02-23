@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import HabitItem from './HabitItem';
@@ -21,7 +21,7 @@ class ChallengeHabit extends Component {
     const { id, name, target, completed, last_updated } = this.props.habit;
     const habitItemElements = new Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} classSettings="big-box" />);
     return (
-      <div>
+      <Fragment>
         <div className="row mb-3">
           <div className="col-6">
             { completed > 0 && <span className="badge badge-pill badge-default challenge-badge">{last_updated}</span> }
@@ -52,7 +52,7 @@ class ChallengeHabit extends Component {
             <span className="badge badge-pill badge-default challenge-badge">{completed} / {target}</span>
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

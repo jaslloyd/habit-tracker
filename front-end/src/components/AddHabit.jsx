@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import HabitSuggestion from './HabitSuggestion';
 import FormGroup from './FormGroup';
@@ -55,21 +55,13 @@ class AddHabit extends Component {
       filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
     }
 
-    console.log(filterSettings);
-
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
-    if (results.count === 0) {
-      this.addHabit(newHabit);
-    } else {
-      this.setState({ msg: `Habit ${newHabit.name} already exists for month ${newHabit.target_month}` });
-    }
+    results.count === 0 ? this.addHabit(newHabit) : this.setState({ msg: `Habit ${newHabit.name} already exists for month ${newHabit.target_month}` });
   }
 
   getHabits = async () => {
-    console.log(this.state.filter_obj);
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${this.state.filter_obj}`)).json();
     this.setState({ existing_habits: results });
-    // .catch(e => console.log(`Failed to get all habits ${e}`));
   }
 
   handleSelectedHabit = (e) => {
@@ -107,7 +99,7 @@ class AddHabit extends Component {
     const habitsElements = this.state.existing_habits.map(habit => <HabitSuggestion key={habit.id} habit={habit} onSelect={this.handleSelectedHabit} />);
     const msgDisplaying = this.state.msg.length > 0 ? <div className="alert alert-info text-center">{this.state.msg}</div> : '';
     return (
-      <div>
+      <Fragment>
         <h1 className="m-3 text-center">Add Habit</h1>
         {msgDisplaying}
         <div className="row">
@@ -127,7 +119,7 @@ class AddHabit extends Component {
               </FormGroup>
               { this.state.type === 'monthly'
                 ? (
-                  <div>
+                  <Fragment>
                     <FormGroup>
                       <label htmlFor="habit_mon">Month of Habit:</label>
                       <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
@@ -140,10 +132,10 @@ class AddHabit extends Component {
                       <label htmlFor="target">How many days do you want to do this habit?</label>
                       <input type="number" className="form-control" name="target" step="1" min="1" max="30" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
                     </FormGroup>
-                  </div>
+                  </Fragment>
                 )
                 : (
-                  <div>
+                  <Fragment>
                     <FormGroup>
                       <label htmlFor="habit_mon">Type of Habit:</label>
                       <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
@@ -154,7 +146,7 @@ class AddHabit extends Component {
                       <label htmlFor="target">How many days do you want to do this challenge?</label>
                       <input type="number" className="form-control" name="target" step="1" min="1" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
                     </FormGroup>
-                  </div>
+                  </Fragment>
                 )
               }
 
@@ -165,7 +157,7 @@ class AddHabit extends Component {
             {habitsElements}
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import FormGroup from './FormGroup';
 
 class EditHabit extends Component {
@@ -68,7 +68,7 @@ class EditHabit extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <h1 className="m-3">Edit Habit</h1>
         <form onSubmit={this.onSubmit}>
           <FormGroup>
@@ -92,7 +92,7 @@ class EditHabit extends Component {
           </FormGroup>
           <button type="submit" className="btn btn-primary">Update Habit</button>
         </form>
-      </div>
+      </Fragment>
     );
   }
 

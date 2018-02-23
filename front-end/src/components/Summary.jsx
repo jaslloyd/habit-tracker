@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import { SummaryPanel, SummaryTable } from './SummaryPanel';
 
@@ -58,7 +58,7 @@ class Summary extends Component {
     const tableElements = this.state.habitsTable.map(key => <SummaryTable key={key} name={key} values={this.state.habitsTable[key]} />);
 
     return (
-      <div>
+      <Fragment>
         <h1 className="m-3 text-center">Yearly Summary</h1>
         <div className="row">
           {habitElements}
@@ -69,7 +69,7 @@ class Summary extends Component {
             </tbody>
           </table>
         </div>
-      </div>
+      </Fragment>
     );
   }
 

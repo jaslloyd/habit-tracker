@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import './App.css';
 
 const App = () => (
-  <div>
+  <Fragment>
     <Navbar />
     <div className="container-fluid">
       <Main />
     </div>
-  </div>
+  </Fragment>
 );
 export default App;

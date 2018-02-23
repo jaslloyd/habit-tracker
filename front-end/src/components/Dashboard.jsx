@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import MonthlyDashboard from './MonthlyDashboard';
 // import ChallengeDashboard from './ChallengeDashboard';
@@ -68,10 +68,10 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div id="dashboard">
+      <Fragment id="dashboard">
         <MonthlyDashboard habits={this.state.habits} onHabitItemUpdate={this.handleHabitItemUpdate} onHabitDelete={this.handleHabitDelete} />
         {/* <ChallengeDashboard /> */}
-      </div>
+      </Fragment>
     );
   }
 }
