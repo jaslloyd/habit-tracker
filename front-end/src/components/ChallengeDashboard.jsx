@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import ChallengeHabit from './ChallengeHabit';
 
 // This class has a lot of duplciate logic from Dashboard.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeDashboard extends Component {
-
   state = {
     filter_obj: `{"where": {"target_month": "challenge", "year": "${moment().format('YYYY')}"}}`,
     habits: [],
@@ -22,14 +21,14 @@ class ChallengeDashboard extends Component {
     // .catch(e => console.log(`Failed to get all habits ${e}`));
   }
 
-    // todo: Dry up duplicated in Dashboard
+  // todo: Dry up duplicated in Dashboard
   handleHabitItemUpdate = (id, numCompleted) => {
     const existingHabits = this.state.habits;
-     // 1. Find the habit we are updating
+    // 1. Find the habit we are updating
     const habitIndex = this.state.habits.findIndex(habit => habit.id === id);
-     // 2. change the value of num of completed
+    // 2. change the value of num of completed
     existingHabits[habitIndex].completed = numCompleted;
-     // 3. Set the last_updated date to today.
+    // 3. Set the last_updated date to today.
     existingHabits[habitIndex].last_updated = moment().format('Do@HH:mm');
     // 3.5 Update the lastUpdated list so we can keep track of all the dates...
     if (existingHabits[habitIndex].lastUpdated) {
@@ -38,9 +37,9 @@ class ChallengeDashboard extends Component {
         time: moment().format('HH:mm'),
       });
     }
-     // 4. Update the state with new habit object but keeping older ones??
+    // 4. Update the state with new habit object but keeping older ones??
     this.setState({ habits: existingHabits });
-     // 5. Update the habit in the backend
+    // 5. Update the habit in the backend
     this.updateHabit(existingHabits[habitIndex], id);
   }
 
@@ -62,7 +61,7 @@ class ChallengeDashboard extends Component {
   handleHabitDelete = async (id) => {
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })).json();
     this.getHabits();
-      // .catch(e => console.log(`Failed to Delete habit ${e}`));
+    // .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
 
   render() {
@@ -71,10 +70,10 @@ class ChallengeDashboard extends Component {
       <div id={habit.name} key={habit.name} className="card-box col-10 mx-auto pl-0 pr-0 pt-0 pb-0" style={{ lineHeight: '0' }}>
         <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />
       </div>
-      ));
+    ));
 
     return (
-      <div id="challenge-dashboard">
+      <Fragment>
         <div className="header text-center mt-3">
           <h3>Challenges</h3>
         </div>
@@ -86,7 +85,7 @@ class ChallengeDashboard extends Component {
         <div className="mt-2 mb-2 mx-auto">
           {challengeHabits}
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

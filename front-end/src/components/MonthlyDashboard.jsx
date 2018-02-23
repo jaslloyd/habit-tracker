@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes, { object } from 'prop-types';
 import moment from 'moment';
@@ -7,7 +7,6 @@ import HabitGroup from './HabitGroup';
 import DashboardControls from './DashboardControls';
 
 class MonthlyDashboard extends Component {
-
   state = {
     currentMonth: moment().format('MMMM'),
     currMonDaysLeft: moment().endOf('month').diff(moment().today, 'days'),
@@ -46,7 +45,7 @@ class MonthlyDashboard extends Component {
     [...categories].forEach((category) => {
       categoriesElements[category] =
             filteredHabits.filter(habit => habit.category === category) // Filter to only habits that match the category
-                            .map(habit => <MonthlyHabit key={habit.id} habit={habit} monthDaysLeft={this.state.daysLeft} onHabitItemUpdated={this.props.onHabitItemUpdate} onDelete={this.props.onHabitDelete} />); // For each habit in that category create a habit element
+              .map(habit => <MonthlyHabit key={habit.id} habit={habit} monthDaysLeft={this.state.daysLeft} onHabitItemUpdated={this.props.onHabitItemUpdate} onDelete={this.props.onHabitDelete} />); // For each habit in that category create a habit element
     });
 
     // 3. Loop through each category and add some extra html, this will be its own component later (HabitGroup)
@@ -54,7 +53,7 @@ class MonthlyDashboard extends Component {
       <HabitGroup key={category} category={category} categoriesHabits={categoriesElements[category]} />);
 
     return (
-      <div id="monthly-dashboard">
+      <Fragment>
         <div className="row mt-3">
 
           <div className="ml-auto col-md-6 text-center">
@@ -76,7 +75,7 @@ class MonthlyDashboard extends Component {
         <div id="habit-list" className="mt-3 row">
           {finalElements}
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

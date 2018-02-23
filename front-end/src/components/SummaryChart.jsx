@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Chart } from 'react-google-charts';
 
 class SummaryChart extends Component {
-
   state = {
     name: this.props.habitDetails.name,
     successes: this.props.habitDetails.totalCompletions,
@@ -14,7 +13,7 @@ class SummaryChart extends Component {
     const fails = ['Fails', this.state.fails];
 
     return (
-      <div className={'my-pretty-chart-container'}>
+      <div className="my-pretty-chart-container">
         <Chart
           chartType="PieChart"
           data={[
