@@ -59,16 +59,16 @@ class Dashboard extends Component {
     // .catch(e => console.log(`Failed to Update habit ${e}`));
   }
 
-    // todo: DRY up duplicated in ChallengeDashboard
+  // todo: DRY up duplicated in ChallengeDashboard
   handleHabitDelete = async (id) => {
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })).json();
     this.getHabits();
-      // .catch(e => console.log(`Failed to Delete habit ${e}`));
+    // .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
 
   render() {
     return (
-      <Fragment id="dashboard">
+      <Fragment>
         <MonthlyDashboard habits={this.state.habits} onHabitItemUpdate={this.handleHabitItemUpdate} onHabitDelete={this.handleHabitDelete} />
         {/* <ChallengeDashboard /> */}
       </Fragment>

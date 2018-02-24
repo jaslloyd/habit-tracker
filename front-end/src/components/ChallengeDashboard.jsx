@@ -26,17 +26,23 @@ class ChallengeDashboard extends Component {
     const existingHabits = this.state.habits;
     // 1. Find the habit we are updating
     const habitIndex = this.state.habits.findIndex(habit => habit.id === id);
+    // 2. Check if your adding a completion or removing a completion
+    const isNewEntry = numCompleted > existingHabits[habitIndex].completed;
     // 2. change the value of num of completed
     existingHabits[habitIndex].completed = numCompleted;
+    // Only update the last_updated when a new entry is added.
+    if (isNewEntry) {
     // 3. Set the last_updated date to today.
-    existingHabits[habitIndex].last_updated = moment().format('Do@HH:mm');
-    // 3.5 Update the lastUpdated list so we can keep track of all the dates...
-    if (existingHabits[habitIndex].lastUpdated) {
-      existingHabits[habitIndex].lastUpdated.push({
-        date: moment().format('Do'),
-        time: moment().format('HH:mm'),
-      });
+      existingHabits[habitIndex].last_updated = moment().format('Do@HH:mm');
+      // 3.5 Update the lastUpdated list so we can keep track of all the dates...
+      if (existingHabits[habitIndex].lastUpdated) {
+        existingHabits[habitIndex].lastUpdated.push({
+          date: moment().format('Do'),
+          time: moment().format('HH:mm'),
+        });
+      }
     }
+
     // 4. Update the state with new habit object but keeping older ones??
     this.setState({ habits: existingHabits });
     // 5. Update the habit in the backend
