@@ -13,7 +13,6 @@ class MonthlyDashboard extends Component {
     displayMonthIndex: 0, // This will be used to track what month is displaying compared to the current month
     displayedYear: moment().format('YYYY'),
     daysLeft: moment().endOf('month').diff(moment().today, 'days'),
-    filterObj: '{"where": {"target_month": {"neq": "challenge"}}}',
   }
 
   displayMonthsHabits = (e) => {

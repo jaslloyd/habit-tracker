@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const HabitItem = ({ classSettings, index, completed, onCompleted }) => (
+const HabitItem = ({
+  classSettings, index, completed, onCompleted,
+}) => (
   <input
     type="checkbox"
     className={classSettings}

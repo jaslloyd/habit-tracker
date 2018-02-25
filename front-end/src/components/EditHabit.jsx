@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import FormGroup from './FormGroup';
 
 class EditHabit extends Component {
-
   state = {
     name: '',
     description: '',
@@ -46,7 +45,9 @@ class EditHabit extends Component {
   }
 
   getHabitById = async () => {
-    const { name, description, category, target_month, target, completed, last_updated, year } = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`)).json();
+    const {
+      name, description, category, target_month, target, completed, last_updated, year,
+    } = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`)).json();
     this.setState({
       name,
       description,
@@ -95,7 +96,6 @@ class EditHabit extends Component {
       </Fragment>
     );
   }
-
 }
 
 export default EditHabit;

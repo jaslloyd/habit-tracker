@@ -8,7 +8,12 @@ const HabitSuggestion = ({ habit, onSelect }) => (
 );
 
 HabitSuggestion.propTypes = {
-  habit: PropTypes.object.isRequired,
+  habit: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    target: PropTypes.number.isRequired,
+  }).isRequired,
   onSelect: PropTypes.func.isRequired,
 };
 export default HabitSuggestion;

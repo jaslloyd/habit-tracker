@@ -18,10 +18,12 @@ class Login extends Component {
     e.preventDefault();
     const { username, password } = e.target;
 
-    this.setState({ userObj: {
-      username: username.value,
-      password: password.value,
-    } });
+    this.setState({
+      userObj: {
+        username: username.value,
+        password: password.value,
+      },
+    });
 
     const resultsObj = {
       method: 'POST',

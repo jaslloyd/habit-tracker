@@ -3,7 +3,6 @@ import moment from 'moment';
 import { SummaryPanel, SummaryTable } from './SummaryPanel';
 
 class Summary extends Component {
-
   state = {
     habitsSummary: [],
     habitsTable: [],
@@ -18,7 +17,9 @@ class Summary extends Component {
 
   updateUniqueHabits(habits) {
     const uniqueHabits = {};
-    habits.forEach(({ name, target, completed, target_month }) => {
+    habits.forEach(({
+      name, target, completed, target_month,
+    }) => {
       const targetMonthIndex = moment().month(target_month).format('M');
       // todo: don't include the current month
       if (targetMonthIndex <= this.state.currentMonthIndex) {
@@ -42,7 +43,9 @@ class Summary extends Component {
 
   updateUniqueHabitsMonth(allHabits) {
     const habits = {};
-    allHabits.forEach(({ name, target, completed, target_month }) => {
+    allHabits.forEach(({
+      name, target, completed, target_month,
+    }) => {
       if (!habits[name]) {
         habits[name] = new Array(12).fill('NA');
       }
@@ -72,7 +75,6 @@ class Summary extends Component {
       </Fragment>
     );
   }
-
 }
 
 export default Summary;

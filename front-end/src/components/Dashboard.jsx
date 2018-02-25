@@ -21,22 +21,31 @@ class Dashboard extends Component {
     this.setState({ habits });
   }
 
-  // todo: DRY up duplicated in ChallengeDashboard
+  // todo: Dry up duplicated in Dashboard
   handleHabitItemUpdate = (id, numCompleted) => {
     const existingHabits = this.state.habits;
     // 1. Find the habit we are updating
     const habitIndex = this.state.habits.findIndex(habit => habit.id === id);
+
+    const habit = existingHabits[habitIndex];
+    // 2. Check if your adding a completion or removing a completion
+    const isNewEntry = numCompleted > habit.completed;
     // 2. change the value of num of completed
-    existingHabits[habitIndex].completed = numCompleted;
+    habit.completed = numCompleted;
+    // Only update the last_updated when a new entry is added.
+    if (isNewEntry) {
     // 3. Set the last_updated date to today.
-    existingHabits[habitIndex].last_updated = moment().format('Do@HH:mm');
-    // 3.5 Update the lastUpdated list so we can keep track of all the dates...
-    if (existingHabits[habitIndex].lastUpdated) {
-      existingHabits[habitIndex].lastUpdated.push({
-        date: moment().format('Do'),
-        time: moment().format('HH:mm'),
-      });
+      habit.last_updated = moment().format('Do@HH:mm');
+      // 3.5 Update the lastUpdated list so we can keep track of all the dates...
+      if (habit.lastUpdated) {
+        habit.lastUpdated.push({
+          date: moment().format('Do'),
+          time: moment().format('HH:mm'),
+        });
+      }
     }
+    // Not needed as JS array elements are passed by Reference
+    // existingHabits[habitIndex] = habit;
     // 4. Update the state with new habit object but keeping older ones??
     this.setState({ habits: existingHabits });
     // 5. Update the habit in the backend

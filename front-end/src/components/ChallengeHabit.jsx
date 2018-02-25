@@ -5,7 +5,6 @@ import HabitItem from './HabitItem';
 
 // This class has a lot of duplciate logic from Habit.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeHabit extends Component {
-
   state = {}
 
   onCompleted = (index) => {
@@ -18,7 +17,9 @@ class ChallengeHabit extends Component {
   }
 
   render() {
-    const { id, name, target, completed, last_updated } = this.props.habit;
+    const {
+      id, name, target, completed, last_updated,
+    } = this.props.habit;
     const habitItemElements = new Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} classSettings="big-box" />);
     return (
       <Fragment>
@@ -58,7 +59,13 @@ class ChallengeHabit extends Component {
 }
 
 ChallengeHabit.propTypes = {
-  habit: PropTypes.object.isRequired,
+  habit: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    target: PropTypes.number.isRequired,
+    completed: PropTypes.number.isRequired,
+    last_updated: PropTypes.string,
+  }).isRequired,
   onHabitItemUpdated: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

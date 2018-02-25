@@ -4,7 +4,6 @@ import HabitSuggestion from './HabitSuggestion';
 import FormGroup from './FormGroup';
 
 class AddHabit extends Component {
-
   state = {
     name: '',
     description: '',
@@ -15,13 +14,11 @@ class AddHabit extends Component {
     year: `${moment().format('YYYY')}`,
     currentMonthIndex: parseInt(moment().format('M'), 10) - 1, // Seems to be 0 indexed
     msg: '',
-    month: '',
+    month: moment.months(parseInt(moment().format('M'), 10) - 1),
     type: 'monthly',
   }
 
   componentDidMount() {
-    this.setState({ month: moment.months(this.state.currentMonthIndex) });
-
     if (this.props.match.params.type === 'challenge') {
       this.setState({
         type: 'challenge',
@@ -56,7 +53,11 @@ class AddHabit extends Component {
     }
 
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
-    results.count === 0 ? this.addHabit(newHabit) : this.setState({ msg: `Habit ${newHabit.name} already exists for month ${newHabit.target_month}` });
+    if (results.count === 0) {
+      this.addHabit(newHabit);
+    } else {
+      this.setState({ msg: `Habit ${newHabit.name} already exists for month ${newHabit.target_month}` });
+    }
   }
 
   getHabits = async () => {
