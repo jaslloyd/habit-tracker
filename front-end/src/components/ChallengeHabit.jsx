@@ -35,7 +35,7 @@ class ChallengeHabit extends Component {
         </div>
 
         <div className="row mb-3" style={{ padding: '0 40px' }}>
-          <div className="col-lg-3 col-md-2 col-sm-4">
+          <div className="col-lg-3 col-md-2 col-sm-12">
             <span className="h5">
               {name}
             </span>

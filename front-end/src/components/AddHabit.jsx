@@ -16,15 +16,18 @@ class AddHabit extends Component {
     msg: '',
     month: moment.months(parseInt(moment().format('M'), 10) - 1),
     type: 'monthly',
+    redirectUri: '',
   }
 
   componentDidMount() {
     if (this.props.match.params.type === 'challenge') {
+      this.setState({ redirectUri: 'challenge' });
       this.setState({
         type: 'challenge',
         filter_obj: '{"where": {"target_month": "challenge"}}',
       }, () => this.getHabits());
     } else {
+      this.setState({ redirectUri: 'monthly' });
       this.getHabits();
     }
   }
@@ -86,7 +89,7 @@ class AddHabit extends Component {
     };
 
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`, requestObj)).json();
-    this.props.history.push('/');
+    this.props.history.push(this.state.redirectUri);
   }
 
   handleInputChange = (e) => {
