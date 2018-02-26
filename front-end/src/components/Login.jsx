@@ -5,12 +5,7 @@ import FormGroup from './FormGroup';
 
 class Login extends Component {
   state = {
-    user: {
-      email: '',
-      name: '',
-      password: '',
-      redirectToReferrer: false,
-    },
+    redirectToReferrer: false,
     userObj: {},
   }
 
@@ -18,20 +13,16 @@ class Login extends Component {
     e.preventDefault();
     const { username, password } = e.target;
 
-    this.setState({
-      userObj: {
-        username: username.value,
-        password: password.value,
-      },
-    });
-
     const resultsObj = {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(this.state.userObj),
+      body: JSON.stringify({
+        username: username.value,
+        password: password.value,
+      }),
     };
 
     const result = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/Users/login`, resultsObj)).json();
@@ -46,6 +37,7 @@ class Login extends Component {
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } };
     const { redirectToReferrer } = this.state;
+    console.log(this.state);
 
     if (redirectToReferrer) {
       return (

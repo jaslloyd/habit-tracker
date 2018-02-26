@@ -41,7 +41,6 @@ class EditHabit extends Component {
 
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`, requestObj)).json();
     this.props.history.push('/');
-    // .catch(e => console.log(`Failed to edit habit ${e}`));
   }
 
   getHabitById = async () => {

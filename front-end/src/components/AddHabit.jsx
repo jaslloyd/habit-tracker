@@ -16,18 +16,17 @@ class AddHabit extends Component {
     msg: '',
     month: moment.months(parseInt(moment().format('M'), 10) - 1),
     type: 'monthly',
-    redirectUri: '',
+    redirectUri: '/',
   }
 
   componentDidMount() {
     if (this.props.match.params.type === 'challenge') {
-      this.setState({ redirectUri: 'challenge' });
       this.setState({
         type: 'challenge',
         filter_obj: '{"where": {"target_month": "challenge"}}',
+        redirectUri: '/challenge',
       }, () => this.getHabits());
     } else {
-      this.setState({ redirectUri: 'monthly' });
       this.getHabits();
     }
   }

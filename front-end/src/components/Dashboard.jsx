@@ -26,7 +26,6 @@ class Dashboard extends Component {
     const existingHabits = this.state.habits;
     // 1. Find the habit we are updating
     const habitIndex = this.state.habits.findIndex(habit => habit.id === id);
-
     const habit = existingHabits[habitIndex];
     // 2. Check if your adding a completion or removing a completion
     const isNewEntry = numCompleted > habit.completed;
@@ -44,8 +43,6 @@ class Dashboard extends Component {
         });
       }
     }
-    // Not needed as JS array elements are passed by Reference
-    // existingHabits[habitIndex] = habit;
     // 4. Update the state with new habit object but keeping older ones??
     this.setState({ habits: existingHabits });
     // 5. Update the habit in the backend
@@ -65,14 +62,12 @@ class Dashboard extends Component {
 
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, requestDetails)).json();
     console.log(`Habit: ${id} updated...`);
-    // .catch(e => console.log(`Failed to Update habit ${e}`));
   }
 
   // todo: DRY up duplicated in ChallengeDashboard
   handleHabitDelete = async (id) => {
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })).json();
     this.getHabits();
-    // .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
 
   render() {

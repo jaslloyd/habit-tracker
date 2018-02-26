@@ -18,7 +18,6 @@ class ChallengeDashboard extends Component {
   getHabits = async () => {
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${this.state.filter_obj}`)).json();
     this.setState({ habits: results });
-    // .catch(e => console.log(`Failed to get all habits ${e}`));
   }
 
   // todo: Dry up duplicated in Dashboard
@@ -26,7 +25,6 @@ class ChallengeDashboard extends Component {
     const existingHabits = this.state.habits;
     // 1. Find the habit we are updating
     const habitIndex = this.state.habits.findIndex(habit => habit.id === id);
-
     const habit = existingHabits[habitIndex];
     // 2. Check if your adding a completion or removing a completion
     const isNewEntry = numCompleted > habit.completed;
@@ -45,9 +43,7 @@ class ChallengeDashboard extends Component {
       }
     }
 
-    // Not needed as JS array elements are passed by Reference
-    // existingHabits[habitIndex] = habit;
-    // 4. Update the state with new habit object but keeping older ones??
+    // 4. Update the state with new habit object
     this.setState({ habits: existingHabits });
     // 5. Update the habit in the backend
     this.updateHabit(existingHabits[habitIndex], id);
@@ -71,7 +67,6 @@ class ChallengeDashboard extends Component {
   handleHabitDelete = async (id) => {
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })).json();
     this.getHabits();
-    // .catch(e => console.log(`Failed to Delete habit ${e}`));
   }
 
   render() {
