@@ -14,8 +14,8 @@ input[type="checkbox"] {
   -moz-appearance: initial;
   /* appearance: initial; */
   background: gray;
-  width: 25px;
-  height: 25px;
+  width: 50px;
+  height: 50px;
   border: none;
   position: relative;
   margin-bottom: 10px;
