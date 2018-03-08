@@ -120,3 +120,13 @@ input[type="checkbox"]:checked:after {
   border-radius: 0;
   font-size: 1em;
 }
+
+.habit-padding{
+  padding: 0;
+}
+
+@media (max-width: 786px){
+  .habit-padding{
+    padding: 0 15px 0 15px;
+  }
+}
