@@ -105,8 +105,8 @@ class AddHabit extends Component {
       <Fragment>
         <h1 className="m-3 text-center">Add Habit</h1>
         {msgDisplaying}
-        <div className="row">
-          <div className="ml-auto col-6">
+        <div className="row justify-content-center">
+          <div className="col-6">
             <form onSubmit={this.onSubmit}>
               <FormGroup>
                 <label htmlFor="name">Habit Name:</label>

@@ -43,7 +43,7 @@ class ChallengeHabit extends Component {
         </div>
 
         <div className="row">
-          <div className="col-md-12" style={{ padding: '0 40px' }}>
+          <div className="col-md-12 text-center" style={{ padding: '0 40px' }}>
             {habitItemElements}
           </div>
         </div>
