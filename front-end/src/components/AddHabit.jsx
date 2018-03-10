@@ -106,7 +106,7 @@ class AddHabit extends Component {
         <h1 className="m-3 text-center">Add Habit</h1>
         {msgDisplaying}
         <div className="row justify-content-center">
-          <div className="col-6">
+          <div className="offset-md-3 col-md-6 col-sm-12">
             <form onSubmit={this.onSubmit}>
               <FormGroup>
                 <label htmlFor="name">Habit Name:</label>
@@ -156,8 +156,10 @@ class AddHabit extends Component {
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
           </div>
-          <div className="col-3">
-            {habitsElements}
+          <div className="col-md-3 col-sm-12 habit-suggestions">
+            <div className="row">
+              {habitsElements}
+            </div>
           </div>
         </div>
       </Fragment>

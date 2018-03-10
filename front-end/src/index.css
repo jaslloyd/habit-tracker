@@ -129,4 +129,8 @@ input[type="checkbox"]:checked:after {
   .habit-padding{
     padding: 0 15px 0 15px;
   }
+
+  .habit-suggestions{
+    order: -1;
+  }
 }
