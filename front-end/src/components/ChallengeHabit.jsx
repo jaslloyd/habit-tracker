@@ -29,7 +29,7 @@ class ChallengeHabit extends Component {
           </div>
 
           <div className="col-6 text-right">
-            <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
+            <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-secondary mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
             <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
           </div>
         </div>

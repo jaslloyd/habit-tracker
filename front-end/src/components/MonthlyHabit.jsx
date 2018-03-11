@@ -46,7 +46,7 @@ class Habit extends Component {
 
     return (
       <div className="row mt-2 mb-2 align-items-center">
-        <div className="col-lg-2 col-md-2 col-sm-12 ">
+        <div className="col-lg-2 col-md-2 col-sm-8 monthly-habit-title-sm">
           <span className="h5">{name} </span>
           { completed > 0 && <span className="h5 badge badge-pill badge-default">{last_updated}</span> }
         </div>
@@ -56,8 +56,8 @@ class Habit extends Component {
         <div className="col-lg-2 col-md-2 col-sm-12">
           <span style={{ color: this.state.color }}>{completed}/{target} Completed</span>
         </div>
-        <div className="col-lg-1 col-md-1 col-sm-12">
-          <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-light mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
+        <div className="col-lg-1 col-md-1 col-sm-4 monthly-habit-controls-sm">
+          <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-secondary mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
           <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
         </div>
       </div>

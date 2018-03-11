@@ -125,12 +125,22 @@ input[type="checkbox"]:checked:after {
   padding: 0;
 }
 
-@media (max-width: 786px){
-  .habit-padding{
+@media (max-width: 786px) {
+  .habit-padding {
     padding: 0 15px 0 15px;
   }
 
-  .habit-suggestions{
+  .habit-suggestions {
     order: -1;
+  }
+
+  /* todo: Use them... */
+  .monthly-habit-controls-sm {
+    order: -1;
+    text-align: right;
+  }
+
+  .monthly-habit-title-sm {
+    order: -2;
   }
 }
