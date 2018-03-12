@@ -46,25 +46,30 @@ class Login extends Component {
     }
     return (
       <div id="login">
-        <form className="card-box" style={{ width: '500px' }} onSubmit={this.onSubmit}>
-          <h1 className="text-center">Login</h1>
-          <FormGroup>
-            <label htmlFor="username">Username</label>
-            <input type="text" className="form-control" id="username" placeholder="Enter Username" />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="password">Password</label>
-            <input type="password" className="form-control" id="password" placeholder="Password" />
-          </FormGroup>
-          <div className="row">
-            <div className="col-md-3">
-              <Link to="/demo" className="demo-link">Demo Mode</Link>
-            </div>
-            <div className="col-md-3 ml-auto">
-              <button type="submit" className="ml-auto btn btn-primary">Submit</button>
-            </div>
+        <div className="row justify-content-center">
+          <div className="col-md-8">
+            <form className="card-box" onSubmit={this.onSubmit}>
+              <h1 className="text-center">Login</h1>
+              <FormGroup>
+                <label htmlFor="username">Username</label>
+                <input type="text" className="form-control" id="username" placeholder="Enter Username" />
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor="password">Password</label>
+                <input type="password" className="form-control" id="password" placeholder="Password" />
+              </FormGroup>
+              <div className="row">
+                <div className="col-md-3">
+                  <Link to="/demo" className="demo-link">Demo Mode</Link>
+                </div>
+                <div className="col-md-3 ml-auto">
+                  <button type="submit" className="ml-auto btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
+
       </div>
     );
   }
