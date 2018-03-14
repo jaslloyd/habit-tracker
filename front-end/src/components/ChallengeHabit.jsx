@@ -17,6 +17,7 @@ class ChallengeHabit extends Component {
   }
 
   render() {
+    console.log(this.props.habit);
     const {
       id, name, target, completed, last_updated,
     } = this.props.habit;

@@ -10,6 +10,7 @@ class EditHabit extends Component {
     days: 0,
     last_updated: '',
     year: '',
+    lastUpdated: [],
   };
 
   componentDidMount() {
@@ -27,6 +28,7 @@ class EditHabit extends Component {
       completed: this.state.completed,
       target_month: this.state.month,
       last_updated: this.state.last_updated,
+      lastUpdated: this.state.lastUpdated,
       year: this.state.year,
     };
 
@@ -40,12 +42,18 @@ class EditHabit extends Component {
     };
 
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`, requestObj)).json();
-    this.props.history.push('/');
+    console.log(this.state.target_month);
+    if (this.state.month === 'challenge') {
+      console.log('blah....');
+      this.props.history.push('/challenge');
+    } else {
+      this.props.history.push('/');
+    }
   }
 
   getHabitById = async () => {
     const {
-      name, description, category, target_month, target, completed, last_updated, year,
+      name, description, category, target_month, target, completed, last_updated, lastUpdated, year,
     } = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`)).json();
     this.setState({
       name,
@@ -55,6 +63,7 @@ class EditHabit extends Component {
       days: target,
       completed,
       last_updated,
+      lastUpdated,
       year,
     });
   }
