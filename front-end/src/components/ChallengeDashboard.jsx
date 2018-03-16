@@ -36,10 +36,12 @@ class ChallengeDashboard extends Component {
       habit.last_updated = moment().format('Do@HH:mm');
       // 3.5 Update the lastUpdated list so we can keep track of all the dates...
       if (habit.lastUpdated) {
-        habit.lastUpdated.push({
-          date: moment().format('Do'),
-          time: moment().format('HH:mm'),
-        });
+        if (habit.lastUpdated.length === 0 || moment().format('Do') !== habit.lastUpdated[habit.lastUpdated.length - 1].date) {
+          habit.lastUpdated.push({
+            date: moment().format('Do'),
+            time: moment().format('HH:mm'),
+          });
+        }
       }
     }
 
@@ -70,7 +72,6 @@ class ChallengeDashboard extends Component {
   }
 
   render() {
-    console.log(this.state.habits);
     const challengeHabits = this.state.habits.length > 0 && this.state.habits.map(habit => (
       <div id={habit.name} key={habit.name} className="card-box col-10 mx-auto pl-0 pr-0 pt-0 pb-0" style={{ lineHeight: '0' }}>
         <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />

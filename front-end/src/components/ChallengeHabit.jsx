@@ -17,9 +17,8 @@ class ChallengeHabit extends Component {
   }
 
   render() {
-    console.log(this.props.habit);
     const {
-      id, name, target, completed, last_updated,
+      id, name, target, completed, last_updated, lastUpdated,
     } = this.props.habit;
     const habitItemElements = new Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} classSettings="big-box" />);
     return (

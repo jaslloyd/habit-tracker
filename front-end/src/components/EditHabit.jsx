@@ -42,9 +42,7 @@ class EditHabit extends Component {
     };
 
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`, requestObj)).json();
-    console.log(this.state.target_month);
     if (this.state.month === 'challenge') {
-      console.log('blah....');
       this.props.history.push('/challenge');
     } else {
       this.props.history.push('/');
