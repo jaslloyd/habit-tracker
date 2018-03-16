@@ -54,19 +54,21 @@ class MonthlyDashboard extends Component {
     return (
       <Fragment>
         <div className="row mt-3">
-
-          <div className="ml-auto col-md-6 text-center">
+          <div className="mx-auto col-md-10 text-center">
             <DashboardControls onMonthChange={this.displayMonthsHabits} displayedMonth={this.state.currentMonth} displayedYear={this.state.displayedYear} />
           </div>
-
-          <div className="col-lg-2 col-md-4 col-sm-12 text-center">
+        </div>
+        <div className="row">
+          <div className="mx-auto col-lg-2 col-md-4 col-sm-12 text-center">
             <h4 className="header-title">
               <a href="" onClick={this.displayMonthsHabits} data-operation="0"> {moment().format('MMMM')}</a>
               <span className="ml-2">{this.state.currMonDaysLeft} Days Left!</span>
             </h4>
           </div>
+        </div>
 
-          <div className="col-md-2">
+        <div className="row">
+          <div className="ml-auto col-md-2">
             <Link to="/addhabit/monthly" type="button" className="btn btn-success pull-right">Add Habit</Link>
           </div>
         </div>
