@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box;
-}
 body {
   margin: 0;
   padding: 0;
@@ -9,10 +6,14 @@ body {
   color: #fff;
 }
 
+.btn-success {
+  background-color: #008000;
+  border-color: #008000;
+}
+
 input[type="checkbox"] {
   -webkit-appearance: initial;
   -moz-appearance: initial;
-  /* appearance: initial; */
   background: gray;
   width: 50px;
   height: 50px;
@@ -42,10 +43,18 @@ input[type="checkbox"]:checked {
   margin-left: 5px;
 } */
 
+/* input:nth-child(5n) {
+  margin-right: 20px;
+} */
+
+/* @media (max-width: 768px){
+  input:nth-child(5n){
+    margin-right: 5px;
+  }
+} */
+
 input[type="checkbox"]:checked:after {
-  /* Heres your symbol replacement - this is a tick in Unicode. */
   color: #fff;
-  /* If you want to fully change the check appearance, use the following: */
   content: "";
   width: 100%;
   height: 100%;
@@ -102,16 +111,6 @@ input[type="checkbox"]:checked:after {
   text-transform: uppercase;
 }
 
-/* input:nth-child(5n) {
-  margin-right: 20px;
-} */
-
-/* @media (max-width: 768px){
-  input:nth-child(5n){
-    margin-right: 5px;
-  }
-} */
-
 .challenge-badge{
   border-radius: 0;
   font-size: 1em;
@@ -130,7 +129,6 @@ input[type="checkbox"]:checked:after {
     order: -1;
   }
 
-  /* todo: Use them... */
   .monthly-habit-controls-sm {
     order: -1;
     text-align: right;

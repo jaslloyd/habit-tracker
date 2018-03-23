@@ -53,6 +53,7 @@ class MonthlyDashboard extends Component {
 
     return (
       <Fragment>
+
         <div className="row mt-3">
           <div className="mx-auto col-md-10 text-center">
             <DashboardControls onMonthChange={this.displayMonthsHabits} displayedMonth={this.state.currentMonth} displayedYear={this.state.displayedYear} />
@@ -68,7 +69,7 @@ class MonthlyDashboard extends Component {
         </div>
 
         <div className="row">
-          <div className="ml-auto col-md-2">
+          <div className="mx-auto col-10 p-0">
             <Link to="/addhabit/monthly" type="button" className="btn btn-success pull-right">Add Habit</Link>
           </div>
         </div>

@@ -56,7 +56,7 @@ class Habit extends Component {
         <div className="col-lg-2 col-md-2 col-sm-12">
           <span style={{ color: this.state.color }}>{completed}/{target} Completed</span>
         </div>
-        <div className="col-lg-1 col-md-1 col-sm-4 monthly-habit-controls-sm">
+        <div className="col-lg-1 col-md-1 col-sm-4 monthly-habit-controls-sm mb-2">
           <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-secondary mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
           <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
         </div>
