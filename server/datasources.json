@@ -4,7 +4,7 @@
     "connector": "memory"
   },
   "db": {
-    "url": "mongodb://habit_secure:CCt*B7j25tEF7&s@ds119250.mlab.com:19250/heroku_kn42m0p2",
+    "url": "mongodb://habit_secure:CCt*B7j25tEF7&s@ds121299.mlab.com:21299/zero_waste",
     "name": "db",
     "connector": "mongodb"
   }
