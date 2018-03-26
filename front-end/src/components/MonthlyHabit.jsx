@@ -73,7 +73,7 @@ Habit.propTypes = {
     name: PropTypes.string.isRequired,
     target: PropTypes.number.isRequired,
     completed: PropTypes.number.isRequired,
-    last_updated: PropTypes.string,
+    lastUpdated: PropTypes.array.isRequired,
   }).isRequired,
   onHabitItemUpdated: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
