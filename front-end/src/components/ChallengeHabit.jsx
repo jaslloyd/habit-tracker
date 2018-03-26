@@ -18,14 +18,17 @@ class ChallengeHabit extends Component {
 
   render() {
     const {
-      id, name, target, completed, last_updated, lastUpdated,
+      id, name, target, completed, lastUpdated,
     } = this.props.habit;
     const habitItemElements = new Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} classSettings="big-box" />);
+
+    const lastUpdatedFormatted = lastUpdated.length > 0 && `${lastUpdated[lastUpdated.length - 1].date}@${lastUpdated[lastUpdated.length - 1].time}`;
+
     return (
       <Fragment>
         <div className="row mb-3">
           <div className="col-6">
-            { completed > 0 && <span className="badge badge-pill badge-default challenge-badge">{last_updated}</span> }
+            { completed > 0 && <span className="badge badge-pill badge-default challenge-badge">{lastUpdatedFormatted}</span> }
           </div>
 
           <div className="col-6 text-right">
