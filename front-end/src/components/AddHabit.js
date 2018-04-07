@@ -17,6 +17,7 @@ class AddHabit extends Component {
     month: moment.months(parseInt(moment().format('M'), 10) - 1),
     type: 'monthly',
     redirectUri: '/',
+    endDate: ''
   }
 
   componentDidMount() {
@@ -44,12 +45,16 @@ class AddHabit extends Component {
       completed: 0,
       target_month: this.state.month,
       year: this.state.year,
+      endDate: moment(this.state.endDate).format('X')
     };
 
     let filterSettings;
     if (this.state.type === 'challenge') {
       filterSettings = `{"name": "${newHabit.name}", "target_month": "challenge"}`;
       newHabit.target_month = 'challenge';
+      if (this.state.endDate > moment(this.state.endDate).add(this.state.target, 'day').format('X')){
+        console.log('What the hell are you doign... ')
+      }
     } else {
       filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
     }
@@ -93,6 +98,16 @@ class AddHabit extends Component {
 
   handleInputChange = (e) => {
     const { name, value } = e.target;
+    if(name === 'endDate'){
+      const endDateIncludingDays = moment().add(this.state.target, 'day').format('X');
+      const endDateCalender = moment(value).format('X')
+      // Check if it is impossible to complete the habit by comparing the date the user wants to complete the habit and how many days they want to complete this challenge.
+      if (endDateIncludingDays > endDateCalender){
+        console.log('What the hell are you doing... ')
+        this.setState({ msg: `You cannot complete ${this.state.target} days before ${moment(value).format()}` });
+      }
+    }
+
     this.setState({
       [name]: value,
     });
@@ -148,6 +163,10 @@ class AddHabit extends Component {
                     <FormGroup>
                       <label htmlFor="target">How many days do you want to do this challenge?</label>
                       <input type="number" className="form-control" name="target" step="1" min="1" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
+                    </FormGroup>
+                    <FormGroup>
+                      <label htmlFor="endDate">When would you like to achieve this by?</label>
+                      <input type="date" className="form-control" name="endDate" value={this.state.endDate} onChange={this.handleInputChange} />
                     </FormGroup>
                   </Fragment>
                 )
