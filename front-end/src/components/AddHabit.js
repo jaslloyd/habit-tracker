@@ -31,10 +31,15 @@ class AddHabit extends Component {
       this.getHabits();
     }
   }
-
+  
+  getHabits = async () => {
+    const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${this.state.filter_obj}`)).json();
+    this.setState({ existing_habits: results });
+  }
+  
   onSubmit = async (e) => {
     e.preventDefault();
-
+    
     // Add habit to db..then redirect
     const newHabit = {
       name: this.state.name,
@@ -67,10 +72,6 @@ class AddHabit extends Component {
     }
   }
 
-  getHabits = async () => {
-    const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${this.state.filter_obj}`)).json();
-    this.setState({ existing_habits: results });
-  }
 
   handleSelectedHabit = (e) => {
     this.setState({
