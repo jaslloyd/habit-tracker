@@ -85,7 +85,7 @@ class ChallengeDashboard extends Component {
             <h3>Challenges</h3>
           </div>
           <div className="col-md-2">
-            <Link to="/addhabit/challenge" type="button" params={{ habitType: 'challenge' }} className="btn btn-success pull-right">Add Habit</Link>
+            <Link to="/addhabit/challenge" params={{ habitType: 'challenge' }} className="btn btn-success pull-right">Add Habit</Link>
           </div>
         </div>
         <div className="mt-2 mb-2 mx-auto">

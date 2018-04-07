@@ -70,7 +70,7 @@ class MonthlyDashboard extends Component {
 
         <div className="row">
           <div className="mx-auto col-10 p-0">
-            <Link to="/addhabit/monthly" type="button" className="btn btn-success pull-right">Add Habit</Link>
+            <Link to="/addhabit/monthly" className="btn btn-success pull-right">Add Habit</Link>
           </div>
         </div>
 
