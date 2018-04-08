@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import AddHabit from './AddHabit';
+import AddMonthlyHabit from './AddMonthlyHabit';
+import AddChallengeHabit from './AddChallengeHabit';
 import EditHabit from './EditHabit';
 import Dashboard from './Dashboard';
 import Login from './Login';
@@ -15,7 +16,8 @@ const Main = () => (
       <Route exact path="/login" component={Login} />
       <Route exact path="/demo" component={Demo} />
       <PrivateRoute exact path="/" component={Dashboard} />
-      <PrivateRoute exact path="/addhabit/:type" component={AddHabit} />
+      <PrivateRoute exact path="/addhabit/monthly" component={AddMonthlyHabit} />
+      <PrivateRoute exact path="/addhabit/challenge" component={AddChallengeHabit} />
       <PrivateRoute exact path="/editHabit/:id" component={EditHabit} />
       <PrivateRoute exact path="/summary" component={Summary} />
       <PrivateRoute path="/dashboard" component={Dashboard} />

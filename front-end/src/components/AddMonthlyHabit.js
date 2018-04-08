@@ -3,7 +3,8 @@ import moment from 'moment';
 import HabitSuggestion from './HabitSuggestion';
 import FormGroup from './FormGroup';
 
-class AddHabit extends Component {
+class AddMonthlyHabit
+ extends Component {
   state = {
     name: '',
     description: '',
@@ -21,25 +22,17 @@ class AddHabit extends Component {
   }
 
   componentDidMount() {
-    if (this.props.match.params.type === 'challenge') {
-      this.setState({
-        type: 'challenge',
-        filter_obj: '{"where": {"target_month": "challenge"}}',
-        redirectUri: '/challenge',
-      }, () => this.getHabits());
-    } else {
       this.getHabits();
-    }
   }
-  
+
   getHabits = async () => {
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${this.state.filter_obj}`)).json();
     this.setState({ existing_habits: results });
   }
-  
+
   onSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Add habit to db..then redirect
     const newHabit = {
       name: this.state.name,
@@ -53,16 +46,7 @@ class AddHabit extends Component {
       endDate: moment(this.state.endDate).format('X')
     };
 
-    let filterSettings;
-    if (this.state.type === 'challenge') {
-      filterSettings = `{"name": "${newHabit.name}", "target_month": "challenge"}`;
-      newHabit.target_month = 'challenge';
-      if (this.state.endDate > moment(this.state.endDate).add(this.state.target, 'day').format('X')){
-        console.log('What the hell are you doign... ')
-      }
-    } else {
-      filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
-    }
+    let filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
 
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
     if (results.count === 0) {
@@ -99,16 +83,6 @@ class AddHabit extends Component {
 
   handleInputChange = (e) => {
     const { name, value } = e.target;
-    if(name === 'endDate'){
-      const endDateIncludingDays = moment().add(this.state.target, 'day').format('X');
-      const endDateCalender = moment(value).format('X')
-      // Check if it is impossible to complete the habit by comparing the date the user wants to complete the habit and how many days they want to complete this challenge.
-      if (endDateIncludingDays > endDateCalender){
-        console.log('What the hell are you doing... ')
-        this.setState({ msg: `You cannot complete ${this.state.target} days before ${moment(value).format()}` });
-      }
-    }
-
     this.setState({
       [name]: value,
     });
@@ -136,42 +110,18 @@ class AddHabit extends Component {
                 <label htmlFor="category">Category:</label>
                 <input type="text" className="form-control" name="category" placeholder="Health / Finance / Career" value={this.state.category} onChange={this.handleInputChange} required />
               </FormGroup>
-              { this.state.type === 'monthly'
-                ? (
-                  <Fragment>
-                    <FormGroup>
-                      <label htmlFor="habit_mon">Month of Habit:</label>
-                      <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
-                        <option disabled>Choose Month</option>
-                        <option>{moment.months(this.state.currentMonthIndex)}</option>
-                        <option>{moment.months(this.state.currentMonthIndex + 1)}</option>
-                      </select>
-                    </FormGroup>
-                    <FormGroup>
-                      <label htmlFor="target">How many days do you want to do this habit?</label>
-                      <input type="number" className="form-control" name="target" step="1" min="1" max="30" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
-                    </FormGroup>
-                  </Fragment>
-                )
-                : (
-                  <Fragment>
-                    <FormGroup>
-                      <label htmlFor="habit_mon">Type of Habit:</label>
-                      <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
-                        <option>Challenge Habit</option>
-                      </select>
-                    </FormGroup>
-                    <FormGroup>
-                      <label htmlFor="target">How many days do you want to do this challenge?</label>
-                      <input type="number" className="form-control" name="target" step="1" min="1" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
-                    </FormGroup>
-                    <FormGroup>
-                      <label htmlFor="endDate">When would you like to achieve this by?</label>
-                      <input type="date" className="form-control" name="endDate" value={this.state.endDate} onChange={this.handleInputChange} />
-                    </FormGroup>
-                  </Fragment>
-                )
-              }
+              <FormGroup>
+                <label htmlFor="habit_mon">Month of Habit:</label>
+                <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
+                  <option disabled>Choose Month</option>
+                  <option>{moment.months(this.state.currentMonthIndex)}</option>
+                  <option>{moment.months(this.state.currentMonthIndex + 1)}</option>
+                </select>
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor="target">How many days do you want to do this habit?</label>
+                <input type="number" className="form-control" name="target" step="1" min="1" max="30" placeholder="1" value={this.state.target} onChange={this.handleInputChange} />
+              </FormGroup>
 
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
@@ -187,4 +137,4 @@ class AddHabit extends Component {
   }
 }
 
-export default AddHabit;
+export default AddMonthlyHabit;

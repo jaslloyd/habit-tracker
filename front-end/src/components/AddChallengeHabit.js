@@ -4,7 +4,7 @@ import HabitSuggestion from './HabitSuggestion';
 import FormGroup from './FormGroup';
 
 
-class AddHabit extends Component {
+class AddChallengeHabit extends Component {
 
     state = {
         name: '',
@@ -60,11 +60,11 @@ class AddHabit extends Component {
         const filterSettings = `{"name": "${newHabit.name}", "target_month": "challenge"}`;
 
         const endDateIncludingDays = moment().add(this.state.target, 'day').format('X');
-        const endDateCalender = moment(value).format('X')
+        const endDateCalender = moment(endDate).format('X')
         // Check if it is impossible to complete the habit by comparing the date the user wants to complete the habit and how many days they want to complete this challenge.
         if (endDateIncludingDays > endDateCalender) {
             console.log('What the hell are you doing... ')
-            this.setState({ msg: `You cannot complete ${this.state.target} days before ${moment(value).format()}` });
+            this.setState({ msg: `You cannot complete ${this.state.target} days before ${moment(endDate).format()}` });
         }
 
         const { count } = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
@@ -105,6 +105,16 @@ class AddHabit extends Component {
 
         this.setState({ [name]: value });
 
+    }
+
+    handleSelectedHabit = (e) => {
+        this.setState({
+          name: e.target.getAttribute('data-name'),
+          description: e.target.getAttribute('data-description'),
+          category: e.target.getAttribute('data-category'),
+          target: e.target.getAttribute('data-target'),
+        });
+        e.preventDefault();
     }
 
     render() {
@@ -157,3 +167,5 @@ class AddHabit extends Component {
         )
     }
 }
+
+export default AddChallengeHabit;
