@@ -16,9 +16,6 @@ class AddMonthlyHabit
     currentMonthIndex: parseInt(moment().format('M'), 10) - 1, // Seems to be 0 indexed
     msg: '',
     month: moment.months(parseInt(moment().format('M'), 10) - 1),
-    type: 'monthly',
-    redirectUri: '/',
-    endDate: ''
   }
 
   componentDidMount() {
@@ -42,8 +39,7 @@ class AddMonthlyHabit
       lastUpdated: [],
       completed: 0,
       target_month: this.state.month,
-      year: this.state.year,
-      endDate: moment(this.state.endDate).format('X')
+      year: this.state.year
     };
 
     let filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
@@ -78,7 +74,7 @@ class AddMonthlyHabit
     };
 
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`, requestObj)).json();
-    this.props.history.push(this.state.redirectUri);
+    this.props.history.push('/');
   }
 
   handleInputChange = (e) => {
