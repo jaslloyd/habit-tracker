@@ -42,7 +42,7 @@ class AddMonthlyHabit
       year: this.state.year
     };
 
-    let filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
+  let filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
 
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
     if (results.count === 0) {
