@@ -1,11 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import HabitItem from './HabitItem';
 
 // This class has a lot of duplciate logic from Habit.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeHabit extends Component {
-  state = {}
+  state = {
+    canUpdate: true,
+    displayClass: '',
+  }
 
   onCompleted = (index) => {
     const { id, completed } = this.props.habit;
@@ -18,10 +22,22 @@ class ChallengeHabit extends Component {
 
   render() {
     const {
-      id, name, target, completed, lastUpdated,
+      id, name, target, completed, lastUpdated, endDate
     } = this.props.habit;
-    const habitItemElements = new Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} classSettings="big-box" />);
+    let endDateFormatted;
+    let daysLeft;
+    let daysLeftFormatted;
 
+    if (endDate) {
+      endDateFormatted = moment.unix(endDate).format('DD-MM-YYYY');
+      daysLeft = moment().diff(moment.unix(endDate), 'days');
+      daysLeftFormatted = Math.abs(daysLeft);
+      if(daysLeft > 0){
+        this.setState({ displayClass: 'disabledbutton' });
+      }
+    }
+
+    const habitItemElements = new Array(target).fill().map((_, i) => <HabitItem key={[name, i + 1]} index={i + 1} completed={completed} onCompleted={this.onCompleted} classSettings="big-box" />);
     const lastUpdatedFormatted = lastUpdated.length > 0 && `${lastUpdated[lastUpdated.length - 1].date}@${lastUpdated[lastUpdated.length - 1].time}`;
 
     return (
@@ -38,7 +54,7 @@ class ChallengeHabit extends Component {
         </div>
 
         <div className="row mb-3" style={{ padding: '0 40px' }}>
-          <div className="col-lg-3 col-md-2 col-sm-12">
+          <div className="col-lg-6 col-md-2 col-sm-12">
             <span className="h5">
               {name}
             </span>
@@ -46,12 +62,19 @@ class ChallengeHabit extends Component {
         </div>
 
         <div className="row">
-          <div className="col-md-12 text-center" style={{ padding: '0 40px' }}>
+          <div className={'col-md-12 text-center ' + this.state.displayClass} style={{ padding: '0 40px' }}>
             {habitItemElements}
           </div>
         </div>
 
+
         <div className="row">
+          {
+            endDateFormatted &&
+            <div className="col-6">
+              <span className="badge badge-pill badge-default challenge-badge">Complete By: {endDateFormatted}</span>
+            </div>
+          }
           <div className="ml-auto col-6 text-right">
             <span className="badge badge-pill badge-default challenge-badge">{completed} / {target}</span>
           </div>
