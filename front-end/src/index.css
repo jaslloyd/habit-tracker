@@ -66,6 +66,11 @@ input[type="checkbox"]:checked {
   }
 } */
 
+.disabledControls {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 input[type="checkbox"]:checked:after {
   color: var(--font-color);
   content: "";

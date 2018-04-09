@@ -17,6 +17,7 @@ class ChallengeDashboard extends Component {
 
   getHabits = async () => {
     const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${this.state.filter_obj}`)).json();
+    console.log(results)
     this.setState({ habits: results });
   }
 
