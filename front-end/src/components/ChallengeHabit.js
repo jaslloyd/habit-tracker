@@ -7,7 +7,6 @@ import HabitItem from './HabitItem';
 // This class has a lot of duplciate logic from Habit.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeHabit extends Component {
   state = {
-    canUpdate: true,
     displayClass: '',
   }
 
@@ -33,7 +32,7 @@ class ChallengeHabit extends Component {
       daysLeft = moment().diff(moment.unix(endDate), 'days');
       daysLeftFormatted = Math.abs(daysLeft);
       if(daysLeft > 0){
-        this.setState({ displayClass: 'disabledbutton' });
+        this.setState({ displayClass: 'disabledControls' });
       }
     }
 

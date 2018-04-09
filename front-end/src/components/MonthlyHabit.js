@@ -9,6 +9,7 @@ class Habit extends Component {
   */
   state = {
     color: 'black',
+    displayClass: ''
   }
 
   componentDidMount() {
@@ -31,6 +32,7 @@ class Habit extends Component {
 
     if (canComplete < 0) {
       this.setState({ color: 'red' });
+      this.setState({ displayClass: 'disabledControls' })
     } else if (canComplete === 0 || canComplete <= 5) {
       this.setState({ color: 'orange' });
     } else {
@@ -52,7 +54,7 @@ class Habit extends Component {
           <span className="h5">{name} </span>
           { completed > 0 && <span className="h5 badge badge-pill badge-default">{lastUpdatedFormatted}</span> }
         </div>
-        <div className="col-lg-7 col-md-7 col-sm-12 habit-padding">
+        <div className={'col-lg-7 col-md-7 col-sm-12 habit-padding ' + this.state.displayClass}>
           {habitItemElements}
         </div>
         <div className="col-lg-2 col-md-2 col-sm-12">
