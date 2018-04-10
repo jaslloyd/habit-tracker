@@ -44,8 +44,8 @@ class AddMonthlyHabit
 
   let filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
 
-    const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
-    if (results.count === 0) {
+    const { count } = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
+    if (count === 0) {
       this.addHabit(newHabit);
     } else {
       this.setState({ msg: `Habit ${newHabit.name} already exists for month ${newHabit.target_month}` });

@@ -67,8 +67,6 @@ class EditHabit extends Component {
       year,
       endDate: moment.unix(endDate).format('YYYY-MM-DD')
     });
-
-    console.log(this.state.endDate)
   }
 
   handleInputChange = (e) => {

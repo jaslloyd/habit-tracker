@@ -63,7 +63,6 @@ class AddChallengeHabit extends Component {
         }
         
         const { count } = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
-
         if (count === 0) {
             this.addHabit(newHabit);
         } else {
