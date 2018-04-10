@@ -92,7 +92,6 @@ class AddChallengeHabit extends Component {
             const endDateCalender = moment(value).format('X')
             // Check if it is impossible to complete the habit by comparing the date the user wants to complete the habit and how many days they want to complete this challenge.
             if (endDateIncludingDays > endDateCalender) {
-                console.log('What the hell are you doing... ')
                 this.setState({ msg: `You cannot complete ${this.state.target} days before ${moment(value).format()}` });
             }
         }
@@ -120,7 +119,7 @@ class AddChallengeHabit extends Component {
                 <h1 className="m-3 text-center">Add Habit</h1>
                 {msgDisplaying}
                 <div className="row justify-content-center">
-                    <div className="offset-md-3 col-md-6 col-sm-12">
+                    <div className="col-md-8 col-sm-12">
                         <form onSubmit={this.onSubmit}>
                             <FormGroup>
                                 <label htmlFor="name">Habit Name:</label>

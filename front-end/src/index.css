@@ -138,6 +138,19 @@ input[type="checkbox"]:checked:after {
   padding: 0;
 }
 
+.form-control {
+  border: none;
+  border-bottom: 1px solid #FFA300;
+  background-color: transparent;
+  border-radius: 0;
+  color: white;
+}
+
+.form-control:focus {
+  background-color: transparent;
+  color: white;
+}
+
 @media (max-width: 786px) {
   .habit-padding {
     padding: 0 15px 0 15px;
