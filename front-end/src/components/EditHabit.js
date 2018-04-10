@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import FormGroup from './FormGroup';
+import moment from 'moment';
 
 class EditHabit extends Component {
   state = {
@@ -30,6 +31,7 @@ class EditHabit extends Component {
       last_updated: this.state.last_updated,
       lastUpdated: this.state.lastUpdated,
       year: this.state.year,
+      endDate: moment(this.state.endDate).format('X')
     };
 
     const requestObj = {
@@ -51,7 +53,7 @@ class EditHabit extends Component {
 
   getHabitById = async () => {
     const {
-      name, description, category, target_month, target, completed, last_updated, lastUpdated, year,
+      name, description, category, target_month, target, completed, last_updated, lastUpdated, year, endDate
     } = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${this.id}`)).json();
     this.setState({
       name,
@@ -63,7 +65,10 @@ class EditHabit extends Component {
       last_updated,
       lastUpdated,
       year,
+      endDate: moment.unix(endDate).format('YYYY-MM-DD')
     });
+
+    console.log(this.state.endDate)
   }
 
   handleInputChange = (e) => {
@@ -93,6 +98,13 @@ class EditHabit extends Component {
           <FormGroup>
             <label htmlFor="habit_mon">Month of Habit: {this.state.month}</label>
           </FormGroup>
+          {
+            this.state.month === 'challenge' &&
+            <FormGroup>
+              <label htmlFor="endDate">When would you like to achieve this by?</label>
+              <input type="date" className="form-control" name="endDate" value={this.state.endDate} onChange={this.handleInputChange} />              
+            </FormGroup>
+          }
           <FormGroup>
             <label htmlFor="habit_target">How many days do you want to do this habit?</label>
             <input type="number" className="form-control" name="days" step="1" min="1" value={this.state.days} onChange={this.handleInputChange} required />
