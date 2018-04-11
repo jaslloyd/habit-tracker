@@ -24,9 +24,7 @@ class AddChallengeHabit extends Component {
 
     getHabits = async () => {
         const results = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits?filter=${this.state.filter_obj}`)).json();
-        this.setState({
-            existing_habits: results
-        })
+        this.setState({ existing_habits: results })
     }
 
     onSubmit = async (e) => {
@@ -53,14 +51,6 @@ class AddChallengeHabit extends Component {
         }
 
         const filterSettings = `{"name": "${newHabit.name}", "target_month": "challenge"}`;
-
-        const endDateIncludingDays = moment().add(this.state.target, 'day').format('X');
-        const endDateCalender = moment(endDate).format('X')
-        // Check if it is impossible to complete the habit by comparing the date the user wants to complete the habit and how many days they want to complete this challenge.
-        if (endDateIncludingDays > endDateCalender) {
-            console.log('What the hell are you doing... ')
-            this.setState({ msg: `You cannot complete ${this.state.target} days before ${moment(endDate).format()}` });
-        }
         
         const { count } = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
         if (count === 0) {
@@ -86,18 +76,27 @@ class AddChallengeHabit extends Component {
 
     handleInputChange = (e) => {
         const { name, value } = e.target;
-        // todo: remove 
-        if (name === 'endDate') {
-            const endDateIncludingDays = moment().add(this.state.target, 'day').format('X');
-            const endDateCalender = moment(value).format('X')
-            // Check if it is impossible to complete the habit by comparing the date the user wants to complete the habit and how many days they want to complete this challenge.
-            if (endDateIncludingDays > endDateCalender) {
-                this.setState({ msg: `You cannot complete ${this.state.target} days before ${moment(value).format()}` });
-            }
+        if (this.isValidInput(name, value)) {
+            this.setState({ [name]: value });
         }
 
-        this.setState({ [name]: value });
+    }
 
+    isValidInput(input, value) {
+        if (input === 'endDate') {
+            // Check if it is impossible to complete the habit by comparing the date the user wants to complete the habit and how many days they want to complete this challenge.
+            // todo: still has issues with 1 day...
+            const startDateIncludingTarget = moment().add(this.state.target, 'day').format('X');
+            const endDate = moment(value).endOf('day').format('X');
+
+            if (startDateIncludingTarget > endDate) {
+                this.setState({
+                    msg: `You cannot complete ${this.state.target} days before ${moment(value).format('DD-MM-YYYY')}`
+                })
+                return false;
+            }
+        }
+        return true;
     }
 
     handleSelectedHabit = (e) => {
