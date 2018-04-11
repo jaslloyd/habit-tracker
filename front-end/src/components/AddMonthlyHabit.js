@@ -9,7 +9,7 @@ class AddMonthlyHabit
     name: '',
     description: '',
     category: '',
-    target: 0,
+    target: 1,
     existing_habits: [],
     filter_obj: `{"where": {"target_month": "${moment().subtract(1, 'month').format('MMMM')}"}}`,
     year: `${moment().format('YYYY')}`,
@@ -92,7 +92,7 @@ class AddMonthlyHabit
         <h1 className="m-3 text-center">Add Habit</h1>
         {msgDisplaying}
         <div className="row justify-content-center">
-          <div className="offset-md-3 col-md-6 col-sm-12">
+          <div className="col-md-8 col-sm-12">
             <form onSubmit={this.onSubmit}>
               <FormGroup>
                 <label htmlFor="name">Habit Name:</label>

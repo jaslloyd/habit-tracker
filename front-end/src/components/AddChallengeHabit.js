@@ -10,7 +10,7 @@ class AddChallengeHabit extends Component {
         name: '',
         description: '',
         category: '',
-        target: 0,
+        target: 1,
         existing_habits: [],
         filter_obj: '{"where": {"target_month": "challenge"}}',
         msg: '',
