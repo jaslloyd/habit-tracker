@@ -25,12 +25,12 @@ class ChallengeHabit extends Component {
     } = this.props.habit;
     let endDateFormatted;
     let daysLeft;
-    let daysLeftFormatted;
+    // let daysLeftFormatted;
 
     if (endDate) {
       endDateFormatted = moment.unix(endDate).format('DD-MM-YYYY');
       daysLeft = moment().diff(moment.unix(endDate), 'days');
-      daysLeftFormatted = Math.abs(daysLeft);
+      // daysLeftFormatted = Math.abs(daysLeft);
       if(daysLeft > 0){
         this.setState({ displayClass: 'disabledControls' });
       }
@@ -47,7 +47,7 @@ class ChallengeHabit extends Component {
           </div>
 
           <div className="col-6 text-right">
-            <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-secondary mr-2"><i className="fa fa-pencil" aria-hidden="true" /></Link>
+            <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-secondary mr-2 text-dark"><i className="far fa-edit"></i></Link>
             <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
           </div>
         </div>
