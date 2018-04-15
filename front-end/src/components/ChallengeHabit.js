@@ -53,7 +53,7 @@ class ChallengeHabit extends Component {
         </div>
 
         <div className="row mb-3" style={{ padding: '0 40px' }}>
-          <div className="col-lg-6 col-md-2 col-sm-12">
+          <div className="col-12 card-header">
             <span className="h5">
               {name}
             </span>

@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   render() {
-    var sidebarContent =
+    const sidebarContent =
     <div className="mt-4">
       <div className="text-center">
         <img src="http://via.placeholder.com/100x100" alt="" className="img-thumbnail" /  >
