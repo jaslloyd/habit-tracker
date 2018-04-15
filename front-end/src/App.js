@@ -11,7 +11,6 @@ class App extends Component {
 
   state = {
     sidebarState: true,
-    activeLink: 'dashboard2',
     styles: {
       sidebar: {
         backgroundColor: '#112f3b',

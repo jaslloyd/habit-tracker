@@ -79,7 +79,6 @@ input[type="checkbox"].big-box {
 
 input[type="checkbox"]:checked {
   background: var(--primary-color);
-  /* margin-right: 0; */
 }
 
 .disabledControls {
@@ -107,7 +106,6 @@ input[type="checkbox"]:checked:after {
 
 .card-header {
   background-color: transparent;
-  /* color:#07a7e3 */
 }
 
 .nav-link {
@@ -117,7 +115,7 @@ input[type="checkbox"]:checked:after {
   color: white;
 }
 
-.nav-item .nav-link.active, .nav-link:hover {
+.nav-item .nav-link.active, .flex-column .nav-link:hover {
   background: linear-gradient(135deg, #07a7e3 0%, #32dac3 100%);
 }
 
