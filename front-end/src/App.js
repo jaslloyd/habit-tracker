@@ -10,7 +10,7 @@ import './BrightTheme.css';
 class App extends Component {
 
   state = {
-    sidebarState: true,
+    sidebarState: authHelper.isAuthenticated(),
     styles: {
       sidebar: {
         backgroundColor: '#112f3b',
@@ -34,19 +34,13 @@ class App extends Component {
       </div>
       <ul className="nav flex-column mt-4">
           <li className="nav-item">
-              {authHelper.isAuthenticated() && 
-                <NavLink activeClassName='active' className="nav-link" to='/dashboard'>Dashboard</NavLink>
-              }
+              <NavLink activeClassName='active' className="nav-link" to='/dashboard'>Dashboard</NavLink>
           </li>
           <li className="nav-item">
-            {authHelper.isAuthenticated() &&
               <NavLink activeClassName='active' className="nav-link" to='/challenge'>Challenges</NavLink>
-            }
           </li>
           <li className="nav-item">
-            {authHelper.isAuthenticated() && 
               <NavLink activeClassName='active' className="nav-link" to='/summary'>Summary</NavLink>
-            }
           </li>
       </ul>
     </div>
