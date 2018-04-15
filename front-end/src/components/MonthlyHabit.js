@@ -49,18 +49,18 @@ class Habit extends Component {
     const lastUpdatedFormatted = lastUpdated.length > 0 && `${lastUpdated[lastUpdated.length - 1].date}@${lastUpdated[lastUpdated.length - 1].time}`;
 
     return (
-      <div className="row mt-2 mb-2 align-items-center">
+      <div className="row align-items-center">
         <div className="col-lg-2 col-md-2 col-sm-8 monthly-habit-title-sm">
           <span className="h5">{name} </span>
           { completed > 0 && <span className="h5 badge badge-pill badge-default">{lastUpdatedFormatted}</span> }
         </div>
-        <div className={'col-lg-7 col-md-7 col-sm-12 habit-padding ' + this.state.displayClass}>
+        <div className={'col-lg-6 col-md-6 col-sm-12 habit-padding ' + this.state.displayClass}>
           {habitItemElements}
         </div>
         <div className="col-lg-2 col-md-2 col-sm-12">
           <span style={{ color: this.state.color }}>{completed}/{target} Completed</span>
         </div>
-        <div className="col-lg-1 col-md-1 col-sm-4 monthly-habit-controls-sm mb-2">
+        <div className="col-lg-2 col-md-2 col-sm-4 monthly-habit-controls-sm">
           <Link to={`/editHabit/${id}`} type="button" className="btn btn-sm btn-secondary mr-2 text-dark"><i className="far fa-edit"></i></Link>
           <button type="button" className="btn btn-sm btn-danger" onClick={() => this.props.onDelete(id)}>X</button>
         </div>

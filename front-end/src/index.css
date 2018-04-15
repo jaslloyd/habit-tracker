@@ -105,6 +105,11 @@ input[type="checkbox"]:checked:after {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
 }
 
+.card-header {
+  background-color: transparent;
+  /* color:#07a7e3 */
+}
+
 .nav-link {
   padding: 1rem 2rem;
 }
@@ -157,10 +162,14 @@ input[type="checkbox"]:checked:after {
   text-transform: uppercase;
 }
 
+.badge-pill {
+  background-color: #fff;
+  color: #000;
+}
+
 .challenge-badge {
   border-radius: 0;
   font-size: 1em;
- 
 }
 
 .habit-padding {

@@ -4,8 +4,12 @@ import CardBox from './CardBox';
 
 const HabitGroup = ({ category, categoriesHabits }) => (
   <CardBox name={category}>
-    <h4 className="header-title mb-4"><b>{category}</b></h4>
-    {categoriesHabits}
+    <h4 className="card-header">
+      {category}
+    </h4>
+    <div className="card-body">
+      {categoriesHabits}
+    </div>
   </CardBox>
 );
 
