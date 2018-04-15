@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
@@ -11,6 +11,7 @@ class App extends Component {
 
   state = {
     sidebarState: true,
+    activeLink: 'dashboard2',
     styles: {
       sidebar: {
         backgroundColor: '#112f3b',
@@ -34,13 +35,19 @@ class App extends Component {
       </div>
       <ul className="nav flex-column mt-4">
           <li className="nav-item">
-              {authHelper.isAuthenticated() && <Link to="/dashboard" className="nav-link active">Dashboard<span className="sr-only">(current)</span></Link>}
+              {authHelper.isAuthenticated() && 
+                <NavLink activeClassName='active' className="nav-link" to='/dashboard'>Dashboard</NavLink>
+              }
           </li>
           <li className="nav-item">
-            {authHelper.isAuthenticated() && <Link to="/challenge" className="nav-link">Challenges</Link> }
+            {authHelper.isAuthenticated() &&
+              <NavLink activeClassName='active' className="nav-link" to='/challenge'>Challenges</NavLink>
+            }
           </li>
           <li className="nav-item">
-            {authHelper.isAuthenticated() && <Link to="/summary" className="nav-link">Summary</Link> }
+            {authHelper.isAuthenticated() && 
+              <NavLink activeClassName='active' className="nav-link" to='/summary'>Summary</NavLink>
+            }
           </li>
       </ul>
     </div>
