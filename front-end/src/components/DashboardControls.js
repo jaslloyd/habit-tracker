@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 const DashboardControls = ({ onMonthChange, displayedMonth, displayedYear }) => (
   <div className="row">
     <div className="col-3">
-      <i onClick={e => onMonthChange(e)} data-operation="+1" className="mr-3 fa fa-chevron-left btn-link" aria-hidden="true" role="button" />
+      <button onClick={e => onMonthChange(e)} className="btn-link"  data-operation="+1" aria-hidden="true">
+        Prev
+      </button>
     </div>
     <div className="col-6">
       <span className="header-title-big">
@@ -12,7 +14,9 @@ const DashboardControls = ({ onMonthChange, displayedMonth, displayedYear }) => 
       </span>
     </div>
     <div className="col-3">
-      <i onClick={e => onMonthChange(e)} data-operation="-1" className="ml-3 fa fa-chevron-right btn-link" aria-hidden="true" role="button" />
+      <button onClick={e => onMonthChange(e)} className="btn-link" data-operation="-1">
+        Next
+      </button>
     </div>
   </div>
 );

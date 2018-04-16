@@ -61,7 +61,7 @@ class App extends Component {
         
          <Navbar openSideBar={this.onSetSidebarState} sideBarState={this.state.sidebarState} handleLogout={this.onLogout} />
          <div className="col-12">
-          <Main />
+            <Main />
          </div>
       </Sidebar>
     )
