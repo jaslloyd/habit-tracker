@@ -26,6 +26,13 @@ class App extends Component {
     })
   }
 
+  onLogout = () => {
+    console.log(this.props.history)
+    authHelper.signout(() => {
+      // this.props.history.push('/login')
+    })
+  }
+
   render() {
     const sidebarContent =
     <div className="mt-4">
@@ -52,7 +59,7 @@ class App extends Component {
                onSetOpen={this.onSetSidebarState}
                styles={this.state.styles}>
         
-         <Navbar openSideBar={this.onSetSidebarState} sideBarState={this.state.sidebarState} />
+         <Navbar openSideBar={this.onSetSidebarState} sideBarState={this.state.sidebarState} handleLogout={this.onLogout} />
          <div className="col-12">
           <Main />
          </div>

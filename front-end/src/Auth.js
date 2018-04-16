@@ -1,5 +1,5 @@
 const authHelper = {
-  authenticated: false,
+  authenticated: true,
   authenticate(cb) {
     this.authenticated = true;
     setTimeout(cb, 100); // fake async

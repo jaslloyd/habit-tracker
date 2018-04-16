@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import authHelper from '../Auth';
 
-const Navbar = ({openSideBar, sideBarState}) => (
+const Navbar = ({openSideBar, sideBarState, handleLogout}) => (
   <Fragment>
     {
       authHelper.isAuthenticated() && 
@@ -31,7 +31,7 @@ const Navbar = ({openSideBar, sideBarState}) => (
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="ml-auto navbar-nav">
               <li className="nav-item">
-                <Link to="/logout" className="nav-link">Logout</Link>
+                <a className="nav-link" onClick={() => handleLogout()}>Logout</a>
               </li>
             </ul>
           </div>
