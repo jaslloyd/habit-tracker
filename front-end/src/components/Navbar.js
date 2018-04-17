@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import authHelper from '../Auth';
 
 const Navbar = ({openSideBar, sideBarState, handleLogout, toggle}) => (
   <Fragment>
