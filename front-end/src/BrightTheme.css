@@ -34,4 +34,8 @@
 
 .bright-theme .card-header {
     color:#07a7e3;
-  }
+}
+
+.bright-theme .navbar-toggler {
+    background-color: #09a7e4;
+}

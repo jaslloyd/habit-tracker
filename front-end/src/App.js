@@ -17,7 +17,8 @@ class App extends Component {
         width: '225px',
         boxShadow: '2px 0 10px 0 rgba(0, 0, 0, 0.12), 2px 0 15px 0 rgba(0, 0, 0, 0.09)'
       }
-    }
+    },
+    isDarkTheme: false
   }
 
   onSetSidebarState = (state) => {
@@ -31,6 +32,15 @@ class App extends Component {
     authHelper.signout(() => {
       // this.props.history.push('/login')
     })
+  }
+
+  toggleTheme = () => {
+    if(this.state.isDarkTheme){
+      document.querySelector('body').classList = "";
+    } else {
+      document.querySelector('body').classList = "bright-theme";
+    }
+    this.setState({isDarkTheme: !this.state.isDarkTheme})
   }
 
   render() {
@@ -59,7 +69,7 @@ class App extends Component {
                onSetOpen={this.onSetSidebarState}
                styles={this.state.styles}>
         
-         <Navbar openSideBar={this.onSetSidebarState} sideBarState={this.state.sidebarState} handleLogout={this.onLogout} />
+         <Navbar openSideBar={this.onSetSidebarState} sideBarState={this.state.sidebarState} handleLogout={this.onLogout} toggle={this.toggleTheme} />
          <div className="col-12">
             <Main />
          </div>
