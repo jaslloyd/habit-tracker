@@ -21,6 +21,9 @@
     color: white;
 }
 
+.bright-theme input[type="checkbox"] {
+    background: #dfdfdf
+}
 .bright-theme input[type="checkbox"]:checked {
     background: #0ad250
 }
