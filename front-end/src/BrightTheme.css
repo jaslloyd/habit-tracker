@@ -4,6 +4,9 @@
     font-weight: 400;
 }
 
+.navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-nav .nav-link:hover {
+    color: black;
+}
 .bright-theme .navbar-brand {
     color: black !important;
 }
@@ -15,6 +18,7 @@
 
 .bright-theme .challenge-badge {
     background-color: #09a7e4;
+    color: white;
 }
 
 .bright-theme input[type="checkbox"]:checked {

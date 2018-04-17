@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import SummaryChart from './SummaryChart';
 
 const SummaryPanel = ({ habit }) => (
-  <div className="col-sm-2 mb-2">
-    <div className="card text-white bg-inverse p-4">
+  <div className="col-sm-4 mb-2">
+    <div className="card text-dark bg-inverse p-4">
       <div className="card-body">
         <h4 className="card-title">{habit.name}</h4>
         <p className="card-text">

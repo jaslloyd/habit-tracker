@@ -31,7 +31,7 @@ const Navbar = ({openSideBar, sideBarState, handleLogout}) => (
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="ml-auto navbar-nav">
               <li className="nav-item">
-                <a className="nav-link" onClick={() => handleLogout()}>Logout</a>
+                <a className="nav-link" href="" onClick={() => handleLogout()}>Logout</a>
               </li>
             </ul>
           </div>
