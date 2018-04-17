@@ -45,6 +45,11 @@ class Login extends Component {
     }
     return (
       <div id="login">
+        <div className="row">
+          <div className="col-12">
+            <h1 className="text-center mb-3">Jason's Habit Tracker</h1>
+          </div>
+        </div>
         <div className="row justify-content-center">
           <div className="col-md-8">
             <form className="card-box" onSubmit={this.onSubmit}>
@@ -59,7 +64,7 @@ class Login extends Component {
               </FormGroup>
               <div className="row">
                 <div className="col-md-3">
-                  <Link to="/demo" className="demo-link">Demo Mode</Link>
+                  <Link to="/demo" className="demo-link text-dark">Demo Mode</Link>
                 </div>
                 <div className="col-md-3 ml-auto">
                   <button type="submit" className="ml-auto btn btn-primary">Submit</button>

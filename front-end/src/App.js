@@ -69,7 +69,10 @@ class App extends Component {
                onSetOpen={this.onSetSidebarState}
                styles={this.state.styles}>
         
-         <Navbar openSideBar={this.onSetSidebarState} sideBarState={this.state.sidebarState} handleLogout={this.onLogout} toggle={this.toggleTheme} />
+        {
+          authHelper.isAuthenticated() &&
+            <Navbar openSideBar={this.onSetSidebarState} sideBarState={this.state.sidebarState} handleLogout={this.onLogout} toggle={this.toggleTheme} />
+        }
          <div className="col-12">
             <Main />
          </div>
