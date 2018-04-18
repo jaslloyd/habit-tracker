@@ -35,10 +35,10 @@ class App extends Component {
   }
 
   toggleTheme = () => {
-    if(this.state.isDarkTheme){
-      document.querySelector('body').classList = "";
+    if(!this.state.isDarkTheme === true){
+      document.querySelector('body').classList.remove('bright-theme');
     } else {
-      document.querySelector('body').classList = "bright-theme";
+      document.querySelector('body').classList.add('bright-theme');
     }
     this.setState({isDarkTheme: !this.state.isDarkTheme})
   }
@@ -68,9 +68,7 @@ class App extends Component {
                docked={this.state.sidebarState}
                onSetOpen={this.onSetSidebarState}
                styles={this.state.styles}>
-        
-        {
-          authHelper.isAuthenticated() &&
+        { authHelper.isAuthenticated() &&
             <Navbar openSideBar={this.onSetSidebarState} sideBarState={this.state.sidebarState} handleLogout={this.onLogout} toggle={this.toggleTheme} />
         }
          <div className="col-12">
