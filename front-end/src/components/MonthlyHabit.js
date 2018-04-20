@@ -49,9 +49,9 @@ class Habit extends Component {
     const lastUpdatedFormatted = lastUpdated.length > 0 && `${lastUpdated[lastUpdated.length - 1].date}@${lastUpdated[lastUpdated.length - 1].time}`;
 
     return (
-      <div className="row align-items-center">
+      <div className="row align-items-center mb-3" style={{'border-left': '5px solid green'}}>
         <div className="col-lg-2 col-md-2 col-sm-8 monthly-habit-title-sm">
-          <span className="h5">{name} </span>
+          <span className="h6">{name} </span>
           { completed > 0 && <span className="h5 badge badge-pill badge-default">{lastUpdatedFormatted}</span> }
         </div>
         <div className={'col-lg-6 col-md-6 col-sm-12 habit-padding ' + this.state.displayClass}>
