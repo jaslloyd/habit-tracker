@@ -39,3 +39,12 @@
 .bright-theme .navbar-toggler {
     background-color: #09a7e4;
 }
+
+
+.bright-theme .form-control {
+    color: black;
+  }
+  
+.bright-theme .form-control:focus {
+    color: black;
+}
