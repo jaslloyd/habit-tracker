@@ -8,6 +8,7 @@ class ChallengeDashboard extends Component {
   state = {
     filter_obj: `{"where": {"target_month": "challenge", "year": "${moment().format('YYYY')}"}}`,
     habits: [],
+    showCompletedHabits: false
   }
 
   // todo: Dry up duplicated in Dashboard
@@ -72,13 +73,15 @@ class ChallengeDashboard extends Component {
     this.getHabits();
   }
 
-  render() {
-    const challengeHabits = this.state.habits.length > 0 && this.state.habits.map(habit => (
-      <div id={habit.name} key={habit.name} className="card-box col-10 mx-auto pl-0 pr-0 pt-0 pb-0" style={{ lineHeight: '0' }}>
-        <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />
-      </div>
-    ));
+  handleShowCompletedHabits = () => {
+    this.setState((prevState) => ({
+      showCompletedHabits: !prevState.showCompletedHabits
+    }))
+  }
 
+  render() {
+    const completedHabits = this.state.habits.filter(habit => habit.completed >= habit.target);
+    const incompleteHabits = this.state.habits.filter(habit => habit.completed < habit.target);
     return (
       <Fragment>
         <div className="row mb-3 mt-3">
@@ -90,7 +93,18 @@ class ChallengeDashboard extends Component {
           </div>
         </div>
         <div className="mt-2 mb-2 mx-auto">
-          {challengeHabits}
+          {incompleteHabits.map(habit => (
+              <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />
+          ))}
+        </div>
+        <div className="mt-2 mb-2">
+          <div style={{display: this.state.showCompletedHabits ? '' : 'none'}}>
+          {completedHabits.map(habit => (
+            <ChallengeHabit key={habit.name} habit={habit} onHabitItemUpdated={this.handleHabitItemUpdate} onDelete={this.handleHabitDelete} />
+          ))
+        }
+          </div>
+          <button onClick={this.handleShowCompletedHabits} className="btn btn-secondary btn-block mb-3">{this.state.showCompletedHabits ? 'Hide Completed' : 'Show Completed'}</button>
         </div>
       </Fragment>
     );

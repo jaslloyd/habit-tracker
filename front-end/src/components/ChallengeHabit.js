@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -40,7 +40,7 @@ class ChallengeHabit extends Component {
     const lastUpdatedFormatted = lastUpdated.length > 0 && `${lastUpdated[lastUpdated.length - 1].date}@${lastUpdated[lastUpdated.length - 1].time}`;
 
     return (
-      <Fragment>
+      <div id={name} key={name} className="card-box col-10 mx-auto pl-0 pr-0 pt-0 pb-0" style={{ lineHeight: '0' }}>
         <div className="row mb-3">
           <div className="col-6">
             { completed > 0 && <span className="badge badge-pill badge-default challenge-badge">{lastUpdatedFormatted}</span> }
@@ -78,7 +78,7 @@ class ChallengeHabit extends Component {
             <span className="badge badge-pill badge-default challenge-badge">{completed} / {target}</span>
           </div>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }
