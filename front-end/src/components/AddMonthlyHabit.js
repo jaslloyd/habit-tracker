@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import HabitSuggestion from './HabitSuggestion';
 import FormGroup from './FormGroup';
+import queryString from 'query-string';
 
 class AddMonthlyHabit
  extends Component {
@@ -15,11 +16,12 @@ class AddMonthlyHabit
     year: `${moment().format('YYYY')}`,
     currentMonthIndex: parseInt(moment().format('M'), 10) - 1, // Seems to be 0 indexed
     msg: '',
-    month: moment.months(parseInt(moment().format('M'), 10) - 1),
+    requestedMonth: ''
   }
 
   componentDidMount() {
       this.getHabits();
+      this.setState({ requestedMonth : queryString.parse(this.props.location.search).month });
   }
 
   getHabits = async () => {
@@ -38,11 +40,11 @@ class AddMonthlyHabit
       target: parseInt(this.state.target, 10),
       lastUpdated: [],
       completed: 0,
-      target_month: this.state.month,
+      target_month: this.state.currentMonthIndex,
       year: this.state.year
     };
 
-  let filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
+    let filterSettings = `{"name": "${newHabit.name}", "target_month": "${newHabit.target_month}"}`;
 
     const { count } = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/count?where=${filterSettings}`)).json();
     if (count === 0) {
@@ -108,7 +110,7 @@ class AddMonthlyHabit
               </FormGroup>
               <FormGroup>
                 <label htmlFor="habit_mon">Month of Habit:</label>
-                <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
+                <select className="form-control" name="month" value={this.state.currentMonthIndex} onChange={this.handleInputChange} required>
                   <option disabled>Choose Month</option>
                   <option>{moment.months(this.state.currentMonthIndex)}</option>
                   <option>{moment.months(this.state.currentMonthIndex + 1)}</option>

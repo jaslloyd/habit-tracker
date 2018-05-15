@@ -31,8 +31,10 @@ class Habit extends Component {
     const canComplete = this.props.monthDaysLeft - (target - completed);
 
     if (canComplete < 0) {
-      this.setState({ color: 'red' });
-      this.setState({ displayClass: 'disabledControls' })
+      this.setState({ 
+        color: 'red',  
+        displayClass: 'disabledControls'
+      });
     } else if (canComplete === 0 || canComplete <= 5) {
       this.setState({ color: 'orange' });
     } else {
@@ -49,7 +51,7 @@ class Habit extends Component {
     const lastUpdatedFormatted = lastUpdated.length > 0 && `${lastUpdated[lastUpdated.length - 1].date}@${lastUpdated[lastUpdated.length - 1].time}`;
 
     return (
-      <div className="row align-items-center mb-3" style={{'border-left': '5px solid green'}}>
+      <div className="row align-items-center mb-3" style={{'borderLeft': '5px solid green'}}>
         <div className="col-lg-2 col-md-2 col-sm-8 monthly-habit-title-sm">
           <span className="h6">{name} </span>
           { completed > 0 && <span className="h5 badge badge-pill badge-default">{lastUpdatedFormatted}</span> }
