@@ -10,7 +10,7 @@ class Dashboard extends Component {
   */
   state = {
     habits: [],
-    loading: false,
+    loading: true
   };
 
   // todo: DRY up duplicated in ChallengeDashboard
@@ -41,7 +41,7 @@ class Dashboard extends Component {
       if (habit.lastUpdated) {
         habit.lastUpdated.push({
           date: moment().format('Do'),
-          time: moment().format('HH:mm'),
+          time: moment().format('HH:mm')
         });
       }
     }
@@ -57,9 +57,9 @@ class Dashboard extends Component {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(habitDetails),
+      body: JSON.stringify(habitDetails)
     };
 
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, requestDetails)).json();
@@ -67,9 +67,9 @@ class Dashboard extends Component {
   };
 
   // todo: DRY up duplicated in ChallengeDashboard
-  handleHabitDelete = async (id) => {
+  handleHabitDelete = async id => {
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, {
-      method: 'DELETE',
+      method: 'DELETE'
     })).json();
     this.getHabits();
   };
