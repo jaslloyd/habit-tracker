@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import MonthlyDashboard from './MonthlyDashboard';
+import Loader from './Loader/Loader';
 // import ChallengeDashboard from './ChallengeDashboard';
 
 class Dashboard extends Component {
@@ -9,7 +10,8 @@ class Dashboard extends Component {
   */
   state = {
     habits: [],
-  }
+    loading: false,
+  };
 
   // todo: DRY up duplicated in ChallengeDashboard
   componentDidMount() {
@@ -18,8 +20,8 @@ class Dashboard extends Component {
 
   getHabits = async () => {
     const habits = await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits`)).json();
-    this.setState({ habits });
-  }
+    this.setState({ habits, loading: false });
+  };
 
   // todo: Dry up duplicated in Dashboard
   handleHabitItemUpdate = (id, numCompleted) => {
@@ -33,7 +35,7 @@ class Dashboard extends Component {
     habit.completed = numCompleted;
     // Only update the last_updated when a new entry is added.
     if (isNewEntry) {
-    // 3. Set the last_updated date to today.
+      // 3. Set the last_updated date to today.
       habit.last_updated = moment().format('Do@HH:mm');
       // 3.5 Update the lastUpdated list so we can keep track of all the dates...
       if (habit.lastUpdated) {
@@ -47,7 +49,7 @@ class Dashboard extends Component {
     this.setState({ habits: existingHabits });
     // 5. Update the habit in the backend
     this.updateHabit(existingHabits[habitIndex], id);
-  }
+  };
 
   // todo: DRY up duplicated in ChallengeDashboard
   updateHabit = async (habitDetails, id) => {
@@ -62,18 +64,27 @@ class Dashboard extends Component {
 
     await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, requestDetails)).json();
     console.log(`Habit: ${id} updated...`);
-  }
+  };
 
   // todo: DRY up duplicated in ChallengeDashboard
   handleHabitDelete = async (id) => {
-    await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, { method: 'DELETE' })).json();
+    await (await fetch(`${process.env.REACT_APP_API_ENPOINT}/api/occurrence_habits/${id}`, {
+      method: 'DELETE',
+    })).json();
     this.getHabits();
-  }
+  };
 
   render() {
+    if (this.state.loading) {
+      return <Loader />;
+    }
     return (
       <Fragment>
-        <MonthlyDashboard habits={this.state.habits} onHabitItemUpdate={this.handleHabitItemUpdate} onHabitDelete={this.handleHabitDelete} />
+        <MonthlyDashboard
+          habits={this.state.habits}
+          onHabitItemUpdate={this.handleHabitItemUpdate}
+          onHabitDelete={this.handleHabitDelete}
+        />
         {/* <ChallengeDashboard /> */}
       </Fragment>
     );
