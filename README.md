@@ -1,7 +1,10 @@
 # Habit Tracker / Goal Tracker
 
-![Habit_tracker_front-end](habit_tracker.PNG)
+Tracking Regular Habits/Goals
+![Habit_tracker_front-end](habit_tracker1.PNG)
 
+Tracking Challenge Habits/Goals
+![challenge_habits_tracker](challenge_habit.png)
 I am really into habit trackers and I am currently using various tools to track different parts of my life.
 
 - Momentium iphone app - which is common habit tracking technique called "a don't break the streak"
