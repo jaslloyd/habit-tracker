@@ -1,7 +1,7 @@
 # Habit Tracker / Goal Tracker
 
 Tracking Regular Habits/Goals
-![Habit_tracker_front-end](habit_tracker1.PNG)
+![Habit_tracker_front-end](habit_tracker1.png)
 
 Tracking Challenge Habits/Goals
 ![challenge_habits_tracker](challenge_habit.png)
