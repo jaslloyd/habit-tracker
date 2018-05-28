@@ -1,5 +1,5 @@
 # Habit Tracker / Goal Tracker
-
+Keeping Track of your Habits and Goals easily, quickly and see how you are progressing.
 Tracking Regular Habits/Goals
 ![Habit_tracker_front-end](habit_tracker1.PNG)
 
@@ -13,7 +13,38 @@ I am really into habit trackers and I am currently using various tools to track 
 
 I want a easy way to coorlate my tracking into one simple to use interface. Also the advantage of building my own tool I can add features or change it to whatever I like.
 
-## User Stories
+## Setup
+This application comes in two parts and both can be deployed independently of each other. Altough, its probably best to deploy both on the same server. The technology stack is as follows:
+* Front-end
+    * React
+    * Bootstrap v4
+    * Font-awesome for icons
+
+* Back-end
+    * NodeJS 
+        * Loopback 
+    * DB
+        * Mongodb 
+
+### Deployment
+As stated earlier this project is divided into two, front-end and back-end and because of that both will need to be started if you want to work on the development.
+
+#### Local Deployment/Deployment
+
+Starting the back-end
+1. Once the repo is cloned run `cd Personal-Habit-Tracker`
+2. Install the dependencies via running: `npm install`
+3. Start the backend via running: `npm start`
+
+Starting the Front-end
+1. `cd Personal-Habit-Tracker`
+2. `cd front-end`
+3. Install the dependencies via running: `npm install`
+4. Start the backend via running: `npm start`
+
+
+## User Stores and Other Information
+#### User Stories
 
 - [X] As a user I want to be able to add habits
 
@@ -34,15 +65,3 @@ I want a easy way to coorlate my tracking into one simple to use interface. Also
 - [X] As a user I want to take X day challenges e.g. 30 Day Coding Challenge.
 
 - [ ] As a user I want to be able to add specific steps for completing a goal
-
-## Technology Stack
-* Front-end
-    * React
-    * Bootstrap v4
-    * Font-awesome for icons
-
-* Back-end
-    * NodeJS 
-        * Loopback 
-    * DB
-        * Mongodb 
