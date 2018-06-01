@@ -6,11 +6,7 @@ import HabitItem from './HabitItem';
 
 // This class has a lot of duplciate logic from Habit.js, I will continue to get it working then refactor/generalize as do not want to do that to early.
 class ChallengeHabit extends Component {
-  state = {
-    displayClass: ''
-  };
-
-  onCompleted = index => {
+  onCompleted = (index) => {
     const { id, completed } = this.props.habit;
     if (index <= completed) {
       this.props.onHabitItemUpdated(id, completed - 1);
@@ -20,9 +16,12 @@ class ChallengeHabit extends Component {
   };
 
   render() {
-    const { id, name, target, completed, lastUpdated, endDate     } = this.props.habit;
+    const {
+ id, name, target, completed, lastUpdated, endDate 
+} = this.props.habit;
     let endDateFormatted;
     let daysLeft;
+    let displayClass = '';
     // let daysLeftFormatted;
 
     if (endDate) {
@@ -30,7 +29,7 @@ class ChallengeHabit extends Component {
       daysLeft = moment().diff(moment.unix(endDate), 'days');
       // daysLeftFormatted = Math.abs(daysLeft);
       if (daysLeft > 0) {
-        this.setState({ displayClass: 'disabledControls' });
+        displayClass = 'disabledControls';
       }
     }
 
@@ -75,7 +74,7 @@ class ChallengeHabit extends Component {
         </div>
 
         <div className="row">
-          <div className={`col-md-12 text-center ${this.state.displayClass}`} style={{ padding: '0 40px' }}>
+          <div className={`col-md-12 text-center ${displayClass}`} style={{ padding: '0 40px' }}>
             {habitItemElements}
           </div>
         </div>
@@ -103,10 +102,10 @@ ChallengeHabit.propTypes = {
     name: PropTypes.string.isRequired,
     target: PropTypes.number.isRequired,
     completed: PropTypes.number.isRequired,
-    lastUpdated: PropTypes.array.isRequired
+    lastUpdated: PropTypes.array.isRequired,
   }).isRequired,
   onHabitItemUpdated: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default ChallengeHabit;
