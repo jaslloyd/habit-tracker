@@ -16,7 +16,8 @@ class AddMonthlyHabit
     year: `${moment().format('YYYY')}`,
     currentMonthIndex: parseInt(moment().format('M'), 10) - 1, // Seems to be 0 indexed
     msg: '',
-    requestedMonth: ''
+    requestedMonth: '',
+    month: moment().format('MMMM')
   }
 
   componentDidMount() {
@@ -40,7 +41,7 @@ class AddMonthlyHabit
       target: parseInt(this.state.target, 10),
       lastUpdated: [],
       completed: 0,
-      target_month: this.state.currentMonthIndex,
+      target_month: this.state.month,
       year: this.state.year
     };
 
@@ -110,10 +111,10 @@ class AddMonthlyHabit
               </FormGroup>
               <FormGroup>
                 <label htmlFor="habit_mon">Month of Habit:</label>
-                <select className="form-control" name="month" value={this.state.currentMonthIndex} onChange={this.handleInputChange} required>
+                <select className="form-control" name="month" value={this.state.month} onChange={this.handleInputChange} required>
                   <option disabled>Choose Month</option>
-                  <option>{moment.months(this.state.currentMonthIndex)}</option>
-                  <option>{moment.months(this.state.currentMonthIndex + 1)}</option>
+                  <option value={moment.months(this.state.currentMonthIndex)}>{moment.months(this.state.currentMonthIndex)}</option>
+                  <option value={moment.months(this.state.currentMonthIndex + 1)}>{moment.months(this.state.currentMonthIndex + 1)}</option>
                 </select>
               </FormGroup>
               <FormGroup>
