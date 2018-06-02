@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
 import Navbar from './components/Navbar';
-import Main from './components/Main';
+import Routes from './router/Routes';
 import authHelper from './Auth';
 import './App.css';
 import './BrightTheme.css';
@@ -91,7 +91,7 @@ class App extends Component {
           />
         )}
         <div className="col-12">
-          <Main />
+          <Routes />
         </div>
       </Sidebar>
     );

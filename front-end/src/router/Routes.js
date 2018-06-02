@@ -1,16 +1,16 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import AddMonthlyHabit from './AddMonthlyHabit';
-import AddChallengeHabit from './AddChallengeHabit';
-import EditHabit from './EditHabit';
-import Dashboard from './Dashboard';
-import Login from './Login';
-import Summary from './Summary';
+import AddMonthlyHabit from '../components/AddMonthlyHabit';
+import AddChallengeHabit from '../components/AddChallengeHabit';
+import EditHabit from '../components/EditHabit';
+import Dashboard from '../components/Dashboard';
+import Login from '../components/Login';
+import Summary from '../components/Summary';
 import PrivateRoute from './PrivateRoute';
-import ChallengeDashboard from './ChallengeDashboard';
-import Demo from './Demo';
+import ChallengeDashboard from '../components/ChallengeDashboard';
+import Demo from '../components/Demo';
 
-const Main = () => (
+const Routes = () => (
   <main>
     <Switch>
       <Route exact path="/login" component={Login} />
@@ -25,4 +25,4 @@ const Main = () => (
     </Switch>
   </main>
 );
-export default Main;
+export default Routes;
