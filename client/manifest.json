@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Personal Habit Tracker",
+  "name": "Personal Habit Tracker - Developed by Jason Lloyd",
   "icons": [
     {
       "src": "favicon.ico",
