@@ -41,27 +41,3 @@ Starting the Front-end
 2. `cd front-end`
 3. Install the dependencies via running: `npm install`
 4. Start the backend via running: `npm start`
-
-
-## User Stores and Other Information
-#### User Stories
-
-- [X] As a user I want to be able to add habits
-
-- [X] As a user I want to be able to remove habits
-
-- [X] As a user I want to be able to edit a habit
-
-- [X] As a user I want to be able to see all the habits I am tracking in a single ui
-
-- [X] As a user I want to be able to make a habit or goal as successful
-
-- [ ] As a user I want to be able to see my progress on habits overtime
-
-
-### Habit Specific
-- [X] As a user I want to track my monthly habits. e.g I want to go to the Gym at least 10 times this month
-
-- [X] As a user I want to take X day challenges e.g. 30 Day Coding Challenge.
-
-- [ ] As a user I want to be able to add specific steps for completing a goal
