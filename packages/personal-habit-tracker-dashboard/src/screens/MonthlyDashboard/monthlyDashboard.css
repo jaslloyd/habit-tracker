@@ -1,0 +1,26 @@
+.header__title {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.header__title__days {
+    margin-left: 0.5rem;
+}
+
+.addhabit__container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.habits__container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}

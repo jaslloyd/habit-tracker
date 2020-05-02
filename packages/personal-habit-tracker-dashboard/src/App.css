@@ -1,0 +1,45 @@
+.sidebar {
+    margin-top: 2rem;
+}
+
+.sidebar__profiledetails {
+    text-align: center;
+}
+
+.sidebar__profiledetails__img {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    margin-top: 2rem;
+}
+
+.nav-link {
+    padding: 1rem 2rem;
+  }
+  
+.sidebar__nav__item .sidebar__nav__item__link.active, .sidebar__nav .sidebar__nav__item__link:hover {
+    background: linear-gradient(135deg, #07a7e3 0%, #32dac3 100%);
+}
+
+.sidebar__nav__item a {
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.sidebar__nav__item__link {
+    padding: 1em 2rem;
+    display: block;
+}

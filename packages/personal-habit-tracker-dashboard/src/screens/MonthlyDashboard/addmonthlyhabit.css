@@ -1,0 +1,28 @@
+.alert {
+  display: block;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+@media (min-width: 576px) {
+  .form__container__item {
+    flex: 0 0 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .form__container__item {
+    flex: 0 0 80%;
+  }
+}

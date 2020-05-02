@@ -1,0 +1,27 @@
+.challenge__header {
+    display: flex;
+    margin: 1rem 0;
+    justify-content: flex-start;
+}
+
+.header__title--big h3 {
+    margin: 0;
+}
+
+.challenge__header__btns {
+    margin: 0 0 0 auto;
+}
+
+.habits__toggle__btn {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.habits__toggle__btn:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}

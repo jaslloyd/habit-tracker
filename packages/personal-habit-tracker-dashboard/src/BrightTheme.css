@@ -1,0 +1,38 @@
+.bright-theme {
+    background-color: #ebebeb !important;
+    color: #72848c !important;
+    font-weight: 400;
+}
+
+.bright-theme .challenge-badge, .bright-theme .challenge__badge {
+    background-color: #09a7e4;
+    color: white;
+}
+
+.bright-theme input[type="checkbox"] {
+    background: #dfdfdf
+}
+.bright-theme input[type="checkbox"]:checked {
+    background: #0ad250
+}
+
+.bright-theme .card__box {
+    background-color: #ffffff;
+}
+
+.bright-theme .card__header {
+    color:#07a7e3;
+}
+
+.bright-theme .navbar-toggler {
+    background-color: #09a7e4;
+}
+
+
+.bright-theme .form-control {
+    color: black;
+  }
+  
+.bright-theme .form-control:focus {
+    color: black;
+}

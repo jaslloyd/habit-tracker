@@ -1,0 +1,84 @@
+.btn__container {
+    display: flex;
+    margin-top: 2em;
+}
+
+.btn__info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn__info:hover {
+    color: #fff;
+    background-color: #138496;
+    border-color: #117a8b;
+    text-decoration: none;
+}
+
+.addhabit__title {
+    display: flex;
+    justify-content: center;
+}
+
+.form__container {
+    display: flex;
+    justify-content: center;
+}
+
+.form__group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.form__control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: none;
+    border-bottom: 1px solid #ffa300;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+select.form__control:not([size]):not([multiple]) {
+    height: calc(2.25rem + 2px);
+}
+
+.form__container__item {
+    margin-right: 1em;
+}
+
+.habit__suggestions__item {
+    margin-bottom: .5em;
+}
+
+@media (min-width: 576px) {
+    .form__container {
+        flex-direction: column;
+    }
+    .form__container__item, .habit__suggestions {
+        flex: 0 0 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .form__container {
+        flex-direction: row;
+    }
+    .form__container__item {
+        flex: 0 0 60%;
+    }
+
+    .habit__suggestions {
+        flex: 0 0 30%;
+    }
+}

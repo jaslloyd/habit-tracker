@@ -1,0 +1,13 @@
+.dashboard__controls {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    margin-top: 1rem;
+}
+
+.dashboard__prevbtn,
+.dashboard__nextbtn,
+.dashboard__dates {
+    flex: 1;
+    text-align: center;
+}
